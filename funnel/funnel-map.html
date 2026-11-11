@@ -1,0 +1,193 @@
+<title>Powell Funnel Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: three horizontal lanes (organic, email, paid) that all pour into one booked call, like gutters into a downpipe. */
+:root {
+  --bg: #f3f4f6;
+  --panel: #ffffff;
+  --ink: #1c2430;
+  --muted: #5b6573;
+  --line: #cfd5dd;
+  --organic: #b4532a;   /* clay tile */
+  --email: #2f6f8f;     /* slate blue */
+  --paid: #6b5bb5;      /* meta violet */
+  --goal: #1f7a4d;
+  --open: #a76b00;
+  --tint-organic: #f7e9e2;
+  --tint-email: #e3eef4;
+  --tint-paid: #ecebf8;
+  --tint-goal: #e2f2e9;
+  --tint-open: #fbf1dc;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12161c; --panel: #1a2029; --ink: #e8ecf1; --muted: #9aa4b2; --line: #2e3744;
+  --organic: #e08458; --email: #6fb3d4; --paid: #a598ec; --goal: #5cc08c; --open: #e0a83a;
+  --tint-organic: #2a1d17; --tint-email: #16242c; --tint-paid: #1f1d33; --tint-goal: #15261d; --tint-open: #2a2213;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #12161c; --panel: #1a2029; --ink: #e8ecf1; --muted: #9aa4b2; --line: #2e3744;
+  --organic: #e08458; --email: #6fb3d4; --paid: #a598ec; --goal: #5cc08c; --open: #e0a83a;
+  --tint-organic: #2a1d17; --tint-email: #16242c; --tint-paid: #1f1d33; --tint-goal: #15261d; --tint-open: #2a2213;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px;
+}
+header h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(28px, 4vw, 40px); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+header p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.lanes { display: grid; gap: 18px; }
+.lane {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  display: grid; grid-template-columns: 150px 1fr; overflow: hidden;
+}
+.lane-label {
+  padding: 18px 16px; display: flex; flex-direction: column; gap: 4px; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.lane-label strong { font-family: var(--f-display); font-weight: 800; font-size: 18px; }
+.lane-label span { font-size: 13px; color: var(--muted); }
+.lane.organic .lane-label { background: var(--tint-organic); } .lane.organic .lane-label strong { color: var(--organic); }
+.lane.email .lane-label { background: var(--tint-email); }     .lane.email .lane-label strong { color: var(--email); }
+.lane.paid .lane-label { background: var(--tint-paid); }       .lane.paid .lane-label strong { color: var(--paid); }
+
+.flow { display: flex; align-items: stretch; gap: 0; padding: 16px; min-width: 0; overflow-x: auto; }
+.step {
+  flex: 1 1 0; min-width: 150px; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+  background: var(--bg); display: flex; flex-direction: column; gap: 4px;
+}
+.step h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 15px; }
+.step p { margin: 0; font-size: 13px; color: var(--muted); }
+.step .tag { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+.organic .step .tag { color: var(--organic); }
+.email .step .tag { color: var(--email); }
+.paid .step .tag { color: var(--paid); }
+.arrow { flex: 0 0 34px; display: grid; place-items: center; color: var(--muted); font-size: 18px; }
+.arrow::before { content: "→"; }
+
+.fork { flex: 1.4 1 0; min-width: 210px; display: grid; gap: 8px; }
+.fork .step { border-style: dashed; border-color: var(--open); background: var(--tint-open); }
+.fork .step .tag { color: var(--open); }
+
+.handoff { margin: 0 16px 14px; font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; }
+.handoff b { font-family: var(--f-mono); font-weight: 500; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px dashed var(--email); color: var(--email); }
+
+.downpipe { display: grid; place-items: center; color: var(--muted); font-family: var(--f-mono); font-size: 12px; gap: 4px; }
+.downpipe::before { content: "↓  ↓  ↓"; font-size: 20px; letter-spacing: 0.3em; }
+
+.goal {
+  border: 2px solid var(--goal); background: var(--tint-goal); border-radius: 10px; padding: 20px;
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center;
+}
+.goal .box h3 { margin: 0; font-family: var(--f-display); font-weight: 800; font-size: 20px; color: var(--goal); }
+.goal .box p { margin: 4px 0 0; font-size: 14px; }
+.goal .arrow { flex: none; }
+
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.note { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.note h4 { margin: 0 0 6px; font-family: var(--f-display); font-weight: 600; font-size: 15px; }
+.note p { margin: 0; font-size: 13.5px; color: var(--muted); }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.legend i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+@media (max-width: 760px) {
+  .lane { grid-template-columns: 1fr; }
+  .lane-label { border-right: 0; border-bottom: 1px solid var(--line); flex-direction: row; align-items: baseline; gap: 10px; }
+  .flow { flex-direction: column; overflow: visible; }
+  .step, .fork { min-width: 0; }
+  .arrow { flex-basis: 26px; }
+  .arrow::before { content: "↓"; }
+  .goal { grid-template-columns: 1fr; }
+  .goal .arrow::before { content: "↓"; }
+  .notes { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Powell Marketing UK · Acquisition map · v1</div>
+    <h1>Three ways in, one booked call</h1>
+    <p>Every path ends at the same place: a call to sell the main offer. The dashed amber box is a decision we haven't made yet.</p>
+  </header>
+
+  <div class="legend">
+    <span><i style="background:var(--organic)"></i>Organic short form</span>
+    <span><i style="background:var(--email)"></i>Email</span>
+    <span><i style="background:var(--paid)"></i>Meta ads</span>
+    <span><i style="background:var(--tint-open);border:1px dashed var(--open)"></i>Not decided yet</span>
+  </div>
+
+  <section class="lanes">
+    <div class="lane organic">
+      <div class="lane-label"><strong>Organic</strong><span>Free attention</span></div>
+      <div>
+        <div class="flow">
+          <div class="step"><span class="tag">Get seen</span><h3>Short-form video</h3><p>Hook + one proof + "Comment ROOF"</p></div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="step"><span class="tag">Give value</span><h3>Lead magnet</h3><p>£388 → £18,000 roofer breakdown (PDF)</p></div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="step"><span class="tag">Convert</span><h3>DM / WhatsApp chat</h3><p>"Where does your work come from?" then offer the LOOM</p></div>
+        </div>
+        <div class="handoff">Also hands off to: <b>Email list</b> (if the PDF asks for an email)</div>
+      </div>
+    </div>
+
+    <div class="lane email">
+      <div class="lane-label"><strong>Email</strong><span>Nurture</span></div>
+      <div class="flow">
+        <div class="step"><span class="tag">Stay in touch</span><h3>Email list</h3><p>People who got the PDF or bought the tripwire</p></div>
+        <div class="arrow" aria-hidden="true"></div>
+        <div class="step"><span class="tag">Show the system</span><h3>Loom video</h3><p>Walks through the setup for their area</p></div>
+        <div class="arrow" aria-hidden="true"></div>
+        <div class="step"><span class="tag">Ask</span><h3>Book a meeting</h3><p>Call link sent after they watch</p></div>
+      </div>
+    </div>
+
+    <div class="lane paid">
+      <div class="lane-label"><strong>Meta ads</strong><span>Paid attention</span></div>
+      <div>
+        <div class="flow">
+          <div class="step"><span class="tag">Get seen</span><h3>Meta ad</h3><p>Facebook / Instagram, same hooks as organic winners</p></div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="step"><span class="tag">First purchase</span><h3>Tripwire offer</h3><p>Low-price product on the website</p></div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="fork">
+            <div class="step"><span class="tag">Option A</span><h3>Pitch the call right away</h3><p>Thank-you page → book call</p></div>
+            <div class="step"><span class="tag">Option B</span><h3>Video first, then the call</h3><p>Same as email: Loom → book call</p></div>
+          </div>
+        </div>
+        <div class="handoff">Also hands off to: <b>Email list</b> (every buyer)</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="downpipe">all three lanes</div>
+
+  <section class="goal">
+    <div class="box"><h3>Booked call</h3><p>Sales call with Charlie</p></div>
+    <div class="arrow" aria-hidden="true"></div>
+    <div class="box"><h3>Main offer</h3><p>Google Ads + landing page + follow-up system. Agreed booked-job target in 60 days, or no fee.</p></div>
+  </section>
+
+  <section>
+    <div class="eyebrow" style="margin-bottom:10px">Open questions for the deep dive</div>
+    <div class="notes">
+      <div class="note"><h4>Do we ask for an email?</h4><p>If the PDF goes out in a DM with no email captured, organic never feeds the email lane. Decide where the email gets collected.</p></div>
+      <div class="note"><h4>What is the tripwire?</h4><p>Product and price aren't set yet. It should solve one small problem fast and point straight at the main offer.</p></div>
+      <div class="note"><h4>What about the "not yet" people?</h4><p>No-shows and people who say "not now" have nowhere to go yet. They should drop back into email, not disappear.</p></div>
+    </div>
+  </section>
+</div>
