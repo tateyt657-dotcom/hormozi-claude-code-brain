@@ -42,6 +42,18 @@ Powell Marketing UK is a trades-focused Google Ads agency. There are three offer
 - Offered only if the prospect says no to Google Ads
 - Delivery follows the GMB fulfillment SOP: complete every profile field, record rankings first, report from the Performance tab
 
+## Case-study deal: 5% commission (only these 4 roofers)
+
+Offered only to Trade Price Driveways and Roofing, Horncastle & Sons, Advantage Flat Roofing and A L S Roofing Services, through the "roofer rev share" campaign.
+
+- 5% of completed jobs the ads bring in, invoiced only after the customer has paid the roofer
+- No setup fee, no management fee, no contract
+- Client pays ad spend on their own card (minimum £30 a day)
+- 90-day job target. Powell works free until it's hit.
+- In return, Powell documents the journey as a public case study
+
+Don't offer this to anyone else. Every other lead gets the core offer above.
+
 ## TODO
 
 - [ ] How the completed-jobs target is calculated (formula or examples)
