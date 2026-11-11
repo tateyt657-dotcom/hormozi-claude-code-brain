@@ -1,30 +1,51 @@
 # Offer details
 
-## What Powell sells (Known)
+Powell Marketing UK is a trades-focused Google Ads agency. There are three offers: the core Google Ads offer, a £100 website tripwire that leads into it, and a GBP downsell.
 
-Lead capture and local visibility for trades businesses. The services that show up in Powell's existing work:
+## Core offer: Google Ads
 
-1. **Missed call text back.** When the trade misses a call, the caller gets an automatic text from the business number within seconds. Example text: "Sorry, up a roof. What's the job?" The trade rings back once they're free.
-2. **Speed to lead.** When someone fills in a website form, they get a text within 5 minutes with the trade's name and when they'll ring. Goal: be the first trade the customer speaks to.
-3. **Google review requests.** Ask every customer on the day the job is finished, then text the Google review link before leaving site. The link opens straight to the review box. No incentives and no filtering to happy customers only, so it stays inside Google's rules.
-4. **Google Business Profile (GBP) optimization.** Complete every profile field, set 2 to 4 accurate categories, build a full services list, verify the profile, match the website to the profile, and fix name, address and phone consistency across the web. Record rankings before starting so results can be proved. Results show in 3 to 14 days.
+| Item | Detail |
+|---|---|
+| Setup | £750. Anchored at £1,250 "normally", sold as a founding rate. |
+| Monthly fee | £1,200 every 4 weeks. Starts only once the agreed completed-jobs target is hit. |
+| Ad spend | Paid by the client separately. Minimum £30 a day. |
+| Guarantee | 90-day completed-jobs guarantee. Powell works free until the target is hit. |
+| Job target | Set from the ad spend and how many jobs the client can handle. |
 
-## How it's sold (Known, from the GMB SOP)
+**Deliverables**
 
-- Sell the GBP completion first. It takes 15 to 30 minutes to deliver.
-- Upsell the website work after (a page per service, matching details, embedded map). That takes one to a few hours.
-- Report results from the GBP Performance tab against the starting benchmark.
+- Landing page
+- Google Ads setup and management
+- Performance meetings every 14 days
+- Automatic review requests
+- Google Business Profile (GBP) setup
+- Call tracking
+- Phone-handling script
+- Missed-call text back
+- Instant email and SMS follow-up to new leads
 
-## Core message (Known, from the reels)
+**Terms**
 
-"Fix the phone first." A trade's website doesn't bring work if calls go to voicemail and enquiries wait hours for a reply.
+- One trade per area (exclusivity)
+- Payment before work starts
+- Small change requests are batched and done on Saturdays
+
+## Tripwire: website build
+
+- £100 build, then £50 a month hosting
+- Built in-house in Claude Code
+- Purpose: get a trade paying, then move them onto the Google Ads offer
+
+## Downsell: GBP
+
+- £250 setup, then £50 a month for posts and geotagged photos
+- Offered only if the prospect says no to Google Ads
+- Delivery follows the GMB fulfillment SOP: complete every profile field, record rankings first, report from the Performance tab
 
 ## TODO
 
-- [ ] Price for each service, and any bundle
-- [ ] One-off fee, monthly retainer, or both
-- [ ] Setup time and what the client has to do
-- [ ] Guarantee, if any
-- [ ] Which software runs the text back and auto texts
-- [ ] Contract length and cancellation terms
-- [ ] Offer name, if it has one
+- [ ] How the completed-jobs target is calculated (formula or examples)
+- [ ] What happens if the target isn't hit in 90 days
+- [ ] Contract length or notice period once the monthly fee starts
+- [ ] How many founding-rate spots are left, and when the rate ends
+- [ ] How many tripwire buyers have moved to Google Ads

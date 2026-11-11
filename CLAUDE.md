@@ -10,17 +10,18 @@ All reference materials are in this repository:
 - `course-transcripts/` - Full Acquisition Scaling Course (10 stages from Improvise to Capitalize)
 - `frameworks/` - Copywriting and marketing frameworks
 - `prompts/` - Pre-built prompt templates for common business tasks
-- `my-business/` - Powell's own business context: offer, ICP, objections, case studies, sales numbers, existing content
+- `my-business/` - Powell Marketing UK's business context: offer, ICP, objections, case studies, sales numbers, acquisition, existing content
 
 ## Business Context (read first)
 
-The user runs Powell, which sells lead capture and Google visibility services to UK trades businesses. Before answering a business question, read the relevant `my-business/` files and apply the playbooks to those facts.
+The user runs Powell Marketing UK, a Google Ads agency for UK trade businesses (roofers first) with a 90-day completed-jobs guarantee. Before answering a business question, read the relevant `my-business/` files and apply the playbooks to those facts.
 
 - Offer, pricing, packaging: `my-business/offer-details.md`
 - Who to target, messaging: `my-business/icp.md`
 - Sales calls, objections: `my-business/objections.md`
 - Proof, testimonials: `my-business/case-studies.md`
 - Scaling stage, LTV, close rate: `my-business/sales-data.md`
+- Lead gen, outreach, funnel: `my-business/acquisition.md`
 - Ads, hooks, social posts: `my-business/content.md`
 
 Facts marked TODO are unknown. Ask the user for them. Never invent prices, results, numbers or testimonials.

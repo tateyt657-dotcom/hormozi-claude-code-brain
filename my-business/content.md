@@ -1,6 +1,10 @@
 # Content already made
 
-## Trades Reels: Batch 1 (Known)
+## Positioning line
+
+"15 leads at a 30% close rate beats 30 leads at 10%." Posted on LinkedIn, Oct 2026.
+
+## Trades Reels: Batch 1
 
 Source: `reels/` on branch `claude/affectionate-ramanujan-yvyse8` in `tateyt657-dotcom/powell-marketing-content`.
 
@@ -20,6 +24,5 @@ Four talking-head reels for Instagram Reels, TikTok and YouTube Shorts, each abo
 
 ## TODO
 
-- [ ] Results from the batch (views, watch time, keyword comments, enquiries)
-- [ ] What happens after someone comments a keyword (DM script, booking link)
-- [ ] Other channels in use (ads, cold outreach, email)
+- [ ] Whether the reels have been posted, and their results
+- [ ] What happens after someone comments a keyword

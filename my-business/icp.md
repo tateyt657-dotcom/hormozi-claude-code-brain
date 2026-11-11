@@ -1,26 +1,28 @@
 # Ideal customer profile
 
-## Who (Inferred from the reels)
+## Who
 
-- **Trade:** UK trades businesses. Roofers are the main example. Other likely fits: plumbers, electricians, builders, painters, landscapers.
-- **Size:** owner-operator or small crew. The owner is on the tools and answers the phone themselves.
-- **Location:** UK. The reels use pounds, "mates", "a tenner" and "ring".
+- **Trade:** UK trade businesses, **roofers first.** The roofer-first identity is Powell's edge.
+- **Size:** owner with a crew of 3 to 8.
+- **Turnover:** roughly £400k to £800k.
+- **Owner:** off the tools, or coming off them.
+- **Current push:** roofing, England only.
 
-## Their problems (Known, from the reels)
+## Core pain
 
-- They miss calls while working ("up a ladder") and the lead calls the next trade.
-- Form enquiries wait hours for a reply. The reels use 6 hours as the typical figure.
-- They have few Google reviews (4 vs 60) and lose to competitors with more.
-- They've spent money on a website (around £5,000) that doesn't bring work because nobody answers fast.
+- Wages to cover
+- Crew sitting idle
+- Can't hire
+- Can't step off the tools
+- Lumpy pipeline: busy one month, quiet the next
 
-## What they want
+## Also true for this buyer (from the reels)
 
-More booked jobs without hiring someone to answer the phone or doing more admin at night.
+- Missed calls while on a job lose work to the next trade.
+- Slow replies to form enquiries lose work.
+- Few Google reviews lose to competitors with more.
 
 ## TODO
 
-- [ ] Confirm the trades Powell targets first
-- [ ] Revenue range or team size of a good client
-- [ ] Area served (one town, a region, or all of the UK)
 - [ ] Who is a bad fit, and why
-- [ ] Where these buyers spend time online
+- [ ] Next trades after roofing, and in what order

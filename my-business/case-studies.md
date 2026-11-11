@@ -1,20 +1,33 @@
 # Case studies
 
-No client results are recorded yet.
+Only use the numbers below. Don't round them up or add results that aren't listed.
 
-Don't invent results, numbers or testimonials. Ask for real ones.
+## Results
 
-## Template for each client
+### Portsmouth roofer
+- £388 ad spend
+- £18,000 in completed jobs
 
-```
-## [Client name or "Roofer, Leeds"]
-- Trade and location:
-- Services bought:
-- Start date:
-- Before: (Google rank for main search terms, review count, missed calls a week, reply time)
-- After: (same measures, and the date measured)
-- Jobs or revenue won that can be traced to the work:
-- Quote from the client (with permission to use it):
-```
+### UK electrician
+- 39 quote requests from £612 spend in 30 days
 
-The GMB SOP says to record rankings before starting. Those benchmarks belong here.
+### Roofer, 3 months (22 May to 20 Aug 2025)
+- £2,500 ad spend
+- 48 leads, about £52 per lead
+- 30% closed
+- About £58,000 in completed jobs
+- About 23x return on ad spend
+
+## In progress (no results yet)
+
+### Freedom Scaffolding, Nottingham
+- First scaffolding GBP client
+
+### HVAC firm
+- Target: top 1 to 3 on Google Maps
+
+## TODO
+
+- [ ] Client names and permission to use them in public
+- [ ] Quotes or video testimonials
+- [ ] Which results came from Powell's current offer and which came from earlier work
