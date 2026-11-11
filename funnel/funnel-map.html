@@ -103,7 +103,19 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
 .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
 .legend i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
+.recover { background: var(--panel); border: 1px dashed var(--open); border-radius: 10px; overflow: hidden; }
+.recover .row { display: grid; grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1.6fr); gap: 14px; padding: 14px 18px; border-top: 1px solid var(--line); align-items: start; }
+.recover .row:first-child { border-top: 0; }
+.recover .n { font-family: var(--f-mono); font-size: 12px; color: var(--open); padding-top: 2px; }
+.recover h4 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 15px; }
+.recover .row > div:first-of-type p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+.recover .fix { font-size: 13.5px; margin: 0; }
+.recover .fix b { font-weight: 600; }
+.recover .floor { background: var(--tint-open); padding: 14px 18px; font-size: 13.5px; border-top: 1px solid var(--line); }
+
 @media (max-width: 760px) {
+  .recover .row { grid-template-columns: 28px minmax(0, 1fr); }
+  .recover .fix { grid-column: 2; }
   .lane { grid-template-columns: 1fr; }
   .lane-label { border-right: 0; border-bottom: 1px solid var(--line); flex-direction: row; align-items: baseline; gap: 10px; }
   .flow { flex-direction: column; overflow: visible; }
@@ -120,14 +132,14 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
   <header>
     <div class="eyebrow">Powell Marketing UK · Acquisition map · v1</div>
     <h1>Three ways in, one booked call</h1>
-    <p>Every path ends at the same place: a call to sell the main offer. The dashed amber box is a decision we haven't made yet.</p>
+    <p>Every path ends at the same place: a call to sell the main offer. The bottom section shows how people who stop partway get picked back up.</p>
   </header>
 
   <div class="legend">
     <span><i style="background:var(--organic)"></i>Organic short form</span>
     <span><i style="background:var(--email)"></i>Email</span>
     <span><i style="background:var(--paid)"></i>Meta ads</span>
-    <span><i style="background:var(--tint-open);border:1px dashed var(--open)"></i>Not decided yet</span>
+    <span><i style="background:var(--tint-open);border:1px dashed var(--open)"></i>"Not yet" follow-up</span>
   </div>
 
   <section class="lanes">
@@ -164,10 +176,9 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
           <div class="arrow" aria-hidden="true"></div>
           <div class="step"><span class="tag">First purchase</span><h3>£100 website build</h3><p>+ £50/month hosting. Now a paying customer.</p></div>
           <div class="arrow" aria-hidden="true"></div>
-          <div class="fork">
-            <div class="step"><span class="tag">Option A</span><h3>Pitch the call right away</h3><p>Thank-you page → book call</p></div>
-            <div class="step"><span class="tag">Option B</span><h3>Video first, then the call</h3><p>Same as email: Loom → book call</p></div>
-          </div>
+          <div class="step"><span class="tag">Show the system</span><h3>Thank-you page video</h3><p>2 min: what happens next, and why a site needs traffic. Book the handover call here.</p></div>
+          <div class="arrow" aria-hidden="true"></div>
+          <div class="step"><span class="tag">Ask</span><h3>Site handover call</h3><p>1 to 2 weeks in, site live, near the first £50 payment. Pitch the main offer.</p></div>
         </div>
         <div class="handoff">Also hands off to: <b>Email list</b> (every buyer)</div>
       </div>
@@ -183,11 +194,14 @@ header p { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
   </section>
 
   <section>
-    <div class="eyebrow" style="margin-bottom:10px">Still to decide</div>
-    <div class="notes">
-      <div class="note"><h4>Meta ads: A or B?</h4><p>Pitch the call on the thank-you page, or send a Loom first. Test both.</p></div>
-      <div class="note"><h4>The "not yet" path</h4><p>People who stop at any step: no DM reply, Loom not watched, no-show, or "not now" on the call. Each needs a follow-up step instead of a dead end.</p></div>
-      <div class="note"><h4>Website buyers → main offer</h4><p>They already trust you and pay £50/month. When do you pitch "now let's get jobs to the site"?</p></div>
+    <div class="eyebrow" style="margin-bottom:10px">"Not yet" follow-ups · where people stop and what happens next</div>
+    <div class="recover">
+      <div class="row"><span class="n">01</span><div><h4>Got the PDF, no DM reply</h4><p>Organic</p></div><p class="fix"><b>3 more DMs over 7 days</b>, each with something new (a tip, a result, a question). The email list starts the same day.</p></div>
+      <div class="row"><span class="n">02</span><div><h4>Got the Loom, didn't book</h4><p>Email + organic</p></div><p class="fix"><b>Day 1:</b> "Did you get a chance to watch it?" <b>Day 3:</b> the electrician result (£612 → 39 quote requests). <b>Day 7:</b> "Want me to tweak it for your area?"</p></div>
+      <div class="row"><span class="n">03</span><div><h4>Booked, didn't show</h4><p>All lanes</p></div><p class="fix"><b>Before:</b> auto reminders 24h, 12h and 3h out, plus texts from your phone the night before, the morning of and 1 hour before. <b>After:</b> message within 5 minutes with two new times.</p></div>
+      <div class="row"><span class="n">04</span><div><h4>Took the call, said "not now"</h4><p>All lanes</p></div><p class="fix"><b>Book the next call before you hang up.</b> Put a date on it, like before the busy season. They join the email list.</p></div>
+      <div class="row"><span class="n">05</span><div><h4>Bought the website, said no to the main offer</h4><p>Meta ads</p></div><p class="fix"><b>Every month when the £50 bills,</b> send a short note on how the site's doing. Pitch again before the busy season.</p></div>
+      <div class="floor"><b>Everyone who isn't a client ends up on the weekly email.</b> Nobody gets dropped. They stay on it until they buy or unsubscribe.</div>
     </div>
   </section>
 </div>
