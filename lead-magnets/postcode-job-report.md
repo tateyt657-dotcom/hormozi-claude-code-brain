@@ -2,7 +2,7 @@
 
 A personalised report, built by hand for one trade business in one area. It shows how many local people searched for their trade last month, who got those jobs, and the exact fixes to win more of them.
 
-**Why it beats a PDF:** Every agency has a free guide. Almost none give away a custom audit, because they sell it. This one is about *their* postcode, *their* competitors and *their* Google listing. Hormozi: give away the "what" and "why" for free, and sell the "do it for me."
+**Why it beats a PDF:** Every agency has a free guide. Almost none give away a custom audit, because they sell it. This one is about *their* postcode, *their* competitors and *their* Google listing. You give away the diagnosis for free and sell the fix.
 
 **Defaults used (change any of them):**
 - **Who it's for:** UK roofers first. The same template works for electricians, plumbers and kitchen fitters.
@@ -151,7 +151,7 @@ Every question is used in the report or tells you how good the lead is.
 
 ## 6. Short-form video that promotes it
 
-**Show a real report on screen while you talk.** A Hormozi ad note from the playbooks: *"This ad literally shows the lead magnet while explaining it."* Blur the client's name.
+**Show a real report on screen while you talk.** From the GOATed Ads playbook: *"This ad literally shows the lead magnet while explaining it."* Blur the client's name.
 
 **Hook options (test all 5):**
 1. Question: "How many people in your town searched for a roofer last month?"
