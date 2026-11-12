@@ -148,3 +148,23 @@ If you want someone to build the infrastructure that actually executes these fra
 ---
 
 Built by [@antoniomonteiroai](https://youtube.com/@antoniomonteiroai) | [ClickToClose.ai](https://clicktoclose.ai)
+
+---
+
+## Idea review with two AI agents
+
+Type `/idea <your idea>` in Claude Code. Two agents review it at the same time:
+
+- **hormozi-advisor** uses the playbooks and transcripts in this repo.
+- **marketing-strategist** uses the [Powell marketing skills](https://github.com/tateyt657-dotcom/powell-marketing-content).
+
+Claude then merges both reports into one plan.
+
+Setup: clone both repos into the same parent folder.
+
+```
+git clone https://github.com/tateyt657-dotcom/hormozi-claude-code-brain
+git clone https://github.com/tateyt657-dotcom/powell-marketing-content
+```
+
+Or set `MARKETING_SKILLS_DIR` to the marketing repo path.
