@@ -45,6 +45,17 @@ Match the user's business stage to the right course transcript:
 - **$1M-$3M** - lesson09 (Stage 6: Optimize) + lesson10 (Stage 7: Categorize)
 - **$3M-$10M+** - lesson11 (Stage 8: Specialize) + lesson12 (Stage 9: Capitalize)
 
+## Two-advisor idea review
+
+When the user pitches a business idea and wants a verdict, run the `/idea` flow
+(`.claude/commands/idea.md`). It starts two subagents in parallel and merges their reports:
+
+- `hormozi-advisor` reads this repo (offer, pricing, sales, scaling stage).
+- `marketing-strategist` reads the marketing skills in `../powell-marketing-content`
+  (buyers, channels, messaging, go-to-market).
+
+Both repos must be cloned side by side, or set `MARKETING_SKILLS_DIR` to the marketing repo path.
+
 ## Response Style
 
 - Be direct and specific. No fluff.
