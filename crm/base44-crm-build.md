@@ -59,7 +59,7 @@ Offer: name, price, type (core, upsell, downsell, cross-sell), description, acti
 
 Customer: lead (link), start_date, plan, monthly_value, status (active, at_risk, cancel_requested, cancelled, paused), last_engagement_at, engagement_this_week, next_milestone (3, 6, 12 months), referral_count, total_revenue, cancel_reason.
 
-Task: title, related_lead or related_customer (link), assigned_to (user), due_at, priority (urgent, high, normal), type (speed to lead, follow-up, reminder, rebook, check-in, card, exit interview, referral ask, upsell), status (open, done, skipped).
+Task: title, related_lead or related_customer (link), assigned_to (user), due_at, priority (urgent, high, normal), type (follow-up, reminder, rebook, check-in, card, exit interview, referral ask, upsell), status (open, done, skipped).
 
 Add role-based access: Admin sees everything. Rep sees only their own leads, appointments, and tasks.
 ```
