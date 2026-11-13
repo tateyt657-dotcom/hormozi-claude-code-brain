@@ -1,0 +1,145 @@
+Build a CRM called "Money Machine". Set the design first, then build every feature below. Use £ for all money.
+
+DESIGN
+
+COLORS
+- Background: light cream #FAF6EC. Cards and panels: lighter cream #FFFDF7 with a thin border #E8E0CC.
+- Primary: dark navy blue #0F2A4A. Use it for the sidebar, headings, primary buttons, and main chart color.
+- Text: #1B2433 for body text, #5B6475 for secondary text.
+- Status colors (use only for status, never decoration): green #2E7D5B good, amber #C98A1B warning, red #B23A3A bad.
+- Each section gets its own accent color, used for its page header strip, its sidebar icon when active, and its charts: Dashboard #0F2A4A navy, Content #D0743C orange, Leads #2F6FB0 blue, Pipeline #3E7C8C teal, Appointments #6A5ACD violet, Closing #B5763A copper, Customers #2E7D5B green, At Risk #B23A3A red, Tasks #8A6D3B bronze, Offers #7A4E8C plum, Reports #4A5A78 slate.
+- Keep the cream background and navy sidebar on every page so the app feels like one product.
+
+SIDEBAR
+- Fixed left sidebar in navy #0F2A4A, cream text and icons.
+- One icon plus a short label per section, in this order: Dashboard (LayoutDashboard), Content (Clapperboard), Leads (Users), Pipeline (Columns), Appointments (CalendarCheck), Closing (Trophy), Customers (HeartHandshake), At Risk (AlertTriangle), Tasks (CheckSquare), Offers (Tag), Reports (BarChart3), Settings (Settings).
+- Show a small count badge on Content (posts needing stats), Leads (new uncontacted), Tasks (due today), and At Risk (open).
+- Highlight the active section with its accent color.
+- Sidebar collapses to icons only with one click. On mobile it becomes a bottom bar with the 5 most used sections.
+
+LAYOUT
+- Every page starts with a header strip in the section's accent color: page title, one-line description, and the main action button (for example "+ New Lead").
+- Use cards with rounded corners (12px), soft shadow, and generous spacing.
+- Big, clear numbers on stat cards. Labels in small caps above them.
+- Clean font: Inter or similar. Headings in navy.
+
+CHARTS
+- Use charts only where they help someone decide something faster. Use a table or a single number when that's clearer.
+- Good places for charts: funnel on the Dashboard, show rate and close rate trend lines, objections bar chart on Closing, revenue by source bar chart, leads by content type on Content, retention cohort heatmap on Reports.
+- Charts use the section's accent color plus navy. Every chart has a title and a plain-English takeaway under it, for example "Biggest drop: booked to showed".
+
+EDITING
+- Everything is editable in place. Click any field on a card or table row to edit it, then save on Enter or click away.
+- Pipeline and the Content board are drag-and-drop. Drag a card to a new stage or status to update it.
+- Every record has an Edit button and a Delete button with an undo option for 10 seconds.
+- Tables support sorting, filtering, search, and bulk edit (select rows, change stage or owner at once).
+- A Settings page where the admin can edit, without code: pipeline stages, lead sources, content types, formats, platforms, objection types and their script cards, follow-up cadence days, reminder times, offers, team members, and colors.
+
+DATA MODEL
+
+Lead: full_name, phone, email, source (content, ad, referral, organic, outbound, walk-in), content_post (link to Post, filled when source is content), cta_keyword, ad_campaign, stage (new, contacted, booked, showed, closed_won, closed_lost, nurture, dead), owner (user), created_at, first_contact_at, speed_to_lead_minutes (calculated), touch_count, last_touch_at, main_problem, dream_outcome, budget, decision_maker (yes/no), notes, lost_reason, preferred_channel (call, text, DM, email).
+
+Touch: lead (link), type (call, text, DM, email, voicemail), direction (outbound/inbound), outcome (no answer, left voicemail, replied, booked, not interested), note, created_by, created_at.
+
+Appointment: lead (link), rep (user), scheduled_for, booked_at, days_out (calculated), status (scheduled, confirmed, showed, no_show, rescheduled, cancelled), outcome (closed, not closed, follow-up booked), objection (price, think about it, spouse/partner, timing, trust, other), objection_notes.
+
+Deal: lead (link), offer (link), amount, payment_type (paid in full, payment plan, subscription), closed_by (user), closed_at.
+
+Offer: name, price, type (core, upsell, downsell, cross-sell), description, active (yes/no).
+
+Customer: lead (link), start_date, plan, monthly_value, status (active, at_risk, cancel_requested, cancelled, paused), last_engagement_at, engagement_this_week, next_milestone (3, 6, 12 months), referral_count, total_revenue, cancel_reason.
+
+Task: title, related_lead or related_customer or related_post (link), assigned_to (user), due_at, priority (urgent, high, normal), type (follow-up, reminder, rebook, check-in, card, exit interview, referral ask, upsell, add post stats), status (open, done, skipped).
+
+Post: date_posted, status (idea, scripted, recorded, posted), platform (Instagram, TikTok, Facebook, YouTube, LinkedIn), format (reel, carousel, image post, story, long video, text post), content_type (case study, tip / how-to, myth buster, behind the scenes, client proof, offer / CTA), topic_title, hook (first line), cta_keyword, link, views, likes, comments, shares, saves, DMs, leads, calls_booked, clients_won, revenue, engagement_rate (calculated: (likes + comments + shares + saves) / views), DMs_per_1k_views (calculated: DMs / views x 1000), notes_what_to_change.
+
+Hook: hook_text, type (70 proven, 20 twist on proven, 10 new test), platform, post (link), views, link, winner (yes/no), notes.
+
+Role-based access: Admin sees everything. Rep sees only their own leads, appointments, and tasks.
+
+FIRST REPLY TIME
+1. When the first outbound Touch is logged on a Lead, save its time as first_contact_at.
+2. Calculate speed_to_lead_minutes = first_contact_at minus created_at, in minutes.
+3. Show it on each lead card as "First reply: X min". Leave it blank until the first touch is logged.
+4. Add a column for it in the leads table so it can be sorted.
+
+CONTENT
+Content Tracker:
+- A table of every Post with all Post fields as columns, plus a board view grouped by status: Idea, Scripted, Recorded, Posted. Drag cards to move them along.
+- Posted rows show with a light green background.
+- Add every idea as soon as you have it with status Idea. The "+ New Post" button only needs topic_title to save.
+- When a post is marked Posted, save date_posted and create a task "Add stats" due 48 hours later. Show these posts in a "Needs stats" list at the top until views are filled in.
+
+Linking content to money:
+- When a Lead is created with source "content", pick the Post it came from, or match it by cta_keyword.
+- leads, calls_booked, clients_won, and revenue on each Post fill in automatically from its linked Leads, Appointments, and Deals. The admin can still edit them by hand.
+- On each Post, show the list of leads and clients it produced.
+
+Hook Bank:
+- A table of every Hook. When a Post is saved, add its hook to the Hook Bank automatically if it is not there yet, linked to the Post, with views copied from the Post.
+- Mark winner = yes automatically when a hook's views beat the average views of all posted content. The admin can override it.
+- Show the current hook mix for the last 30 posts against the 70/20/10 target (70% proven, 20% twists on proven, 10% new tests). Flag it in amber if the mix is off.
+
+Content Dashboard (top of the Content page):
+- Stat cards: Posts published, Total views, Total DMs, Total leads, Calls booked, Clients won, Revenue from content, Avg views per post, Leads per post, In the pipeline (not posted).
+- Three breakdown tables, each with columns Posts, Avg views, DMs, Leads, Revenue (£):
+  1. By content type (what to make more of): case study, tip / how-to, myth buster, behind the scenes, client proof, offer / CTA.
+  2. By format: reel, carousel, image post, story, long video, text post.
+  3. By platform: Instagram, TikTok, Facebook, YouTube, LinkedIn.
+- A bar chart of leads by content type, with the takeaway "Make more of [top type]". Rank by leads, not views.
+- A top 5 posts table sorted by revenue, then leads. Show hook, views, DMs per 1k views, leads, and revenue.
+- A date filter: last 7 days, last 30 days, last 90 days, all time.
+- A Monday reminder task for the admin: "Check the Content Dashboard. Make more of the content type with the most leads, not the most views."
+
+FOLLOW-UP CADENCE
+Create follow-up Tasks for leads that are not booked, on this schedule:
+- Day 1: call, then text right away. Double dial and text 2 more times that day, a few hours apart.
+- Day 2: call + text in the morning, call + DM in the afternoon.
+- Day 3: call + email.
+- Day 5: call + text.
+- Day 7: call + text + email.
+- Day 14: text.
+- Day 30: text. Then move the lead to "nurture".
+If a lead replies on any channel, switch preferred_channel to that channel and continue the conversation there. Stop the cadence the moment the lead books. Show touch_count on every lead card. Flag any lead marked "dead" with fewer than 7 touches.
+
+BOOKING AND SHOW RATE
+1. Only allow booking up to 3 days out. Warn the rep if they try to book further.
+2. Send automated reminders 24 hours, 12 hours, and 3 hours before. Label them as automated, for example: "This is an automated reminder from [Business]."
+3. Create manual reminder tasks for the rep: the night before, the morning of, and 60 minutes before. These should be sent from the rep's phone.
+4. When an appointment is marked no_show, create an urgent "Rebook now" task due in 15 minutes and restart the follow-up cadence.
+5. When an appointment is marked "not closed", require the rep to pick an objection and book the next appointment before saving.
+
+CLOSING
+- A Closing screen for each rep showing: appointments this week, show rate, close rate, average deal size, and revenue.
+- A chart of objections by type for the last 30 days.
+- When a rep selects an objection on an appointment, show a short script card for that objection that the admin can edit in Settings.
+- A leaderboard ranking reps by revenue closed this month.
+
+RETENTION
+1. Track engagement. Log each time the customer uses the service (session, login, visit, or call). If engagement drops below the customer's normal weekly level, set status to at_risk and create a high-priority "Check in" task.
+2. Create a task twice a week for each active customer: "Text a win or solve a problem."
+3. Create a "Send handwritten card" task when the customer signs up, on their birthday, and at 3, 6, and 12 months.
+4. Keep an internal event calendar. Remind the admin to plan a customer event every 42 days.
+5. When status changes to cancel_requested, create an urgent "Exit interview" task. Cancellation cannot be completed until the exit interview is logged with a cancel_reason.
+- An At Risk screen listing every at_risk and cancel_requested customer, sorted by monthly_value.
+
+LTV AND UPSELLS
+- At the 3, 6, and 12 month milestones, create two tasks: "Ask for a referral" and "Offer the upsell".
+- When a customer requests cancellation, show the downsell offers (lower price or lower quantity) on the exit interview screen.
+- Track referral_count and total_revenue per customer.
+- A cohort table on Reports: customers grouped by start month, with % still active in each month after.
+
+DASHBOARD (Admin home)
+- The 8 numbers: speed to lead (avg minutes), touches per lead, schedule rate, show rate, average days to appointment, close rate, monthly churn, LTV.
+- Each number shows this week vs last week, green if better, red if worse.
+- A funnel chart: leads -> contacted -> booked -> showed -> closed, with % drop at each step. Highlight the biggest drop in red.
+- Revenue by lead source and ad campaign (cost per acquired customer if ad spend is entered).
+- A content card: posts this week, leads from content this week, and revenue from content this month, linking to the Content page.
+- "Money left on the table": no-shows x close rate x average deal size this month.
+- Today's open urgent tasks by rep.
+
+AI FEATURES (use the built-in LLM integration)
+1. On each lead, a "Write my next message" button. It reads the lead's main_problem, dream_outcome, and touch history, then drafts a short personal text in a friendly tone.
+2. After an appointment, a box where the rep pastes call notes. AI summarizes them, fills in objection and next steps, and suggests the best follow-up.
+3. On each Post, a "Write 3 hooks" button. It reads the topic and the Hook Bank winners, then drafts 3 new hooks: 1 proven style, 1 twist, 1 new test.
+4. A weekly AI report for the admin: the biggest leak in the funnel, the content type making the most leads, and the one fix to make this week.
