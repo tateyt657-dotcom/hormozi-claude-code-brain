@@ -42,6 +42,46 @@ Hormozi on churn: "A reduction in churn from 9% to 3% is a 3.3x increase in life
 
 Don't paste one giant prompt. Base44 builds better in phases. Paste one prompt, test it, fix it, then paste the next.
 
+### Prompt 0: Look, layout, and editing (paste first)
+
+```
+Set the design for the whole app before building features.
+
+COLORS
+- Background: light cream #FAF6EC. Cards and panels: lighter cream #FFFDF7 with a thin border #E8E0CC.
+- Primary: dark navy blue #0F2A4A. Use it for the sidebar, headings, primary buttons, and main chart color.
+- Text: #1B2433 for body text, #5B6475 for secondary text.
+- Status colors (use only for status, never decoration): green #2E7D5B good, amber #C98A1B warning, red #B23A3A bad.
+- Each section gets its own accent color, used for its page header strip, its sidebar icon when active, and its charts:
+  Dashboard #0F2A4A navy, Leads #2F6FB0 blue, Pipeline #3E7C8C teal, Appointments #6A5ACD violet, Closing #B5763A copper, Customers #2E7D5B green, At Risk #B23A3A red, Tasks #8A6D3B bronze, Offers #7A4E8C plum, Reports #4A5A78 slate.
+- Keep the cream background and navy sidebar on every page so the app feels like one product.
+
+SIDEBAR
+- Fixed left sidebar in navy #0F2A4A, cream text and icons.
+- One icon plus a short label per section, in this order: Dashboard (LayoutDashboard), Leads (Users), Pipeline (Columns), Appointments (CalendarCheck), Closing (Trophy), Customers (HeartHandshake), At Risk (AlertTriangle), Tasks (CheckSquare), Offers (Tag), Reports (BarChart3), Settings (Settings).
+- Show a small count badge on Leads (new uncontacted), Tasks (due today), and At Risk (open).
+- Highlight the active section with its accent color.
+- Sidebar collapses to icons only with one click. On mobile it becomes a bottom bar with the 5 most used sections.
+
+LAYOUT
+- Every page starts with a header strip in the section's accent color: page title, one-line description, and the main action button (for example "+ New Lead").
+- Use cards with rounded corners (12px), soft shadow, and generous spacing.
+- Big, clear numbers on stat cards. Labels in small caps above them.
+- Clean font: Inter or similar. Headings in navy.
+
+CHARTS
+- Use charts only where they help someone decide something faster. Use a table or a single number when that's clearer.
+- Good places for charts: funnel on the Dashboard, show rate and close rate trend lines, objections bar chart on Closing, revenue by source bar chart, retention cohort heatmap on Reports.
+- Charts use the section's accent color plus navy. Every chart has a title and a plain-English takeaway under it, for example "Biggest drop: booked to showed".
+
+EDITING
+- Everything is editable in place. Click any field on a card or table row to edit it, then save on Enter or click away.
+- Pipeline is a drag-and-drop board. Drag a lead card to a new stage to update it.
+- Every record has an Edit button and a Delete button with an undo option for 10 seconds.
+- Tables support sorting, filtering, search, and bulk edit (select rows, change stage or owner at once).
+- A Settings page where the admin can edit, without code: pipeline stages, lead sources, objection types and their script cards, follow-up cadence days, reminder times, offers, team members, and colors.
+```
+
 ### Prompt 1: Data model
 
 ```
