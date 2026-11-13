@@ -64,17 +64,14 @@ Task: title, related_lead or related_customer (link), assigned_to (user), due_at
 Add role-based access: Admin sees everything. Rep sees only their own leads, appointments, and tasks.
 ```
 
-### Prompt 2: Speed-to-lead engine
+### Prompt 2: First reply time
 
 ```
-When a new Lead is created:
-1. Assign it to the rep with the fewest open leads today (round robin).
-2. Create an URGENT task "Call new lead now" due in 5 minutes.
-3. Show a red alert banner and play a sound for the assigned rep.
-4. When the first Touch is logged, save first_contact_at and calculate speed_to_lead_minutes.
-5. If no touch after 5 minutes, alert the admin.
-
-Build a "Hot Leads" screen sorted by oldest uncontacted first. Show a live timer counting up since each lead came in. Timer turns yellow at 3 minutes and red at 5 minutes.
+Track how long it took to make first contact with each lead:
+1. When the first outbound Touch is logged on a Lead, save its time as first_contact_at.
+2. Calculate speed_to_lead_minutes = first_contact_at minus created_at, in minutes.
+3. Show it on each lead card as "First reply: X min". Leave it blank until the first touch is logged.
+4. Add a column for it in the leads table so it can be sorted.
 ```
 
 ### Prompt 3: Follow-up cadence (volume)
@@ -164,7 +161,7 @@ Add AI features using the built-in LLM integration:
 
 ## Build order and what to test
 
-1. **Prompts 1 and 2 first.** Add 5 fake leads. Confirm the timer, alert, and round robin work.
+1. **Prompts 1 and 2 first.** Add 5 fake leads, log a first touch on each, and confirm the first reply time shows in minutes.
 2. **Prompts 3 and 4.** Book a fake appointment 5 days out and confirm the warning. Mark one as no-show and confirm the rebook task.
 3. **Prompts 5 to 7.** Create a fake customer, drop their engagement, and confirm the at-risk flag.
 4. **Prompts 8 and 9 last.** The dashboard only means something once data flows in.
