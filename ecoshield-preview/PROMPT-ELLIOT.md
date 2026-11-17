@@ -135,12 +135,16 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
    - Intro: "Mould and damp don't go away on their own. The longer they're
      left, the further they spread: into your home, your health and your
      bank balance."
-   - Three stages with a coloured top edge that goes green, amber, brick
-     red: Caught early (find the cause, treat it, make good), Left a while
-     (strip and replaster, replace rotten skirting, treat every room), Left
-     for years (lift floors, replace joists, sometimes a full refurbishment,
-     linking the Bournemouth and Christchurch jobs). Each stage shows the
-     placeholder "Typical cost: confirm with Elliot".
+   - Three stages with a coloured top edge that goes green, amber, red, each
+     with a "UK guide price" pinned to the bottom of the card: Caught early
+     (find the cause, treat it, make good: £200 to £1,000), Left a while
+     (strip and replaster, replace rotten skirting, treat every room: £1,000
+     to £3,000, plus replastering), Left for years (lift floors, replace
+     joists, sometimes a full refurbishment, linking the Bournemouth and
+     Christchurch jobs: £2,500 to £7,500 or more). Add a note that guide
+     prices are typical UK ranges from trade cost guides such as Checkatrade
+     (2025 to 2026), that your price depends on your home, and that the
+     survey is free.
    - Three columns with icons. Your health: spores in the bedroom; the NHS
      warns of breathing problems, asthma and allergies; babies, children,
      older people and people with lung conditions are most at risk. Your
@@ -194,9 +198,17 @@ Ground every choice in the trade: lime plaster, old brick, slate, timber,
 damp meters, the before and after of a mouldy wall made clean and dry. Don't
 default to "eco = bright green".
 
-- **Colour:** Lime putty `#ECEAE4` (page), Limewash `#F8F7F3` (white
-  sections, form), Welsh slate `#252E37` (text and dark sections), Slate
-  grey `#56616B` (secondary text), Meter green `#2D6A4E` (main buttons and accents only).
+- **Colour (Eco Shield's real brand colours, from ecoshield.uk):** Near-black
+  `#141414` (text, dark sections), Copper `#A26028` (main buttons, icons and
+  accents; it matches the house in his logo), Light grey `#F5F5F5` (page),
+  White `#FFFFFF` (alternate sections, form), Grey `#5E5E5E` for secondary
+  text (his `#757575` fails AA contrast on light grey). The cost stages use
+  green, amber and red edges.
+- **Logo:** use his real logo from
+  https://ecoshield.uk/wp-content/uploads/2024/09/Screenshot-2023-10-31-at-17.21.01.png
+  (a screenshot on white). Cut it out to a transparent background, crop it
+  tight, and make a light version for the dark footer. Use the house mark as
+  the favicon.
 - **Type:** Archivo only. Headings narrow (`wdth` 78) and bold, large and
   tight with balanced line breaks. Body at normal width.
 - **Bold elements:** the full-width hero photo of Elliot at work, and the
