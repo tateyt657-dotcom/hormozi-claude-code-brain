@@ -1123,6 +1123,91 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   .hcard:hover, .route:hover, .review:hover, .stage:hover, .damage-col:hover, .anchor-now:hover, .choice span:hover { transform: none; }
   .btn-primary::after { display: none; }
 }
+
+/* ===== Mobile UI pass ===== */
+@media (max-width: 720px) {
+  .section, .book { padding-block: 56px; }
+  .section-head { margin-bottom: 24px; }
+  h2 { font-size: 2rem; }
+
+  /* Why choose us: tidy 2x2 tiles */
+  .why { padding: 16px 0; }
+  .why-list { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why-list li, .why-list li + li, .why-list li:nth-child(even), .why-list li:nth-child(3) {
+    padding: 16px 14px; border: 1px solid var(--rule); border-radius: 12px; background: var(--lime);
+  }
+  .why-list li:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .why-list svg { width: 40px; height: 40px; padding: 9px; }
+  .why-list h3 { font-size: 1rem; margin-top: 10px; }
+  .why-list p { font-size: 0.875rem; }
+
+  /* Swipe rows instead of long stacks */
+  .stages, .health-cards, .routes {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 84%;
+    grid-template-columns: none;
+    gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+    margin-inline: -16px; padding: 4px 16px 18px;
+    scrollbar-width: none;
+  }
+  .stages::-webkit-scrollbar, .health-cards::-webkit-scrollbar, .routes::-webkit-scrollbar { display: none; }
+  .stages > *, .health-cards > *, .routes > * { scroll-snap-align: start; animation: none !important; }
+  .health-cards { margin-top: 32px; }
+  .swipe-hint { display: flex; }
+
+  /* Problem cards: compact 2 columns */
+  .problem-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pcard { padding: 16px 14px; border-radius: 12px; }
+  .pcard svg { width: 40px; height: 40px; padding: 9px; }
+  .pcard h3 { font-size: 1.0625rem; margin-top: 12px; }
+  .pcard p { font-size: 0.875rem; margin-top: 6px; }
+  .pcard a { font-size: 0.875rem; padding-top: 12px; }
+
+  /* Cost comparison: vs as a badge */
+  .anchor { gap: 0; position: relative; margin-bottom: 28px; }
+  .anchor-vs {
+    position: relative; z-index: 2; margin: -14px auto; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--limewash); border: 2px solid var(--rule); font-size: 0.9375rem;
+  }
+  .anchor-price { font-size: 2.5rem; }
+
+  /* Photos sized for a phone */
+  .health-photo img { aspect-ratio: 4 / 3; }
+  .health-grid { gap: 24px; }
+  .health-list li { font-size: 1rem; padding: 14px 14px 14px 46px; }
+  .health-list li::before { left: 16px; width: 14px; height: 14px; margin-top: -7px; }
+
+  /* Reviews: tighter */
+  .review { padding: 48px 20px 20px; }
+  .review::before { font-size: 3.75rem; left: 18px; }
+  .review blockquote p { font-size: 1.0625rem; }
+
+  /* Form: even problem buttons */
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .choice span { width: 100%; justify-content: center; text-align: center; min-height: 48px; font-size: 0.9375rem; }
+  .choice:last-child { grid-column: 1 / -1; }
+  .form-panel { padding: 24px 18px; }
+  .book-stack li { font-size: 1rem; }
+
+  /* Cards: a touch of press feedback */
+  .pcard:active, .hcard:active, .route:active { transform: scale(.98); }
+}
+.swipe-hint { display: none; align-items: center; gap: 8px; margin-top: -6px; font-size: 0.8125rem; font-weight: 600; color: var(--slate-grey); }
+.swipe-hint svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 720px) {
+  p.swipe-hint { display: flex; }
+  .problem-cards > .pcard:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .late .damage {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 84%; grid-template-columns: none;
+    gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+    margin: 32px -16px 0; padding: 4px 16px 18px; scrollbar-width: none;
+  }
+  .late .damage::-webkit-scrollbar { display: none; }
+  .late .damage > * { scroll-snap-align: start; animation: none !important; }
+}
+.health-cards:focus-visible, .damage:focus-visible { outline: 3px solid var(--slate); outline-offset: 4px; border-radius: 12px; }
 </style>
 </head>
 <body>
@@ -1202,7 +1287,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
       </figure>
     </div>
 
-    <div class="health-cards">
+    <div class="health-cards" tabindex="0" role="region" aria-label="Who is at risk, signs and what to do">
       <div class="hcard">
         <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="10" r="4"/><circle cx="23" cy="13" r="3"/><path d="M3 27c0-5 3.5-8 8-8s8 3 8 8"/><path d="M18 27c0-3.5 2-6 5-6s5 2.5 5 6"/></svg>
         <h3>Who's most at risk</h3>
@@ -1219,6 +1304,8 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <p>Talk to your GP about symptoms. Talk to Elliot about the damp. Cleaning the mould off won't stop it coming back.</p>
       </div>
     </div>
+
+    <p class="swipe-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M15 7l5 5-5 5"/></svg>Swipe for more</p>
 
     <div class="late-cta">
       <div>
@@ -1276,8 +1363,9 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <p class="stage-cost"><span>UK guide price</span> £2,500 to £7,500 or more</p>
       </li>
     </ol>
+    <p class="swipe-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M15 7l5 5-5 5"/></svg>Swipe for more</p>
 
-    <div class="damage">
+    <div class="damage" tabindex="0" role="region" aria-label="Damage to your home and your money">
       <div class="damage-col">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 27v-7h8v7"/><path d="M9 17c2-1 3 1 5 0"/></svg>
         <h3>Your home</h3>
@@ -1298,6 +1386,8 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         </ul>
       </div>
     </div>
+
+    <p class="swipe-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M15 7l5 5-5 5"/></svg>Swipe for more</p>
 
     <div class="late-proof">
       <div class="late-notes">
@@ -1571,6 +1661,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <a class="route-link" href="tel:07369286705">Talk to Elliot on 07369 286705</a>
       </div>
     </div>
+    <p class="swipe-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M15 7l5 5-5 5"/></svg>Swipe for more</p>
     <p class="routes-note">We also help renters and commercial properties.</p>
   </div>
 </section>
