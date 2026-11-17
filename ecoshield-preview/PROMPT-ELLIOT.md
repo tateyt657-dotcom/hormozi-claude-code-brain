@@ -104,9 +104,11 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
 1. **Sticky header.** "Eco Shield", "Damp, mould and property protection",
    "Call Elliot 07369 286705" and a "Book a free survey" button.
 2. **Hero.** A full-width photo of Elliot testing a wall with a damp meter,
-   with a dark gradient over the left side. On it, in white: "Damp and mould
-   fixed at the source." and "Free damp survey across Hampshire, Dorset,
-   Wiltshire and the New Forest." Two actions: "Book a free survey" (scrolls
+   with a dark gradient over the left side. On it, in white: "Mould can make
+   your family ill. We fix it at the source." Then: "The NHS warns damp and
+   mould can cause breathing problems and asthma. Elliot finds where your
+   damp comes from and stops it there." Then, bold with a copper dot: "Free
+   damp survey across Hampshire, Dorset, Wiltshire and the New Forest." Two actions: "Book a free survey" (scrolls
    to the form) and "Call 07369 286705". Below them, a round face photo of
    Elliot with "Elliot does your survey himself." and a "Rated Excellent from
    41 Google reviews" link to the reviews. On mobile, show the photo as a

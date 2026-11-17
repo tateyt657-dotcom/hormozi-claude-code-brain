@@ -673,6 +673,25 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 }
 
 /* ===== Round 3: photo hero, sliders, cost of waiting ===== */
+/* Hero safety copy */
+.hero .hero-sub { max-width: 34ch; }
+.hero-offer {
+  margin-top: 16px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600; color: #fff;
+  font-size: 1.0625rem;
+}
+.hero-offer::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(162, 96, 40, 0.3); flex: none; }
+.hero h1 { font-size: clamp(2.375rem, 1.3rem + 3.6vw, 4rem); }
+.hero h1 span { display: block; }
+.hero h1 span + span { margin-top: 0.12em; }
+@media (max-width: 720px) {
+  .hero-bg { aspect-ratio: 16 / 10; }
+  .hero .hero-sub { font-size: 1.0625rem; }
+  .hero-offer { font-size: 1rem; align-items: flex-start; }
+  .hero-offer::before { margin-top: 6px; }
+}
+
 /* Loop 2: cards for routes and reviews, case grid, header */
 .brand-line { align-self: center; }
 .routes { border-top: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -973,8 +992,9 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   </picture>
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <h1 id="hero-title">Damp and mould fixed at the source.</h1>
-      <p class="hero-sub">Free damp survey across Hampshire, Dorset, Wiltshire and the New Forest.</p>
+      <h1 id="hero-title"><span>Mould can make your family ill.</span> <span>We fix it at the source.</span></h1>
+      <p class="hero-sub">The NHS warns damp and mould can cause breathing problems and asthma. Elliot finds where your damp comes from and stops it there.</p>
+      <p class="hero-offer">Free damp survey across Hampshire, Dorset, Wiltshire and the New Forest.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#book">Book a free survey</a>
         <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
