@@ -231,8 +231,9 @@ p + p { margin-top: 12px; }
 .wall-svg .fog { transition-duration: 2.2s; }
 .wall-svg .mould .m2 { transition-delay: .5s; }
 .wall-svg .mould .m3 { transition-delay: 1s; }
-.wall.is-dry .damp { transform: translateY(150px); }
-.wall.is-dry .mould circle, .wall.is-dry .fog { opacity: 0; }
+.wall-switch:checked ~ .wall-frame .damp { transform: translateY(150px); }
+.wall-switch:checked ~ .wall-frame .mould circle,
+.wall-switch:checked ~ .wall-frame .fog { opacity: 0; }
 
 .meter {
   margin-top: 16px;
@@ -270,7 +271,7 @@ p + p { margin-top: 12px; }
   transform: translateX(-50%);
   transition: left 2.6s cubic-bezier(.45,.05,.3,1);
 }
-.wall.is-dry .meter-pin { left: 90%; }
+.wall-switch:checked ~ .meter .meter-pin { left: 90%; }
 .wall-toggle {
   font: 600 0.875rem/1 var(--font);
   background: none;
@@ -285,6 +286,20 @@ p + p { margin-top: 12px; }
 }
 .wall-toggle:hover { border-color: var(--slate); }
 .wall-caption { margin-top: 12px; font-size: 0.875rem; color: var(--slate-grey); }
+.wall-switch {
+  position: absolute;
+  opacity: 0;
+  width: 1px; height: 1px;
+  margin: 0;
+}
+.wall-figure { position: relative; }
+.wall-toggle { display: inline-flex; align-items: center; justify-content: center; }
+.wall-switch:focus-visible ~ .meter .wall-toggle { outline: 3px solid var(--slate); outline-offset: 3px; }
+.t-damp, .c-dry { display: none; }
+.wall-switch:checked ~ .meter .t-dry,
+.wall-switch:checked ~ .wall-caption .c-damp { display: none; }
+.wall-switch:checked ~ .meter .t-damp,
+.wall-switch:checked ~ .wall-caption .c-dry { display: inline; }
 
 /* Cowboy review */
 .lead-review blockquote { margin: 0; max-width: 980px; }
@@ -501,7 +516,65 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 .success h3 { font-size: 1.75rem; }
 .success p { margin-top: 12px; }
 .form-panel.is-sent form { display: none; }
-.form-panel.is-sent .success { display: block; }
+.form-panel.is-sent .success, .success:target { display: block; }
+.form-panel:has(.success:target) form { display: none; }
+
+
+/* Why choose us */
+.why { background: var(--limewash); border-top: 1px solid var(--rule); }
+.why-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.why-list li { padding: 32px 28px 32px 0; }
+.why-list li + li { padding-left: 28px; border-left: 1px solid var(--rule); }
+.why-list svg, .late-list svg {
+  width: 32px; height: 32px;
+  fill: none; stroke: var(--green); stroke-width: 1.75;
+  stroke-linecap: round; stroke-linejoin: round;
+  display: block;
+}
+.why-list h3 { margin-top: 14px; font-size: 1.1875rem; }
+.why-list p { margin-top: 6px; font-size: 0.9375rem; color: var(--slate-grey); }
+
+/* Don't leave it too late */
+.late-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 64px;
+  align-items: start;
+}
+.late-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 32px;
+}
+.late-list li { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start; }
+.late-list svg { stroke: var(--slate); }
+.late-list h3 { font-size: 1.125rem; }
+.late-list p { margin-top: 4px; font-size: 0.9375rem; color: var(--slate-grey); }
+.late-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.late-photo figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--slate-grey); }
+.late-cta {
+  margin-top: 56px;
+  background: var(--slate);
+  color: var(--limewash);
+  border-radius: 4px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.late-cta h3 { font-size: 1.75rem; }
+.late-cta p { margin-top: 6px; color: #D5D9DD; }
+.late-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.late-cta :focus-visible { outline-color: var(--limewash); }
+.btn-light { background: transparent; color: var(--limewash); border-color: var(--limewash); }
+.btn-light:hover { background: var(--limewash); color: var(--slate); }
 
 /* Footer */
 .site-footer { background: var(--slate); color: #D5D9DD; border-top: 1px solid #3B4651; padding: 56px 0 40px; font-size: 1rem; }
@@ -522,6 +595,11 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
   .hero .wrap, .elliot .wrap, .book .wrap { grid-template-columns: 1fr; gap: 40px; }
   .elliot .ph-portrait, .elliot .portrait { max-width: 360px; }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .why-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .why-list li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .why-list li:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .late-grid { grid-template-columns: 1fr; gap: 40px; }
+  .late-photo { max-width: 420px; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
   .site-footer .wrap { grid-template-columns: 1fr 1fr; }
 }
@@ -529,6 +607,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 @media (max-width: 720px) {
   :root { --gutter: 16px; }
   body { padding-bottom: 72px; }
+  html { scroll-padding-bottom: 96px; }
   .section { padding: 64px 0; }
   .section-head { margin-bottom: 28px; }
   .brand-line { display: none; }
@@ -547,6 +626,15 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
   .step .ph-inline { justify-self: start; }
   .cases { grid-template-columns: 1fr; }
   .reviews { grid-template-columns: 1fr; gap: 32px; }
+  .why-list li, .why-list li + li { padding: 20px 12px 20px 0; }
+  .why-list li:nth-child(even) { padding-left: 16px; }
+  .why-list h3 { font-size: 1.0625rem; margin-top: 10px; }
+  .why-list svg { width: 28px; height: 28px; }
+  .late-list { grid-template-columns: 1fr; gap: 20px; }
+  .late-cta { padding: 24px 20px; }
+  .late-cta h3 { font-size: 1.5rem; }
+  .late-actions .btn { width: 100%; }
+  .late-actions { width: 100%; }
   .form-panel { padding: 24px 20px; }
   .site-footer .wrap { grid-template-columns: 1fr; gap: 32px; }
   .meter { grid-template-columns: 1fr auto; }
@@ -613,6 +701,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
     </div>
 
     <figure class="wall-figure wall" id="wall">
+      <input type="checkbox" class="wall-switch" id="wall-switch" role="switch" aria-label="Show the wall after the fix">
       <div class="wall-frame">
         <svg class="wall-svg" viewBox="0 0 520 400" role="img" aria-labelledby="wall-title wall-desc">
           <title id="wall-title">A wall drying out</title>
@@ -723,10 +812,23 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
           <span class="meter-pin"></span>
           <div class="meter-words"><span>Wet</span><span>Damp</span><span>Dry</span></div>
         </div>
-        <button class="wall-toggle" type="button" id="wall-toggle" aria-pressed="false" aria-controls="wall">Show the dry wall</button>
+        <label class="wall-toggle" for="wall-switch" aria-hidden="true"><span class="t-dry">Show the dry wall</span><span class="t-damp">Show the damp wall</span></label>
       </div>
-      <figcaption class="wall-caption" id="wall-caption">Before: rising damp, condensation and black mould.</figcaption>
+      <figcaption class="wall-caption"><span class="c-damp">Before: rising damp, condensation and black mould.</span><span class="c-dry">After: the cause fixed, the wall clean and dry.</span></figcaption>
     </figure>
+  </div>
+</section>
+
+<!-- Why choose us -->
+<section class="why" aria-labelledby="why-title">
+  <div class="wrap">
+    <h2 id="why-title" class="visually-hidden">Why choose Eco Shield</h2>
+    <ul class="why-list">
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="3" width="14" height="20" rx="2"/><rect x="12" y="6" width="8" height="5"/><path d="M13 23v6M19 23v6"/><path d="M13 16h6"/></svg><h3>Free damp survey</h3><p>Elliot checks your home and tells you what he finds. No charge.</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="5"/><path d="M6 28c0-5.5 4.5-9 10-9s10 3.5 10 9"/></svg><h3>You deal with the owner</h3><p>Elliot runs Eco Shield and does your survey himself.</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="M20 20l7 7"/><path d="M14 10v4l3 2"/></svg><h3>The cause, not the patch</h3><p>We find where the damp comes from, so it stays fixed.</p></li>
+      <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l3.6 7.6 8.4 1.1-6.1 5.8 1.5 8.3L16 22.8l-7.4 4 1.5-8.3L4 12.7l8.4-1.1z"/></svg><h3>Rated Excellent</h3><p>41 Google reviews. Most of them name Elliot.</p></li>
+    </ul>
   </div>
 </section>
 
@@ -838,6 +940,42 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
         <a href="https://ecoshield.uk/exterior-coatings/">Exterior coatings</a>
       </li>
     </ul>
+  </div>
+</section>
+
+<!-- Don't leave it too late -->
+<section class="section late" aria-labelledby="late-title">
+  <div class="wrap">
+    <div class="late-grid">
+      <div>
+        <div class="section-head">
+          <h2 id="late-title">Don't leave it too late</h2>
+          <p>Damp doesn't fix itself. The longer it sits, the bigger the job and the bill.</p>
+        </div>
+        <ul class="late-list">
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="10" cy="11" r="3"/><circle cx="20" cy="8" r="2"/><circle cx="22" cy="18" r="3.5"/><circle cx="11" cy="22" r="2.5"/><circle cx="17" cy="27" r="1.5"/></svg><div><h3>Mould spreads</h3><p>Spores move to clothes, furniture and other rooms.</p></div></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="11" width="24" height="10" rx="1"/><path d="M8 16c3-2 6 2 9 0s5 1 7-1"/><path d="M20 21l2 5M12 21l-1 4"/></svg><div><h3>Timber rots</h3><p>Wet joists and floorboards go soft and have to be replaced.</p></div></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="5" width="24" height="22"/><path d="M4 18c4-2 6 1 9-1s6 1 9-1 4 0 6-1"/><path d="M9 23h3M17 24h4"/></svg><div><h3>Plaster fails</h3><p>Salts from rising damp break up plaster, so it has to come off.</p></div></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 22c0-3 4-3 4-7 2 2 4 4 4 7a4 4 0 0 1-8 0z"/></svg><div><h3>Heat escapes</h3><p>Damp walls lose heat faster, so your home costs more to warm.</p></div></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M16 12c-2 2-4 2-5 1-3 0-6 6-6 12 0 2 2 3 4 2l5-3c1-1 2-3 2-5z"/><path d="M16 12c2 2 4 2 5 1 3 0 6 6 6 12 0 2-2 3-4 2l-5-3c-1-1-2-3-2-5z"/></svg><div><h3>Your health suffers</h3><p>The NHS warns damp and mould can cause breathing problems and asthma.</p></div></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h12l6 6v18H8z"/><path d="M20 4v6h6"/><path d="M12 16h10M12 20h10M12 24h6"/></svg><div><h3>Landlords face deadlines</h3><p>Awaab's Law puts new duties on landlords to act on damp and mould quickly.</p></div></li>
+        </ul>
+      </div>
+      <figure class="late-photo">
+        <img src="images/poole-mould.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Black mould spread across the wall behind kitchen units in a Poole bungalow">
+        <figcaption>Hidden behind the kitchen units: black mould and rising damp in a Poole bungalow.</figcaption>
+      </figure>
+    </div>
+    <div class="late-cta">
+      <div>
+        <h3>Spotted damp or mould?</h3>
+        <p>Get it checked now, while it's a small job.</p>
+      </div>
+      <div class="late-actions">
+        <a class="btn btn-primary" href="#book">Book a free survey</a>
+        <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -977,7 +1115,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
     </div>
 
     <div class="form-panel" id="form-panel">
-      <form id="survey-form" novalidate>
+      <form id="survey-form" action="#booked" method="get">
         <div class="field">
           <label for="f-name">Your name</label>
           <input type="text" id="f-name" name="name" autocomplete="name" required aria-describedby="e-name">
@@ -1012,7 +1150,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
         <button class="btn btn-primary" type="submit">Book my free survey</button>
         <p class="form-note">Preview only. This form does not send yet.</p>
       </form>
-      <div class="success" role="status" aria-live="polite" tabindex="-1" id="success">
+      <div class="success" role="status" aria-live="polite" tabindex="-1" id="booked">
         <h3>Your survey request is in.</h3>
         <p id="success-msg">Elliot will call you to pick a time for your free survey.</p>
         <p>Need him sooner? Call <a href="tel:07369286705">07369 286705</a>.</p>
@@ -1064,31 +1202,21 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 
 <script>
 (function () {
-  // Hero wall: show the damp, then let it dry.
+  // Hero wall: show the damp, then let it dry once a visitor can see it.
+  // The switch itself is a checkbox, so it works even when scripts are blocked.
   var wall = document.getElementById('wall');
-  var toggle = document.getElementById('wall-toggle');
-  var caption = document.getElementById('wall-caption');
+  var wallSwitch = document.getElementById('wall-switch');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function setDry(dry) {
-    wall.classList.toggle('is-dry', dry);
-    toggle.setAttribute('aria-pressed', dry ? 'true' : 'false');
-    toggle.textContent = dry ? 'Show the damp wall' : 'Show the dry wall';
-    caption.textContent = dry
-      ? 'After: the cause fixed, the wall clean and dry.'
-      : 'Before: rising damp, condensation and black mould.';
-  }
-  toggle.addEventListener('click', function () {
-    setDry(!wall.classList.contains('is-dry'));
-  });
-  // Dry the wall once a visitor can see it. Skip the motion if they asked for less.
+  var touched = false;
+  wallSwitch.addEventListener('change', function () { touched = true; });
+  function autoDry() { if (!touched) wallSwitch.checked = true; }
   if (reduce || !('IntersectionObserver' in window)) {
-    setDry(true);
+    autoDry();
   } else {
     var io = new IntersectionObserver(function (entries) {
       if (entries[0].isIntersecting) {
         io.disconnect();
-        setTimeout(function () { setDry(true); }, 1200);
+        setTimeout(autoDry, 1200);
       }
     }, { threshold: 0.6 });
     io.observe(wall.querySelector('.wall-svg'));
@@ -1097,7 +1225,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
   // Survey form: front end only.
   var form = document.getElementById('survey-form');
   var panel = document.getElementById('form-panel');
-  var success = document.getElementById('success');
+  var success = document.getElementById('booked');
+  form.noValidate = true;
   var successMsg = document.getElementById('success-msg');
 
   function check(id, ok) {
