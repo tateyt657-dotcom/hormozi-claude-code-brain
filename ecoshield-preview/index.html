@@ -9,6 +9,9 @@
 <meta property="og:description" content="Free damp survey across Hampshire, Dorset, Wiltshire and the New Forest.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ecoshield.uk/">
+<meta property="og:image" content="https://ecoshield.uk/wp-content/uploads/2025/12/Eco-Shield-Damp-Mould-Survey-scaled.jpg">
+<meta property="og:image:alt" content="Elliot testing a wall with a damp meter">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ecoshield.uk/">
 <meta name="theme-color" content="#252E37">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23252E37'/%3E%3Crect x='7' y='7' width='18' height='18' fill='%23ECEAE4'/%3E%3Crect x='7' y='20' width='18' height='5' fill='%232D6A4E'/%3E%3C/svg%3E">
@@ -23,6 +26,7 @@
   "name": "Eco Shield",
   "description": "Damp, mould and property protection. Free damp surveys across Hampshire, Dorset, Wiltshire and the New Forest.",
   "url": "https://ecoshield.uk/",
+  "image": "https://ecoshield.uk/wp-content/uploads/2025/12/Eco-Shield-Damp-Mould-Survey-scaled.jpg",
   "telephone": "+447369286705",
   "email": "contact@ecoshield.uk",
   "address": {
@@ -200,13 +204,21 @@ p + p { margin-top: 12px; }
 }
 .hero-sub { margin-top: 20px; font-size: 1.3125rem; max-width: 30ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.rating {
-  margin-top: 20px;
-  font-size: 0.9375rem;
-  color: var(--slate-grey);
-  display: flex; align-items: center; gap: 10px;
+.hero-trust {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
-.rating strong { color: var(--slate); }
+.hero-trust img {
+  width: 64px; height: 64px; flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--placeholder);
+}
+.hero-trust p { font-size: 1rem; line-height: 1.45; color: var(--slate-grey); }
+.hero-trust strong { color: var(--slate); font-weight: 600; }
+.hero-trust a { color: var(--slate-grey); }
 
 /* The wall */
 .wall-
@@ -275,7 +287,7 @@ p + p { margin-top: 12px; }
 .wall-caption { margin-top: 12px; font-size: 0.875rem; color: var(--slate-grey); }
 
 /* Cowboy review */
-.lead-review blockquote { margin: 0; max-width: 24em; }
+.lead-review blockquote { margin: 0; max-width: 980px; }
 .lead-review blockquote p {
   font-size: clamp(1.625rem, 1.1rem + 2.2vw, 2.875rem);
   line-height: 1.25;
@@ -593,9 +605,11 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
         <a class="btn btn-primary" href="#book">Book a free survey</a>
         <a class="btn btn-secondary" href="tel:07369286705">Call 07369 286705</a>
       </div>
-      <p class="rating">
-        <span>Rated <strong>Excellent</strong> from 41 Google reviews</span>
-      </p>
+      <div class="hero-trust">
+        <img src="images/elliot-face.jpg" width="192" height="192" decoding="async" alt="Elliot from Eco Shield">
+        <p><strong>Elliot does your survey himself.</strong><br>
+          <a href="#reviews">Rated Excellent from 41 Google reviews</a></p>
+      </div>
     </div>
 
     <figure class="wall-figure wall" id="wall">
@@ -702,9 +716,9 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
           <path d="M90 374 v26 M230 374 v26 M380 374 v26" stroke="#2E261D" stroke-width="2"/>
         </svg>
       </div>
-      <div class="meter" aria-hidden="true">
-        <span class="meter-label">Damp meter</span>
-        <div class="meter-scale">
+      <div class="meter">
+        <span class="meter-label" aria-hidden="true">Damp meter</span>
+        <div class="meter-scale" aria-hidden="true">
           <div class="meter-bar"><span></span><span></span><span></span></div>
           <span class="meter-pin"></span>
           <div class="meter-words"><span>Wet</span><span>Damp</span><span>Dry</span></div>
@@ -735,7 +749,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
     <img class="portrait" src="images/elliot.jpg" width="900" height="1125" loading="lazy" decoding="async" alt="Elliot, owner of Eco Shield, in his Eco Shield work gilet">
     <div class="elliot-text">
       <h2 id="elliot-title">Meet Elliot</h2>
-      <p class="big">Elliot does your survey himself.</p>
+      <p class="big">Elliot owns Eco Shield. He comes out and does your survey himself.</p>
       <p class="big">He finds what is causing the damp, not just the patch you can see. Then he fixes that.</p>
       <figure class="elliot-quote">
         <blockquote>
@@ -865,15 +879,6 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
     <ul class="cases">
       <li class="case">
         <div class="case-photos">
-          <figure class="shot"><img src="images/bournemouth-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"><figcaption>Before: rotten joists</figcaption></figure>
-          <figure class="shot"><img src="images/bournemouth-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid"><figcaption>After: new floor</figcaption></figure>
-        </div>
-        <p class="case-town">Bournemouth</p>
-        <h3>Rising damp and floor restoration</h3>
-        <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
-      </li>
-      <li class="case">
-        <div class="case-photos">
           <figure class="shot"><img src="images/poole-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Black mould and damp on the wall under a kitchen sink in a Poole bungalow"><figcaption>Before: black mould</figcaption></figure>
           <figure class="shot"><img src="images/poole-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry"><figcaption>After: new kitchen</figcaption></figure>
         </div>
@@ -889,6 +894,15 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
         <p class="case-town">Christchurch</p>
         <h3>Full bungalow refurbishment</h3>
         <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Read the Christchurch job</a>
+      </li>
+      <li class="case">
+        <div class="case-photos">
+          <figure class="shot"><img src="images/bournemouth-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"><figcaption>Before: rotten joists</figcaption></figure>
+          <figure class="shot"><img src="images/bournemouth-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid"><figcaption>After: new floor</figcaption></figure>
+        </div>
+        <p class="case-town">Bournemouth</p>
+        <h3>Rising damp and floor restoration</h3>
+        <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
       </li>
       <li class="case">
         <div class="case-photos">
@@ -913,7 +927,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 </section>
 
 <!-- 8. More reviews -->
-<section class="section" aria-labelledby="reviews-title">
+<section class="section" id="reviews" aria-labelledby="reviews-title">
   <div class="wrap">
     <div class="section-head">
       <h2 id="reviews-title">What customers say</h2>
