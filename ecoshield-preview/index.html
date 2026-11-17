@@ -673,6 +673,52 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 }
 
 /* ===== Round 3: photo hero, sliders, cost of waiting ===== */
+/* Health and cost story */
+.health-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
+.health-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.health-list li { position: relative; padding: 16px 18px 16px 52px; background: var(--limewash); border: 1px solid var(--rule); border-radius: 10px; font-size: 1.125rem; box-shadow: var(--shadow-sm); }
+.health-list li::before { content: ""; position: absolute; left: 18px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: #B23A2A; box-shadow: 0 0 0 5px rgba(178, 58, 42, 0.15); }
+.health-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.health-photo figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--slate-grey); }
+.health-cards { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.hcard { background: var(--limewash); border: 1px solid var(--rule); border-radius: 12px; padding: 28px; box-shadow: var(--shadow-sm); }
+.hcard svg { width: 52px; height: 52px; padding: 12px; background: var(--green-tint); border-radius: 50%; fill: none; stroke: var(--green); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.hcard h3 { margin-top: 16px; font-size: 1.375rem; }
+.hcard p { margin-top: 8px; color: var(--slate-grey); }
+.health .late-cta { margin-top: 48px; }
+.health .late-source { margin-top: 16px; }
+.anchor {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch; gap: 20px; margin-bottom: 40px;
+}
+.anchor-side { border-radius: 14px; padding: 32px; }
+.anchor-now { background: var(--slate); color: #fff; box-shadow: var(--shadow-lg); }
+.anchor-later { background: var(--lime); border: 2px dashed #B23A2A; }
+.anchor-label { font-weight: 600; font-size: 1rem; }
+.anchor-now .anchor-label { color: #E6C3A2; }
+.anchor-later .anchor-label { color: #B23A2A; }
+.anchor-price { margin-top: 6px; font-size: clamp(2.5rem, 1.6rem + 3vw, 4rem); font-weight: 700; line-height: 1; font-variation-settings: "wdth" 78; letter-spacing: -0.02em; }
+.anchor-now .anchor-price { color: #fff; }
+.anchor-side p:last-child { margin-top: 12px; }
+.anchor-now p:last-child { color: #D6D6D6; }
+.anchor-vs { align-self: center; font-weight: 700; font-size: 1.25rem; color: var(--slate-grey); }
+.late-proof { grid-template-columns: 1fr; }
+.late-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.late-note, .late-note:first-child { border-top: 2px solid var(--slate); padding-top: 20px; }
+.late-notes .late-source { grid-column: 1 / -1; margin-top: 0; }
+@media (max-width: 960px) {
+  .health-grid { grid-template-columns: 1fr; gap: 32px; }
+  .health-photo { max-width: 420px; }
+  .health-cards { grid-template-columns: 1fr; }
+  .anchor { grid-template-columns: 1fr; }
+  .anchor-vs { justify-self: center; }
+  .late-notes { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .anchor-side { padding: 24px; }
+  .hcard { padding: 22px; }
+}
+
 /* Hero safety copy */
 .hero .hero-sub { max-width: 34ch; }
 .hero-offer {
@@ -965,6 +1011,18 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   .damage { gap: 32px; margin-top: 48px; }
   .late-proof { margin-top: 48px; gap: 32px; }
 }
+
+/* Cost section layout fixes */
+.late .damage { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+.late .damage-col { background: var(--lime); border: 1px solid var(--rule); border-radius: 12px; padding: 28px; }
+.late .late-proof { display: block; margin-top: 48px; }
+.late .late-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.late .late-note { border-top: 2px solid var(--slate); padding: 20px 0 0; }
+.late .late-notes .late-source { grid-column: 1 / -1; }
+@media (max-width: 960px) {
+  .late .damage, .late .late-notes { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) { .late .damage-col { padding: 22px; } }
 </style>
 </head>
 <body>
@@ -1021,8 +1079,224 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   </div>
 </section>
 
+<!-- Health -->
+<section class="section health" id="health" aria-labelledby="health-title">
+  <div class="wrap">
+    <div class="health-grid">
+      <div>
+        <div class="section-head">
+          <h2 id="health-title">What mould does to your family</h2>
+          <p>Mould releases spores into the air you breathe, often in the bedroom where you sleep. The NHS says people living with damp and mould are more likely to get:</p>
+        </div>
+        <ul class="health-list">
+          <li><strong>Breathing problems</strong> and chest infections</li>
+          <li><strong>Asthma</strong>, or asthma that gets worse</li>
+          <li><strong>Allergies</strong> and irritated skin</li>
+          <li><strong>A weaker immune system</strong></li>
+        </ul>
+      </div>
+      <figure class="health-photo">
+        <img src="images/poole-mould.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Black mould spread across the wall behind kitchen units in a Poole bungalow">
+        <figcaption>Found behind the kitchen units in a Poole bungalow. Spores like these spread through the whole home.</figcaption>
+      </figure>
+    </div>
+
+    <div class="health-cards">
+      <div class="hcard">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="10" r="4"/><circle cx="23" cy="13" r="3"/><path d="M3 27c0-5 3.5-8 8-8s8 3 8 8"/><path d="M18 27c0-3.5 2-6 5-6s5 2.5 5 6"/></svg>
+        <h3>Who's most at risk</h3>
+        <p>Babies and children, older people, anyone with asthma, allergies or eczema, and anyone with a weak immune system.</p>
+      </div>
+      <div class="hcard">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16s5-9 13-9 13 9 13 9-5 9-13 9S3 16 3 16z"/><circle cx="16" cy="16" r="4"/></svg>
+        <h3>Signs to look for</h3>
+        <p>A musty smell, black spots on walls or ceilings, wet windows in the morning, and peeling paint or wallpaper.</p>
+      </div>
+      <div class="hcard">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M16 12c-2 2-4 2-5 1-3 0-6 6-6 12 0 2 2 3 4 2l5-3c1-1 2-3 2-5z"/><path d="M16 12c2 2 4 2 5 1 3 0 6 6 6 12 0 2-2 3-4 2l-5-3c-1-1-2-3-2-5z"/></svg>
+        <h3>Treat the cause</h3>
+        <p>Talk to your GP about symptoms. Talk to Elliot about the damp. Cleaning the mould off won't stop it coming back.</p>
+      </div>
+    </div>
+
+    <div class="late-cta">
+      <div>
+        <h3>Worried about mould at home?</h3>
+        <p>Elliot will check it and tell you what's causing it. The survey is free.</p>
+      </div>
+      <div class="late-actions">
+        <a class="btn btn-primary" href="#book">Book a free survey</a>
+        <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
+      </div>
+    </div>
+    <p class="late-source">Health information from the NHS.</p>
+  </div>
+</section>
+
+<!-- Don't leave it too late -->
+<section class="section late tone-white" aria-labelledby="late-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="late-title">The longer you wait, the more it costs</h2>
+      <p>Damp doesn't go away on its own. Every month it's left, it spreads further into your walls, floors and timber, and the repair bill grows with it.</p>
+    </div>
+
+    <div class="anchor">
+      <div class="anchor-side anchor-now">
+        <p class="anchor-label">Book a survey now</p>
+        <p class="anchor-price">£0</p>
+        <p>Elliot finds the cause and tells you what it needs, before it spreads.</p>
+      </div>
+      <div class="anchor-vs" aria-hidden="true">vs</div>
+      <div class="anchor-side anchor-later">
+        <p class="anchor-label">Leave it for years</p>
+        <p class="anchor-price">£2,500 to £7,500+</p>
+        <p>New damp proofing, plaster, joists and floors. UK guide price.</p>
+      </div>
+    </div>
+
+    <ol class="stages">
+      <li class="stage stage-1">
+        <p class="stage-when">Caught early</p>
+        <h3>A patch, a smell, a few black spots</h3>
+        <p>The fix: find the cause, treat it and make good.</p>
+        <p class="stage-cost"><span>UK guide price</span> £200 to £1,000</p>
+      </li>
+      <li class="stage stage-2">
+        <p class="stage-when">Left a while</p>
+        <h3>Mould spreads and plaster fails</h3>
+        <p>The fix: strip and replaster walls, replace rotten skirting and treat every room it reached.</p>
+        <p class="stage-cost"><span>UK guide price</span> £1,000 to £3,000, plus replastering</p>
+      </li>
+      <li class="stage stage-3">
+        <p class="stage-when">Left for years</p>
+        <h3>Rot gets into joists and floors</h3>
+        <p>The fix: lift floors, replace joists, sometimes a full refurbishment. See the <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Bournemouth floor</a> and the <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Christchurch bungalow</a>.</p>
+        <p class="stage-cost"><span>UK guide price</span> £2,500 to £7,500 or more</p>
+      </li>
+    </ol>
+
+    <div class="damage">
+      <div class="damage-col">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 27v-7h8v7"/><path d="M9 17c2-1 3 1 5 0"/></svg>
+        <h3>Your home</h3>
+        <ul>
+          <li>Wet timber rots. Dry rot can even spread through brickwork to reach new wood.</li>
+          <li>Salts from rising damp keep drawing in moisture, so the plaster has to come off.</li>
+          <li>Mould stains paint, wallpaper, carpets, clothes and furniture.</li>
+        </ul>
+      </div>
+      <div class="damage-col">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M20 10.5c-1-1-2.4-1.5-3.8-1.5-2.6 0-4.2 1.8-4.2 4.2V22"/><path d="M10 17h7M10 22h11"/></svg>
+        <h3>Your money</h3>
+        <ul>
+          <li>A small treatment turns into new plaster, new floors and new joists.</li>
+          <li>Damp walls lose heat faster, so your heating bills go up.</li>
+          <li>Damp found in a buyer's survey can mean a lower offer or a lost sale.</li>
+          <li>Many home insurance policies won't pay for damage that builds up slowly, like damp and rot.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="late-proof">
+      <div class="late-notes">
+        <div class="late-note">
+          <h3>Buying a home?</h3>
+          <p>A survey before you sign tells you what you're buying. One buyer says Elliot's visit to the house they were buying “saved us thousands of pounds”.</p>
+        </div>
+        <div class="late-note">
+          <h3>Renting out a home?</h3>
+          <p>Awaab's Law is named after Awaab Ishak, a two-year-old who died in 2020 after long exposure to mould in his family's home. It puts new duties on landlords to act on damp and mould quickly.</p>
+          <a href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
+        </div>
+        <p class="late-source">Guide prices are typical UK ranges from trade cost guides such as Checkatrade (2025 to 2026). Your price depends on your home, and the survey is free.</p>
+      </div>
+    </div>
+
+    <div class="late-cta">
+      <div>
+        <h3>Get it checked while it's a small job</h3>
+        <p>A free survey today costs nothing. A rotten floor in five years costs thousands.</p>
+      </div>
+      <div class="late-actions">
+        <a class="btn btn-primary" href="#book">Book a free survey</a>
+        <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Recent work -->
+<section class="section" aria-labelledby="work-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="work-title">What fixing it looks like</h2>
+      <p>Real jobs from across the area. Drag across each photo to see the change.</p>
+    </div>
+    <ul class="cases">
+      <li class="case">
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-poole-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry">
+        <div class="ba-before"><img src="images/ba-poole-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The Poole kitchen stripped back to bare walls during the work"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">During</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare during and after photos, Poole">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
+        <p class="case-town">Poole</p>
+        <h3>Severe black mould and rising damp in a bungalow</h3>
+        <a href="https://ecoshield.uk/severe-black-mould-and-rising-damp-treatment-poole-bungalow/">Read the Poole job</a>
+      </li>
+      <li class="case">
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-christchurch-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same kitchen after the refurbishment">
+        <div class="ba-before"><img src="images/ba-christchurch-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The old kitchen in the Christchurch bungalow with a worn floor and stained walls"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Christchurch">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
+        <p class="case-town">Christchurch</p>
+        <h3>Full bungalow refurbishment</h3>
+        <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Read the Christchurch job</a>
+      </li>
+      <li class="case">
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-bournemouth-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid">
+        <div class="ba-before"><img src="images/ba-bournemouth-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Bournemouth">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
+        <p class="case-town">Bournemouth</p>
+        <h3>Rising damp and floor restoration</h3>
+        <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
+      </li>
+      <li class="case case-wide">
+      <div class="ba ba-single">
+        <img class="ba-after" src="images/winchester-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester">
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
+      </div>
+        <p class="case-town">Winchester</p>
+        <h3>Breathable lime plaster restoration</h3>
+        <a href="https://ecoshield.uk/breathable-lime-plaster-restoration-in-winchester/">Read the Winchester job</a>
+      </li>
+      <li class="case case-wide">
+      <div class="ba ba-single">
+        <img class="ba-after" src="images/southbourne-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne">
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
+      </div>
+        <p class="case-town">Southbourne</p>
+        <h3>Roof replacement and solar</h3>
+        <a href="https://ecoshield.uk/roof-replacement-solar-installation-southbourne/">Read the Southbourne job</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <!-- 3. Meet Elliot -->
-<section class="section elliot" aria-labelledby="elliot-title">
+<section class="section elliot tone-white" aria-labelledby="elliot-title">
   <div class="wrap">
     <img class="portrait" src="images/elliot.jpg" width="900" height="1125" loading="lazy" decoding="async" alt="Elliot, owner of Eco Shield, in his Eco Shield work gilet">
     <div class="elliot-text">
@@ -1039,34 +1313,67 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   </div>
 </section>
 
-<!-- 4. Who we help -->
-<section class="section tone-white" aria-labelledby="help-title">
+<!-- 8. More reviews -->
+<section class="section" id="reviews" aria-labelledby="reviews-title">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="help-title">Who we help</h2>
+      <h2 id="reviews-title">What customers say</h2>
+      <p class="rating-line"><strong>Rated Excellent</strong> from 41 Google reviews</p>
     </div>
-    <div class="routes">
-      <div class="route">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M13 27v-7h6v7"/></svg>
-        <h3>Homeowners</h3>
-        <p>Damp, mould or a room that never feels warm? We find the cause and fix it.</p>
-        <p>Buying a home? Elliot can survey it before you sign.</p>
-        <a class="route-link" href="#book">Book a free survey</a>
-      </div>
-      <div class="route">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="5"/><path d="M16 16h12M24 16v4M28 16v3"/></svg>
-        <h3>Landlords and letting agents</h3>
-        <p>Awaab's Law puts new duties on landlords to deal with damp and mould quickly. We survey, write it up and fix it, so you have a clear record.</p>
-        <a class="route-link" href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
-      </div>
-      <div class="route">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="10" height="18"/><rect x="17" y="4" width="10" height="23"/><path d="M8 13h4M8 17h4M8 21h4M20 8h4M20 12h4M20 16h4M20 20h4"/></svg>
-        <h3>Housing associations</h3>
-        <p>We survey and treat damp and mould across your homes, from one property to a whole portfolio.</p>
-        <a class="route-link" href="tel:07369286705">Talk to Elliot on 07369 286705</a>
-      </div>
+    <ul class="reviews">
+      <li>
+        <figure class="review">
+          <blockquote><p>I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.</p></blockquote>
+          <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure class="review">
+          <blockquote><p>Elliott was excellent, fitted in a visit to survey damp and roof of our potential new home and advised us of the issues before we signed, saved us thousands of pounds.</p></blockquote>
+          <figcaption><strong>Mike</strong>, Google review</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure class="review">
+          <blockquote><p>Elliot is an absolutely legend! Decent, Honest guy.</p></blockquote>
+          <figcaption><strong>Kryseis</strong>, Google review</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure class="review">
+          <blockquote><p>The damp proofing and repairs were carried out promptly and neatly, and the fee that I paid is entirely fair for the quality standards and work ethic that I received.</p></blockquote>
+          <figcaption><strong>helen h</strong>, Google review</figcaption>
+        </figure>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. How it works -->
+<section class="section tone-white" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="how-title">How it works</h2>
     </div>
-    <p class="routes-note">We also help renters and commercial properties.</p>
+    <ol class="steps">
+      <li class="step">
+        <h3>Free survey</h3>
+        <p>Elliot visits, checks the problem and finds the cause.</p>
+      </li>
+      <li class="step">
+        <h3>Written report</h3>
+        <p>You get a written report of what he found and what he recommends.</p>
+      </li>
+      <li class="step">
+        <h3>The fix</h3>
+        <p>We do the work promptly and leave your home tidy.</p>
+      </li>
+      <li class="step">
+        <h3>Guarantee</h3>
+        <p>Your work comes with a guarantee.</p>
+        <span class="ph-inline">Guarantee length: confirm with Elliot</span>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -1136,228 +1443,34 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   </div>
 </section>
 
-<!-- Don't leave it too late -->
-<section class="section late tone-white" aria-labelledby="late-title">
+<!-- 4. Who we help -->
+<section class="section tone-white" aria-labelledby="help-title">
   <div class="wrap">
     <div class="section-head">
-      <h2 id="late-title">Don't leave it too late</h2>
-      <p>Mould and damp don't go away on their own. The longer they're left, the further they spread: into your home, your health and your bank balance.</p>
+      <h2 id="help-title">Who we help</h2>
     </div>
-
-    <ol class="stages">
-      <li class="stage stage-1">
-        <p class="stage-when">Caught early</p>
-        <h3>A patch, a smell, a few black spots</h3>
-        <p>The fix: find the cause, treat it and make good.</p>
-        <p class="stage-cost"><span>UK guide price</span> £200 to £1,000</p>
-      </li>
-      <li class="stage stage-2">
-        <p class="stage-when">Left a while</p>
-        <h3>Mould spreads and plaster fails</h3>
-        <p>The fix: strip and replaster walls, replace rotten skirting and treat every room it reached.</p>
-        <p class="stage-cost"><span>UK guide price</span> £1,000 to £3,000, plus replastering</p>
-      </li>
-      <li class="stage stage-3">
-        <p class="stage-when">Left for years</p>
-        <h3>Rot gets into joists and floors</h3>
-        <p>The fix: lift floors, replace joists, sometimes a full refurbishment. See the <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Bournemouth floor</a> and the <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Christchurch bungalow</a>.</p>
-        <p class="stage-cost"><span>UK guide price</span> £2,500 to £7,500 or more</p>
-      </li>
-    </ol>
-
-    <div class="damage">
-      <div class="damage-col">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M16 12c-2 2-4 2-5 1-3 0-6 6-6 12 0 2 2 3 4 2l5-3c1-1 2-3 2-5z"/><path d="M16 12c2 2 4 2 5 1 3 0 6 6 6 12 0 2-2 3-4 2l-5-3c-1-1-2-3-2-5z"/></svg>
-        <h3>Your health</h3>
-        <ul>
-          <li>Mould releases spores you breathe in, often in the bedroom where you sleep.</li>
-          <li>The NHS warns it can cause breathing problems and make asthma and allergies worse.</li>
-          <li>Babies, children, older people and anyone with a lung condition are most at risk.</li>
-        </ul>
+    <div class="routes">
+      <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M13 27v-7h6v7"/></svg>
+        <h3>Homeowners</h3>
+        <p>Damp, mould or a room that never feels warm? We find the cause and fix it.</p>
+        <p>Buying a home? Elliot can survey it before you sign.</p>
+        <a class="route-link" href="#book">Book a free survey</a>
       </div>
-      <div class="damage-col">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 27v-7h8v7"/><path d="M9 17c2-1 3 1 5 0"/></svg>
-        <h3>Your home</h3>
-        <ul>
-          <li>Wet timber rots. Dry rot can even spread through brickwork to reach new wood.</li>
-          <li>Salts from rising damp keep drawing in moisture, so the plaster has to come off.</li>
-          <li>Mould stains paint, wallpaper, carpets, clothes and furniture.</li>
-        </ul>
+      <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="5"/><path d="M16 16h12M24 16v4M28 16v3"/></svg>
+        <h3>Landlords and letting agents</h3>
+        <p>Awaab's Law puts new duties on landlords to deal with damp and mould quickly. We survey, write it up and fix it, so you have a clear record.</p>
+        <a class="route-link" href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
       </div>
-      <div class="damage-col">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M20 10.5c-1-1-2.4-1.5-3.8-1.5-2.6 0-4.2 1.8-4.2 4.2V22"/><path d="M10 17h7M10 22h11"/></svg>
-        <h3>Your money</h3>
-        <ul>
-          <li>A small treatment turns into new plaster, new floors and new joists.</li>
-          <li>Damp walls lose heat faster, so your heating bills go up.</li>
-          <li>Damp found in a buyer's survey can mean a lower offer or a lost sale.</li>
-          <li>Many home insurance policies won't pay for damage that builds up slowly, like damp and rot.</li>
-        </ul>
+      <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="10" height="18"/><rect x="17" y="4" width="10" height="23"/><path d="M8 13h4M8 17h4M8 21h4M20 8h4M20 12h4M20 16h4M20 20h4"/></svg>
+        <h3>Housing associations</h3>
+        <p>We survey and treat damp and mould across your homes, from one property to a whole portfolio.</p>
+        <a class="route-link" href="tel:07369286705">Talk to Elliot on 07369 286705</a>
       </div>
     </div>
-
-    <div class="late-proof">
-      <figure class="late-photo">
-        <img src="images/poole-mould.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Black mould spread across the wall behind kitchen units in a Poole bungalow">
-        <figcaption>Hidden behind the kitchen units: black mould and rising damp in a Poole bungalow.</figcaption>
-      </figure>
-      <div class="late-notes">
-        <div class="late-note">
-          <h3>Buying a home?</h3>
-          <p>A survey before you sign tells you what you're buying. One buyer says Elliot's visit to the house they were buying “saved us thousands of pounds”.</p>
-        </div>
-        <div class="late-note">
-          <h3>Renting out a home?</h3>
-          <p>Awaab's Law is named after Awaab Ishak, a two-year-old who died in 2020 after long exposure to mould in his family's home. It puts new duties on landlords to act on damp and mould quickly.</p>
-          <a href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
-        </div>
-        <p class="late-source">Health information from the NHS. Guide prices are typical UK ranges from trade cost guides such as Checkatrade (2025 to 2026). Your price depends on your home, and the survey is free.</p>
-      </div>
-    </div>
-
-    <div class="late-cta">
-      <div>
-        <h3>Spotted damp or mould?</h3>
-        <p>Get it checked now, while it's a small job.</p>
-      </div>
-      <div class="late-actions">
-        <a class="btn btn-primary" href="#book">Book a free survey</a>
-        <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6. How it works -->
-<section class="section" aria-labelledby="how-title">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="how-title">How it works</h2>
-    </div>
-    <ol class="steps">
-      <li class="step">
-        <h3>Free survey</h3>
-        <p>Elliot visits, checks the problem and finds the cause.</p>
-      </li>
-      <li class="step">
-        <h3>Written report</h3>
-        <p>You get a written report of what he found and what he recommends.</p>
-      </li>
-      <li class="step">
-        <h3>The fix</h3>
-        <p>We do the work promptly and leave your home tidy.</p>
-      </li>
-      <li class="step">
-        <h3>Guarantee</h3>
-        <p>Your work comes with a guarantee.</p>
-        <span class="ph-inline">Guarantee length: confirm with Elliot</span>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- 7. Recent work -->
-<section class="section tone-white" aria-labelledby="work-title">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="work-title">Recent work</h2>
-      <p>Real jobs from across the area. Drag across each photo to see the change.</p>
-    </div>
-    <ul class="cases">
-      <li class="case">
-      <div class="ba" style="--pos: 50%">
-        <img class="ba-after" src="images/ba-poole-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry">
-        <div class="ba-before"><img src="images/ba-poole-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The Poole kitchen stripped back to bare walls during the work"></div>
-        <span class="ba-tag ba-tag-b" aria-hidden="true">During</span>
-        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
-        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare during and after photos, Poole">
-        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
-      </div>
-        <p class="case-town">Poole</p>
-        <h3>Severe black mould and rising damp in a bungalow</h3>
-        <a href="https://ecoshield.uk/severe-black-mould-and-rising-damp-treatment-poole-bungalow/">Read the Poole job</a>
-      </li>
-      <li class="case">
-      <div class="ba" style="--pos: 50%">
-        <img class="ba-after" src="images/ba-christchurch-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same kitchen after the refurbishment">
-        <div class="ba-before"><img src="images/ba-christchurch-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The old kitchen in the Christchurch bungalow with a worn floor and stained walls"></div>
-        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
-        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
-        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Christchurch">
-        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
-      </div>
-        <p class="case-town">Christchurch</p>
-        <h3>Full bungalow refurbishment</h3>
-        <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Read the Christchurch job</a>
-      </li>
-      <li class="case">
-      <div class="ba" style="--pos: 50%">
-        <img class="ba-after" src="images/ba-bournemouth-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid">
-        <div class="ba-before"><img src="images/ba-bournemouth-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"></div>
-        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
-        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
-        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Bournemouth">
-        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
-      </div>
-        <p class="case-town">Bournemouth</p>
-        <h3>Rising damp and floor restoration</h3>
-        <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
-      </li>
-      <li class="case case-wide">
-      <div class="ba ba-single">
-        <img class="ba-after" src="images/winchester-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester">
-        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
-      </div>
-        <p class="case-town">Winchester</p>
-        <h3>Breathable lime plaster restoration</h3>
-        <a href="https://ecoshield.uk/breathable-lime-plaster-restoration-in-winchester/">Read the Winchester job</a>
-      </li>
-      <li class="case case-wide">
-      <div class="ba ba-single">
-        <img class="ba-after" src="images/southbourne-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne">
-        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
-      </div>
-        <p class="case-town">Southbourne</p>
-        <h3>Roof replacement and solar</h3>
-        <a href="https://ecoshield.uk/roof-replacement-solar-installation-southbourne/">Read the Southbourne job</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- 8. More reviews -->
-<section class="section" id="reviews" aria-labelledby="reviews-title">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="reviews-title">What customers say</h2>
-      <p class="rating-line"><strong>Rated Excellent</strong> from 41 Google reviews</p>
-    </div>
-    <ul class="reviews">
-      <li>
-        <figure class="review">
-          <blockquote><p>I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.</p></blockquote>
-          <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="review">
-          <blockquote><p>Elliott was excellent, fitted in a visit to survey damp and roof of our potential new home and advised us of the issues before we signed, saved us thousands of pounds.</p></blockquote>
-          <figcaption><strong>Mike</strong>, Google review</figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="review">
-          <blockquote><p>Elliot is an absolutely legend! Decent, Honest guy.</p></blockquote>
-          <figcaption><strong>Kryseis</strong>, Google review</figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="review">
-          <blockquote><p>The damp proofing and repairs were carried out promptly and neatly, and the fee that I paid is entirely fair for the quality standards and work ethic that I received.</p></blockquote>
-          <figcaption><strong>helen h</strong>, Google review</figcaption>
-        </figure>
-      </li>
-    </ul>
+    <p class="routes-note">We also help renters and commercial properties.</p>
   </div>
 </section>
 
@@ -1409,7 +1522,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
           <input class="file-input" type="file" id="f-photo" name="photo" accept="image/*" aria-describedby="h-photo">
         </div>
         <button class="btn btn-primary" type="submit">Book my free survey</button>
-        <p class="form-note">Preview only. This form does not send yet.</p>
+        <p class="form-note">The survey is free. You decide what happens next.<br>Preview only: this form does not send yet.</p>
       </form>
       <div class="success" role="status" aria-live="polite" tabindex="-1" id="booked">
         <h3>Your survey request is in.</h3>

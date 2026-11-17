@@ -101,6 +101,19 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
 
 ## Page structure (in this order)
 
+**Sales angle:** the page sells on two things, health and the cost of
+waiting, so booking a free survey becomes an easy yes. Final order: header,
+hero, why choose us, **What mould does to your family** (NHS health risks
+as a list, the Poole mould photo, three cards: who's most at risk, signs to
+look for, treat the cause; then a dark "Worried about mould at home?" band),
+**The longer you wait, the more it costs** (a £0 survey card against a
+£2,500 to £7,500+ "leave it for years" card, then the three priced stages,
+your home and your money cards, buying and renting notes, and a dark "Get
+it checked while it's a small job" band), **What fixing it looks like**
+(the sliders), Meet Elliot, reviews, how it works, what are you seeing,
+who we help, the form ("The survey is free. You decide what happens
+next."), footer. The numbered list below describes each section's content.
+
 1. **Sticky header.** "Eco Shield", "Damp, mould and property protection",
    "Call Elliot 07369 286705" and a "Book a free survey" button.
 2. **Hero.** A full-width photo of Elliot testing a wall with a damp meter,
