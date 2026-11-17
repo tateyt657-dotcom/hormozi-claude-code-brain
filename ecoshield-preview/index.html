@@ -220,103 +220,6 @@ p + p { margin-top: 12px; }
 .hero-trust strong { color: var(--slate); font-weight: 600; }
 .hero-trust a { color: var(--slate-grey); }
 
-/* The wall */
-.wall-
-.wall-frame { position: relative; }
-.wall-svg { width: 100%; height: auto; display: block; }
-.wall-svg .damp {
-  transition: transform 2.6s cubic-bezier(.45,.05,.3,1);
-}
-.wall-svg .mould circle, .wall-svg .fog { transition: opacity 1.4s ease; }
-.wall-svg .fog { transition-duration: 2.2s; }
-.wall-svg .mould .m2 { transition-delay: .5s; }
-.wall-svg .mould .m3 { transition-delay: 1s; }
-.wall-switch:checked ~ .wall-frame .damp { transform: translateY(150px); }
-.wall-switch:checked ~ .wall-frame .mould circle,
-.wall-switch:checked ~ .wall-frame .fog { opacity: 0; }
-
-.meter {
-  margin-top: 16px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 16px;
-  align-items: center;
-}
-.meter-label { font-size: 0.875rem; color: var(--slate-grey); }
-.meter-scale { position: relative; }
-.meter-bar {
-  height: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3px;
-}
-.meter-bar span:nth-child(1) { background: #8A4B3A; }
-.meter-bar span:nth-child(2) { background: #B89A4E; }
-.meter-bar span:nth-child(3) { background: var(--green); }
-.meter-words {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  font-size: 0.8125rem;
-  color: var(--slate-grey);
-  margin-top: 6px;
-}
-.meter-words span:nth-child(2) { text-align: center; }
-.meter-words span:nth-child(3) { text-align: right; }
-.meter-pin {
-  position: absolute;
-  top: -7px;
-  left: 6%;
-  width: 4px; height: 24px;
-  background: var(--slate);
-  transform: translateX(-50%);
-  transition: left 2.6s cubic-bezier(.45,.05,.3,1);
-}
-.wall-switch:checked ~ .meter .meter-pin { left: 90%; }
-.wall-toggle {
-  font: 600 0.875rem/1 var(--font);
-  background: none;
-  border: 1px solid var(--slate-grey);
-  color: var(--slate);
-  border-radius: 4px;
-  padding: 10px 12px;
-  min-height: 40px;
-  cursor: pointer;
-  white-space: nowrap;
-  min-width: 168px;
-}
-.wall-toggle:hover { border-color: var(--slate); }
-.wall-caption { margin-top: 12px; font-size: 0.875rem; color: var(--slate-grey); }
-.wall-switch {
-  position: absolute;
-  opacity: 0;
-  width: 1px; height: 1px;
-  margin: 0;
-}
-.wall-figure { position: relative; }
-.wall-toggle { display: inline-flex; align-items: center; justify-content: center; }
-.wall-switch:focus-visible ~ .meter .wall-toggle { outline: 3px solid var(--slate); outline-offset: 3px; }
-.t-damp, .c-dry { display: none; }
-.wall-switch:checked ~ .meter .t-dry,
-.wall-switch:checked ~ .wall-caption .c-damp { display: none; }
-.wall-switch:checked ~ .meter .t-damp,
-.wall-switch:checked ~ .wall-caption .c-dry { display: inline; }
-
-/* Cowboy review */
-.lead-review blockquote { margin: 0; max-width: 980px; }
-.lead-review blockquote p {
-  font-size: clamp(1.625rem, 1.1rem + 2.2vw, 2.875rem);
-  line-height: 1.25;
-  font-weight: 500;
-  max-width: none;
-  letter-spacing: -0.01em;
-}
-.lead-review figcaption {
-  margin-top: 24px;
-  font-size: 1rem;
-  color: var(--slate-grey);
-}
-.lead-review figcaption strong { color: var(--slate); font-weight: 600; }
-
 /* Meet Elliot */
 .elliot .wrap {
   display: grid;
@@ -538,44 +441,6 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 .why-list h3 { margin-top: 14px; font-size: 1.1875rem; }
 .why-list p { margin-top: 6px; font-size: 0.9375rem; color: var(--slate-grey); }
 
-/* Don't leave it too late */
-.late-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 64px;
-  align-items: start;
-}
-.late-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 32px;
-}
-.late-list li { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start; }
-.late-list svg { stroke: var(--slate); }
-.late-list h3 { font-size: 1.125rem; }
-.late-list p { margin-top: 4px; font-size: 0.9375rem; color: var(--slate-grey); }
-.late-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.late-photo figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--slate-grey); }
-.late-cta {
-  margin-top: 56px;
-  background: var(--slate);
-  color: var(--limewash);
-  border-radius: 4px;
-  padding: 32px 36px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.late-cta h3 { font-size: 1.75rem; }
-.late-cta p { margin-top: 6px; color: #D5D9DD; }
-.late-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.late-cta :focus-visible { outline-color: var(--limewash); }
-.btn-light { background: transparent; color: var(--limewash); border-color: var(--limewash); }
-.btn-light:hover { background: var(--limewash); color: var(--slate); }
-
 /* Footer */
 .site-footer { background: var(--slate); color: #D5D9DD; border-top: 1px solid #3B4651; padding: 56px 0 40px; font-size: 1rem; }
 .site-footer .wrap { display: grid; grid-template-columns: 1.2fr 1fr 1.4fr; gap: 40px; }
@@ -712,24 +577,6 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 .hero-sub { font-size: 1.375rem; max-width: 32ch; color: #3A4550; }
 .hero-trust img { box-shadow: 0 0 0 3px var(--limewash), var(--shadow-sm); }
 
-/* The wall as a survey instrument */
-.wall-figure {
-  background: var(--slate);
-  padding: 14px 14px 20px;
-  border-radius: 14px;
-  box-shadow: var(--shadow-lg);
-}
-.wall-frame { border-radius: 6px; overflow: hidden; }
-.wall-figure .meter { padding: 4px 6px 0; }
-.wall-figure .meter-label,
-.wall-figure .meter-words,
-.wall-figure .wall-caption { color: #C3C9CF; }
-.wall-figure .wall-caption { padding: 0 6px; }
-.wall-figure .meter-pin { background: var(--limewash); box-shadow: 0 0 0 2px var(--slate); }
-.wall-figure .wall-toggle { color: var(--limewash); border-color: #6B7681; border-radius: 6px; }
-.wall-figure .wall-toggle:hover { border-color: var(--limewash); }
-.wall-switch:focus-visible ~ .meter .wall-toggle { outline-color: var(--limewash); }
-
 /* Why choose us */
 .why { border-top: 1px solid rgba(37, 46, 55, 0.08); border-bottom: 1px solid rgba(37, 46, 55, 0.08); }
 .why-list li { padding-top: 40px; padding-bottom: 40px; }
@@ -738,19 +585,6 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   background: var(--green-tint);
   border-radius: 50%;
 }
-
-/* Cowboy review on dark */
-.lead-review { padding: 120px 0; }
-.lead-review figure { position: relative; padding-top: 56px; }
-.lead-review figure::before {
-  content: "\201C";
-  position: absolute; top: -28px; left: -6px;
-  font-size: 9rem; line-height: 1; font-weight: 700;
-  color: #4E9A76;
-}
-.lead-review blockquote p { color: var(--limewash); font-weight: 500; }
-.lead-review figcaption { color: #AEB7BF; }
-.lead-review figcaption strong { color: var(--limewash); }
 
 /* Photos */
 .portrait, .book-photo img, .late-photo img { border-radius: var(--radius); box-shadow: var(--shadow-lg); }
@@ -837,6 +671,186 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 @media (prefers-reduced-motion: reduce) {
   .btn-primary:hover { transform: none; }
 }
+
+/* ===== Round 3: photo hero, sliders, cost of waiting ===== */
+.late-cta {
+  margin-top: 64px;
+  background: var(--slate);
+  color: var(--limewash);
+  border-radius: 12px;
+  padding: 40px 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  box-shadow: var(--shadow-lg);
+}
+.late-cta h3 { font-size: 1.75rem; }
+.late-cta p { margin-top: 6px; color: #D5D9DD; }
+.late-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.late-cta :focus-visible { outline-color: var(--limewash); }
+.btn-light { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.9); }
+.btn-light:hover { background: #fff; color: var(--slate); }
+@media (max-width: 720px) {
+  .late-cta { padding: 28px 22px; }
+  .late-cta h3 { font-size: 1.5rem; }
+  .late-actions, .late-actions .btn { width: 100%; }
+  .hero-actions .btn { width: 100%; }
+}
+
+.hero {
+  position: relative;
+  padding: 0;
+  min-height: clamp(560px, 80vh, 780px);
+  display: flex;
+  align-items: center;
+  background: var(--slate);
+  color: #fff;
+  overflow: hidden;
+}
+.hero-bg, .hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-bg img { object-fit: cover; object-position: 70% 30%; }
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(20, 26, 32, 0.92) 0%, rgba(20, 26, 32, 0.78) 42%, rgba(20, 26, 32, 0.2) 78%, rgba(20, 26, 32, 0.05) 100%);
+}
+.hero .wrap.hero-inner { position: relative; z-index: 1; display: block; padding-top: 96px; padding-bottom: 96px; width: 100%; }
+.hero-copy { max-width: 620px; }
+.hero h1 { color: #fff; }
+.hero .hero-sub { color: #E3E7EA; }
+.hero-trust p { color: #D5D9DD; }
+.hero-trust strong { color: #fff; }
+.hero-trust a { color: #fff; }
+.hero-trust img { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9); }
+.hero :focus-visible { outline-color: #fff; }
+
+/* Before and after sliders */
+.ba {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--placeholder);
+  container-type: inline-size;
+  box-shadow: var(--shadow-sm);
+}
+.ba img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ba-after { position: absolute; inset: 0; }
+.ba-before {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: var(--pos, 50%);
+  min-width: 6%; max-width: 100%;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  resize: horizontal;
+}
+.ba-before img { width: 100cqw; max-width: none; }
+.ba-before::after {
+  content: ""; position: absolute; right: 0; bottom: 0;
+  width: 22px; height: 22px;
+  background: #fff linear-gradient(135deg, transparent 45%, var(--slate) 45%, var(--slate) 52%, transparent 52%, transparent 65%, var(--slate) 65%, var(--slate) 72%, transparent 72%);
+  pointer-events: none;
+}
+.ba-tag {
+  position: absolute; top: 10px;
+  background: rgba(27, 34, 41, 0.86);
+  color: #fff;
+  font-size: 0.75rem; font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.ba-tag-b { left: 10px; }
+.ba-tag-a { right: 10px; }
+.ba-range, .ba-handle { display: none; }
+.js .ba-before { resize: none; }
+.js .ba-before::after { display: none; }
+.js .ba-range {
+  display: block;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.js .ba-handle {
+  display: flex; align-items: center; justify-content: center;
+  position: absolute; top: 50%; left: var(--pos, 50%);
+  width: 44px; height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+.ba-handle svg { width: 22px; height: 22px; fill: none; stroke: var(--slate); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ba:has(.ba-range:focus-visible) { outline: 3px solid var(--slate); outline-offset: 3px; }
+.case .case-town { margin-top: 16px; }
+
+/* Don't leave it too late */
+.stages {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.stage {
+  background: var(--lime);
+  border-radius: 10px;
+  padding: 24px;
+  border-top: 6px solid var(--green);
+}
+.stage-2 { border-top-color: #B89A4E; }
+.stage-3 { border-top-color: #8A4B3A; }
+.stage-when { font-size: 0.9375rem; font-weight: 600; color: var(--slate-grey); }
+.stage h3 { margin-top: 6px; font-size: 1.375rem; }
+.stage p:not(.stage-when) { margin-top: 10px; font-size: 1rem; }
+.stage .ph-inline { margin-top: 14px; font-size: 0.875rem; }
+.damage {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+.damage svg {
+  width: 52px; height: 52px; padding: 12px;
+  background: var(--green-tint); border-radius: 50%;
+  fill: none; stroke: var(--green); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+.damage h3 { margin-top: 14px; font-size: 1.375rem; }
+.damage ul { margin: 12px 0 0; padding: 0; list-style: none; }
+.damage li { position: relative; padding-left: 18px; margin-top: 10px; color: #3A4550; }
+.damage li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.late-proof {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px;
+  align-items: center;
+}
+.late-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.late-photo figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--slate-grey); }
+.late-note { padding: 24px 0; border-top: 1px solid var(--rule); }
+.late-note:first-child { border-top: 0; padding-top: 0; }
+.late-note h3 { font-size: 1.375rem; }
+.late-note p { margin-top: 8px; }
+.late-note a { display: inline-block; margin-top: 10px; font-weight: 600; }
+.late-source { margin-top: 8px; font-size: 0.8125rem; color: var(--slate-grey); }
+.book-photo img { aspect-ratio: 4 / 3; object-position: 50% 30%; }
+
+@media (max-width: 960px) {
+  .stages, .damage { grid-template-columns: 1fr; }
+  .late-proof { grid-template-columns: 1fr; }
+  .late-photo { max-width: 420px; }
+}
+@media (max-width: 720px) {
+  .hero { display: block; min-height: 0; }
+  .hero-bg { position: relative; display: block; height: auto; aspect-ratio: 3 / 2; }
+  .hero-bg img { object-position: 60% 40%; }
+  .hero-bg::after { background: linear-gradient(180deg, rgba(37, 46, 55, 0) 55%, rgba(37, 46, 55, 1) 100%); }
+  .hero .wrap.hero-inner { padding-top: 8px; padding-bottom: 48px; }
+  .damage { gap: 32px; margin-top: 48px; }
+  .late-proof { margin-top: 48px; gap: 32px; }
+}
 </style>
 </head>
 <body>
@@ -859,13 +873,16 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 
 <!-- 1. Hero -->
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap">
-    <div>
+  <picture class="hero-bg">
+    <img src="images/hero-1400.jpg" srcset="images/hero-800.jpg 800w, images/hero-1400.jpg 1400w, images/hero-2400.jpg 2400w" sizes="100vw" width="1400" height="933" fetchpriority="high" decoding="async" alt="Elliot testing a wall for damp with a moisture meter">
+  </picture>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
       <h1 id="hero-title">Damp and mould fixed at the source.</h1>
       <p class="hero-sub">Free damp survey across Hampshire, Dorset, Wiltshire and the New Forest.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#book">Book a free survey</a>
-        <a class="btn btn-secondary" href="tel:07369286705">Call 07369 286705</a>
+        <a class="btn btn-light" href="tel:07369286705">Call 07369 286705</a>
       </div>
       <div class="hero-trust">
         <img src="images/elliot-face.jpg" width="192" height="192" decoding="async" alt="Elliot from Eco Shield">
@@ -873,123 +890,6 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
           <a href="#reviews">Rated Excellent from 41 Google reviews</a></p>
       </div>
     </div>
-
-    <figure class="wall-figure wall" id="wall">
-      <input type="checkbox" class="wall-switch" id="wall-switch" role="switch" aria-label="Show the wall after the fix">
-      <div class="wall-frame">
-        <svg class="wall-svg" viewBox="0 0 520 400" role="img" aria-labelledby="wall-title wall-desc">
-          <title id="wall-title">A wall drying out</title>
-          <desc id="wall-desc">Drawing of an inside wall. Before: a brown tide mark of rising damp above the skirting board, a window running with condensation and black mould in the top corner. After: the same wall, clean and dry, with a clear window.</desc>
-          <defs>
-            <filter id="plaster" x="0" y="0" width="100%" height="100%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" result="n"/>
-              <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.32  0 0 0 0 0.3  0 0 0 0 0.27  0 0 0 0.16 0"/>
-            </filter>
-            <filter id="blotch" x="-10%" y="-10%" width="120%" height="120%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3"/>
-              <feDisplacementMap in="SourceGraphic" scale="18"/>
-            </filter>
-            <linearGradient id="dampFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#8C7B5B" stop-opacity="0.18"/>
-              <stop offset="0.55" stop-color="#7A6A4C" stop-opacity="0.38"/>
-              <stop offset="1" stop-color="#5E513A" stop-opacity="0.55"/>
-            </linearGradient>
-            <filter id="soft"><feGaussianBlur stdDeviation="0.9"/></filter>
-            <clipPath id="wallArea"><rect x="0" y="0" width="520" height="332"/></clipPath>
-          </defs>
-
-          <!-- plaster wall -->
-          <rect x="0" y="0" width="520" height="400" fill="#E2DFD7"/>
-          <rect x="0" y="0" width="520" height="400" filter="url(#plaster)"/>
-          <!-- cornice -->
-          <rect x="0" y="0" width="520" height="14" fill="#F2F0EA"/>
-          <rect x="0" y="14" width="520" height="3" fill="#CFCBC1"/>
-
-          <!-- sash window -->
-          <g class="window">
-            <rect x="170" y="46" width="196" height="150" fill="#F4F2EC" stroke="#C3BFB4"/>
-            <defs>
-              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#9FB3BE"/>
-                <stop offset="1" stop-color="#C9D3D6"/>
-              </linearGradient>
-            </defs>
-            <rect x="182" y="58" width="172" height="126" fill="url(#sky)"/>
-            <path d="M182 150 C 220 140, 250 146, 290 138 S 340 136, 354 140 L354 184 L182 184 Z" fill="#7F949B" opacity=".55"/>
-            <rect x="182" y="119" width="172" height="8" fill="#F4F2EC"/>
-            <rect x="264" y="58" width="6" height="126" fill="#F4F2EC"/>
-            <g class="fog">
-              <rect x="182" y="58" width="172" height="126" fill="#EEF0EF" opacity=".72"/>
-              <g fill="#B9C4C7">
-                <circle cx="196" cy="140" r="2.5"/><circle cx="214" cy="160" r="2"/><circle cx="236" cy="150" r="3"/>
-                <circle cx="290" cy="170" r="2.5"/><circle cx="318" cy="146" r="2"/><circle cx="340" cy="164" r="3"/>
-                <circle cx="204" cy="96" r="2"/><circle cx="300" cy="88" r="2"/><circle cx="334" cy="104" r="2.5"/>
-                <path d="M226 128 v18 M310 128 v26 M200 72 v22" stroke="#B9C4C7" stroke-width="2"/>
-              </g>
-              <g fill="#2A2F2B" opacity=".55">
-                <circle cx="186" cy="180" r="3"/><circle cx="194" cy="181" r="2"/><circle cx="350" cy="180" r="3"/><circle cx="342" cy="181" r="2"/><circle cx="266" cy="180" r="2"/>
-              </g>
-            </g>
-            <rect x="160" y="196" width="216" height="9" fill="#F4F2EC" stroke="#C3BFB4"/>
-          </g>
-
-          <!-- rising damp -->
-          <g clip-path="url(#wallArea)">
-            <g class="damp"><g transform="translate(0 38)">
-              <path filter="url(#blotch)" fill="url(#dampFill)" d="M-20 332 L-20 214 C 40 198, 70 226, 120 210 S 200 186, 250 206 S 330 224, 380 200 S 470 190, 540 212 L540 332 Z"/>
-              <path filter="url(#blotch)" fill="none" stroke="#F4F2EC" stroke-width="3" stroke-opacity="0.6" d="M-20 208 C 40 192, 70 220, 120 204 S 200 180, 250 200 S 330 218, 380 194 S 470 184, 540 206"/>
-              <path filter="url(#blotch)" fill="none" stroke="#8C7B5B" stroke-width="3" d="M-20 214 C 40 198, 70 226, 120 210 S 200 186, 250 206 S 330 224, 380 200 S 470 190, 540 212"/>
-              <!-- blown plaster -->
-              <path fill="#CBC5B8" d="M300 262 l18 -6 14 8 10 -4 6 12 -12 10 -20 -2 -12 -8z"/>
-              <path fill="none" stroke="#8C7B5B" stroke-width="1.5" d="M300 262 l18 -6 14 8 10 -4 6 12 -12 10 -20 -2 -12 -8z"/>
-            </g></g>
-          </g>
-
-          <!-- black mould in the top corner -->
-          <g class="mould" fill="#2A2F2B" filter="url(#soft)">
-            <circle class="m1" cx="18" cy="26" r="7" opacity=".75"/>
-            <circle class="m1" cx="34" cy="22" r="4" opacity=".7"/>
-            <circle class="m1" cx="12" cy="44" r="5" opacity=".65"/>
-            <circle class="m1" cx="28" cy="36" r="9" opacity=".6"/>
-            <circle class="m2" cx="48" cy="28" r="5" opacity=".55"/>
-            <circle class="m2" cx="20" cy="60" r="6" opacity=".5"/>
-            <circle class="m2" cx="44" cy="46" r="4" opacity=".55"/>
-            <circle class="m2" cx="60" cy="22" r="3" opacity=".45"/>
-            <circle class="m3" cx="10" cy="78" r="4" opacity=".4"/>
-            <circle class="m3" cx="36" cy="64" r="3" opacity=".4"/>
-            <circle class="m3" cx="72" cy="30" r="3" opacity=".35"/>
-            <circle class="m3" cx="58" cy="42" r="2.5" opacity=".4"/>
-            <circle class="m3" cx="26" cy="88" r="2.5" opacity=".3"/>
-            <circle class="m3" cx="84" cy="24" r="2" opacity=".3"/>
-            <circle class="m3" cx="50" cy="60" r="2" opacity=".35"/>
-          </g>
-
-          <!-- socket -->
-          <rect x="400" y="282" width="40" height="40" rx="2" fill="#F4F2EC" stroke="#C3BFB4"/>
-          <rect x="412" y="296" width="4" height="10" fill="#9C978C"/>
-          <rect x="424" y="296" width="4" height="10" fill="#9C978C"/>
-
-          <!-- oak skirting -->
-          <rect x="0" y="332" width="520" height="40" fill="#6E5236"/>
-          <rect x="0" y="332" width="520" height="5" fill="#86674A"/>
-          <rect x="0" y="352" width="520" height="1.5" fill="#5A432C"/>
-          <!-- floorboards -->
-          <rect x="0" y="372" width="520" height="28" fill="#3E3428"/>
-          <rect x="0" y="372" width="520" height="2" fill="#2E261D"/>
-          <path d="M90 374 v26 M230 374 v26 M380 374 v26" stroke="#2E261D" stroke-width="2"/>
-        </svg>
-      </div>
-      <div class="meter">
-        <span class="meter-label" aria-hidden="true">Damp meter</span>
-        <div class="meter-scale" aria-hidden="true">
-          <div class="meter-bar"><span></span><span></span><span></span></div>
-          <span class="meter-pin"></span>
-          <div class="meter-words"><span>Wet</span><span>Damp</span><span>Dry</span></div>
-        </div>
-        <label class="wall-toggle" for="wall-switch" aria-hidden="true"><span class="t-dry">Show the dry wall</span><span class="t-damp">Show the damp wall</span></label>
-      </div>
-      <figcaption class="wall-caption"><span class="c-damp">Before: rising damp, condensation and black mould.</span><span class="c-dry">After: the cause fixed, the wall clean and dry.</span></figcaption>
-    </figure>
   </div>
 </section>
 
@@ -1003,19 +903,6 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="M20 20l7 7"/><path d="M14 10v4l3 2"/></svg><h3>The cause, not the patch</h3><p>We find where the damp comes from, so it stays fixed.</p></li>
       <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l3.6 7.6 8.4 1.1-6.1 5.8 1.5 8.3L16 22.8l-7.4 4 1.5-8.3L4 12.7l8.4-1.1z"/></svg><h3>Rated Excellent</h3><p>41 Google reviews. Most of them name Elliot.</p></li>
     </ul>
-  </div>
-</section>
-
-<!-- 2. The cowboy review -->
-<section class="section lead-review tone-dark on-dark" aria-labelledby="lead-review-title">
-  <div class="wrap">
-    <h2 id="lead-review-title" class="visually-hidden">Why customers choose Elliot</h2>
-    <figure>
-      <blockquote>
-        <p>I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.</p>
-      </blockquote>
-      <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -1120,26 +1007,82 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 <!-- Don't leave it too late -->
 <section class="section late tone-white" aria-labelledby="late-title">
   <div class="wrap">
-    <div class="late-grid">
-      <div>
-        <div class="section-head">
-          <h2 id="late-title">Don't leave it too late</h2>
-          <p>Damp doesn't fix itself. The longer it sits, the bigger the job and the bill.</p>
-        </div>
-        <ul class="late-list">
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="10" cy="11" r="3"/><circle cx="20" cy="8" r="2"/><circle cx="22" cy="18" r="3.5"/><circle cx="11" cy="22" r="2.5"/><circle cx="17" cy="27" r="1.5"/></svg><div><h3>Mould spreads</h3><p>Spores move to clothes, furniture and other rooms.</p></div></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="11" width="24" height="10" rx="1"/><path d="M8 16c3-2 6 2 9 0s5 1 7-1"/><path d="M20 21l2 5M12 21l-1 4"/></svg><div><h3>Timber rots</h3><p>Wet joists and floorboards go soft and have to be replaced.</p></div></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="5" width="24" height="22"/><path d="M4 18c4-2 6 1 9-1s6 1 9-1 4 0 6-1"/><path d="M9 23h3M17 24h4"/></svg><div><h3>Plaster fails</h3><p>Salts from rising damp break up plaster, so it has to come off.</p></div></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 22c0-3 4-3 4-7 2 2 4 4 4 7a4 4 0 0 1-8 0z"/></svg><div><h3>Heat escapes</h3><p>Damp walls lose heat faster, so your home costs more to warm.</p></div></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M16 12c-2 2-4 2-5 1-3 0-6 6-6 12 0 2 2 3 4 2l5-3c1-1 2-3 2-5z"/><path d="M16 12c2 2 4 2 5 1 3 0 6 6 6 12 0 2-2 3-4 2l-5-3c-1-1-2-3-2-5z"/></svg><div><h3>Your health suffers</h3><p>The NHS warns damp and mould can cause breathing problems and asthma.</p></div></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h12l6 6v18H8z"/><path d="M20 4v6h6"/><path d="M12 16h10M12 20h10M12 24h6"/></svg><div><h3>Landlords face deadlines</h3><p>Awaab's Law puts new duties on landlords to act on damp and mould quickly.</p></div></li>
+    <div class="section-head">
+      <h2 id="late-title">Don't leave it too late</h2>
+      <p>Mould and damp don't go away on their own. The longer they're left, the further they spread: into your home, your health and your bank balance.</p>
+    </div>
+
+    <ol class="stages">
+      <li class="stage stage-1">
+        <p class="stage-when">Caught early</p>
+        <h3>A patch, a smell, a few black spots</h3>
+        <p>The fix: find the cause, treat it and make good.</p>
+        <span class="ph-inline">Typical cost: confirm with Elliot</span>
+      </li>
+      <li class="stage stage-2">
+        <p class="stage-when">Left a while</p>
+        <h3>Mould spreads and plaster fails</h3>
+        <p>The fix: strip and replaster walls, replace rotten skirting and treat every room it reached.</p>
+        <span class="ph-inline">Typical cost: confirm with Elliot</span>
+      </li>
+      <li class="stage stage-3">
+        <p class="stage-when">Left for years</p>
+        <h3>Rot gets into joists and floors</h3>
+        <p>The fix: lift floors, replace joists, sometimes a full refurbishment. See the <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Bournemouth floor</a> and the <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Christchurch bungalow</a>.</p>
+        <span class="ph-inline">Typical cost: confirm with Elliot</span>
+      </li>
+    </ol>
+
+    <div class="damage">
+      <div class="damage-col">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v10"/><path d="M16 12c-2 2-4 2-5 1-3 0-6 6-6 12 0 2 2 3 4 2l5-3c1-1 2-3 2-5z"/><path d="M16 12c2 2 4 2 5 1 3 0 6 6 6 12 0 2-2 3-4 2l-5-3c-1-1-2-3-2-5z"/></svg>
+        <h3>Your health</h3>
+        <ul>
+          <li>Mould releases spores you breathe in, often in the bedroom where you sleep.</li>
+          <li>The NHS warns it can cause breathing problems and make asthma and allergies worse.</li>
+          <li>Babies, children, older people and anyone with a lung condition are most at risk.</li>
         </ul>
       </div>
+      <div class="damage-col">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M12 27v-7h8v7"/><path d="M9 17c2-1 3 1 5 0"/></svg>
+        <h3>Your home</h3>
+        <ul>
+          <li>Wet timber rots. Dry rot can even spread through brickwork to reach new wood.</li>
+          <li>Salts from rising damp keep drawing in moisture, so the plaster has to come off.</li>
+          <li>Mould stains paint, wallpaper, carpets, clothes and furniture.</li>
+        </ul>
+      </div>
+      <div class="damage-col">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M20 10.5c-1-1-2.4-1.5-3.8-1.5-2.6 0-4.2 1.8-4.2 4.2V22"/><path d="M10 17h7M10 22h11"/></svg>
+        <h3>Your money</h3>
+        <ul>
+          <li>A small treatment turns into new plaster, new floors and new joists.</li>
+          <li>Damp walls lose heat faster, so your heating bills go up.</li>
+          <li>Damp found in a buyer's survey can mean a lower offer or a lost sale.</li>
+          <li>Many home insurance policies won't pay for damage that builds up slowly, like damp and rot.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="late-proof">
       <figure class="late-photo">
         <img src="images/poole-mould.jpg" width="800" height="1000" loading="lazy" decoding="async" alt="Black mould spread across the wall behind kitchen units in a Poole bungalow">
         <figcaption>Hidden behind the kitchen units: black mould and rising damp in a Poole bungalow.</figcaption>
       </figure>
+      <div class="late-notes">
+        <div class="late-note">
+          <h3>Buying a home?</h3>
+          <p>A survey before you sign tells you what you're buying. One buyer says Elliot's visit to the house they were buying “saved us thousands of pounds”.</p>
+        </div>
+        <div class="late-note">
+          <h3>Renting out a home?</h3>
+          <p>Awaab's Law is named after Awaab Ishak, a two-year-old who died in 2020 after long exposure to mould in his family's home. It puts new duties on landlords to act on damp and mould quickly.</p>
+          <a href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
+        </div>
+        <p class="late-source">Health information from the NHS.</p>
+      </div>
     </div>
+
     <div class="late-cta">
       <div>
         <h3>Spotted damp or mould?</h3>
@@ -1186,50 +1129,62 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   <div class="wrap">
     <div class="section-head">
       <h2 id="work-title">Recent work</h2>
-      <p>Real jobs from across the area. Read what we found and how we fixed it.</p>
+      <p>Real jobs from across the area. Drag across each photo to see the change.</p>
     </div>
     <ul class="cases">
       <li class="case">
-        <div class="case-photos">
-          <figure class="shot"><img src="images/poole-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Black mould and damp on the wall under a kitchen sink in a Poole bungalow"><figcaption>Before: black mould</figcaption></figure>
-          <figure class="shot"><img src="images/poole-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry"><figcaption>After: new kitchen</figcaption></figure>
-        </div>
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-poole-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry">
+        <div class="ba-before"><img src="images/ba-poole-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The Poole kitchen stripped back to bare walls during the work"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">During</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare during and after photos, Poole">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
         <p class="case-town">Poole</p>
         <h3>Severe black mould and rising damp in a bungalow</h3>
         <a href="https://ecoshield.uk/severe-black-mould-and-rising-damp-treatment-poole-bungalow/">Read the Poole job</a>
       </li>
       <li class="case">
-        <div class="case-photos">
-          <figure class="shot"><img src="images/christchurch-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Old kitchen in the Christchurch bungalow with worn floor and stained walls"><figcaption>Before: old kitchen</figcaption></figure>
-          <figure class="shot"><img src="images/christchurch-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The refurbished kitchen in the Christchurch bungalow"><figcaption>After: refurbished</figcaption></figure>
-        </div>
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-christchurch-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same kitchen after the refurbishment">
+        <div class="ba-before"><img src="images/ba-christchurch-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The old kitchen in the Christchurch bungalow with a worn floor and stained walls"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Christchurch">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
         <p class="case-town">Christchurch</p>
         <h3>Full bungalow refurbishment</h3>
         <a href="https://ecoshield.uk/full-bungalow-refurbishment-christchurch/">Read the Christchurch job</a>
       </li>
       <li class="case">
-        <div class="case-photos">
-          <figure class="shot"><img src="images/bournemouth-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"><figcaption>Before: rotten joists</figcaption></figure>
-          <figure class="shot"><img src="images/bournemouth-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid"><figcaption>After: new floor</figcaption></figure>
-        </div>
+      <div class="ba" style="--pos: 50%">
+        <img class="ba-after" src="images/ba-bournemouth-a.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid">
+        <div class="ba-before"><img src="images/ba-bournemouth-b.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"></div>
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Before</span>
+        <span class="ba-tag ba-tag-a" aria-hidden="true">After</span>
+        <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after photos, Bournemouth">
+        <span class="ba-handle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      </div>
         <p class="case-town">Bournemouth</p>
         <h3>Rising damp and floor restoration</h3>
         <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
       </li>
       <li class="case">
-        <div class="case-photos">
-          <figure class="shot"><div class="ph" role="img" aria-label="Placeholder: before photo, Winchester">Before photo goes here</div><figcaption>Before</figcaption></figure>
-          <figure class="shot"><img src="images/winchester-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester"><figcaption>After: lime plaster</figcaption></figure>
-        </div>
+      <div class="ba ba-single">
+        <img class="ba-after" src="images/winchester-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester">
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
+      </div>
         <p class="case-town">Winchester</p>
         <h3>Breathable lime plaster restoration</h3>
         <a href="https://ecoshield.uk/breathable-lime-plaster-restoration-in-winchester/">Read the Winchester job</a>
       </li>
       <li class="case">
-        <div class="case-photos">
-          <figure class="shot"><div class="ph" role="img" aria-label="Placeholder: before photo, Southbourne">Before photo goes here</div><figcaption>Before</figcaption></figure>
-          <figure class="shot"><img src="images/southbourne-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne"><figcaption>After: new roof and solar</figcaption></figure>
-        </div>
+      <div class="ba ba-single">
+        <img class="ba-after" src="images/southbourne-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne">
+        <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
+      </div>
         <p class="case-town">Southbourne</p>
         <h3>Roof replacement and solar</h3>
         <a href="https://ecoshield.uk/roof-replacement-solar-installation-southbourne/">Read the Southbourne job</a>
@@ -1247,6 +1202,12 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
     <ul class="reviews">
       <li>
         <figure class="review">
+          <blockquote><p>“I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.”</p></blockquote>
+          <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure class="review">
           <blockquote><p>“Elliott was excellent, fitted in a visit to survey damp and roof of our potential new home and advised us of the issues before we signed, saved us thousands of pounds.”</p></blockquote>
           <figcaption><strong>Mike</strong>, Google review</figcaption>
         </figure>
@@ -1255,12 +1216,6 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <figure class="review">
           <blockquote><p>“Elliot is an absolutely legend! Decent, Honest guy.”</p></blockquote>
           <figcaption><strong>Kryseis</strong>, Google review</figcaption>
-        </figure>
-      </li>
-      <li>
-        <figure class="review">
-          <blockquote><p>“They didn't just point out the symptoms; they were excellent at accurately diagnosing the root causes of the issues, which gave us total confidence in their proposed solutions.”</p></blockquote>
-          <figcaption><strong>NextGen Spaces</strong>, property portfolio, Google review</figcaption>
         </figure>
       </li>
       <li>
@@ -1283,7 +1238,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
       <p class="call-line">Prefer to talk? Call <a href="tel:07369286705">07369 286705</a></p>
       <p class="hours">Mon to Fri 8am to 7pm. Sat 8am to 4pm. Closed Sunday.</p>
       <figure class="book-photo">
-        <img src="images/elliot-survey.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Elliot testing a wall with a damp meter during a survey">
+        <img src="images/elliot-meter.jpg" width="900" height="900" loading="lazy" decoding="async" alt="Elliot kneeling to test a wall with a damp meter during a survey">
         <figcaption>Elliot on a damp survey.</figcaption>
       </figure>
     </div>
@@ -1376,25 +1331,14 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 
 <script>
 (function () {
-  // Hero wall: show the damp, then let it dry once a visitor can see it.
-  // The switch itself is a checkbox, so it works even when scripts are blocked.
-  var wall = document.getElementById('wall');
-  var wallSwitch = document.getElementById('wall-switch');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var touched = false;
-  wallSwitch.addEventListener('change', function () { touched = true; });
-  function autoDry() { if (!touched) wallSwitch.checked = true; }
-  if (reduce || !('IntersectionObserver' in window)) {
-    autoDry();
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        io.disconnect();
-        setTimeout(autoDry, 1200);
-      }
-    }, { threshold: 0.6 });
-    io.observe(wall.querySelector('.wall-svg'));
-  }
+  // Before and after sliders. Without scripts, the divider can still be dragged by its corner.
+  document.documentElement.classList.add('js');
+  Array.prototype.forEach.call(document.querySelectorAll('.ba-range'), function (range) {
+    var box = range.closest('.ba');
+    var set = function () { box.style.setProperty('--pos', range.value + '%'); };
+    range.addEventListener('input', set);
+    set();
+  });
 
   // Survey form: front end only.
   var form = document.getElementById('survey-form');

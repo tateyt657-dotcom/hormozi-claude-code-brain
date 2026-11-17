@@ -14,8 +14,8 @@ will look at it and decide whether to pay for it. Its job is to make him think
   marked placeholder (for example a grey box saying "Before photo goes
   here"). Never invent reviews, numbers, guarantees, accreditations or years
   in business.
-- Every interactive part must work with JavaScript turned off. Build the hero
-  wall toggle as a CSS checkbox switch. The form must fall back to a plain
+- Every interactive part must work with JavaScript turned off. The sliders
+  fall back to a draggable CSS resize corner. The form falls back to a plain
   submit that shows the success message. Use JS only as an extra.
 
 ## The business (real content, use exactly)
@@ -78,18 +78,24 @@ with alt text, width, height and lazy loading:
 | Use | Source |
 |---|---|
 | Elliot portrait (Meet Elliot, and a face crop for the hero) | https://ecoshield.uk/wp-content/uploads/2025/12/Tattoo-Off-scaled.jpg |
-| Elliot with a damp meter (booking section, share image) | https://ecoshield.uk/wp-content/uploads/2025/12/Eco-Shield-Damp-Mould-Survey-scaled.jpg |
-| Poole before: black mould under the sink | https://ecoshield.uk/wp-content/uploads/2025/10/Black-Mould-and-Rising-Damp2-1-scaled.jpeg |
-| Poole after: new kitchen | https://ecoshield.uk/wp-content/uploads/2025/10/Black-Mould-and-Rising-Damp3-1.jpg |
+| Elliot with a damp meter (full-width hero, share image) | https://ecoshield.uk/wp-content/uploads/2025/12/Eco-Shield-Damp-Mould-Survey-scaled.jpg |
+| Elliot kneeling with a damp meter (booking section) | https://ecoshield.uk/wp-content/uploads/2025/12/NWD04501-scaled.jpg |
+| Poole slider "During": kitchen stripped back | https://ecoshield.uk/wp-content/uploads/2025/10/Black-Mould-and-Rising-Damp-1.jpeg |
+| Poole slider "After": new kitchen, same window | https://ecoshield.uk/wp-content/uploads/2025/10/Black-Mould-and-Rising-Damp3-1.jpg |
 | Poole: mould behind the units ("Don't leave it too late") | https://ecoshield.uk/wp-content/uploads/2025/10/Black-Mould-and-Rising-Damp1-1-scaled.jpeg |
-| Christchurch before: old kitchen | https://ecoshield.uk/wp-content/uploads/2026/02/IMG_3457-1.jpeg |
-| Christchurch after: refurbished kitchen | https://ecoshield.uk/wp-content/uploads/2026/02/IMG_CF0C1BDF-0085-4505-9278-A13B90377A32-scaled.jpeg |
-| Bournemouth before: rotten joists | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0809.jpeg |
-| Bournemouth after: new floor | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0807.jpeg |
-| Winchester after: lime plaster | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0800-scaled.jpeg |
-| Southbourne after: new roof and solar | https://ecoshield.uk/wp-content/uploads/2025/10/Roof-Replacement-Solar-Installation-Southbourne-2.jpg |
+| Christchurch slider "Before": old kitchen | https://ecoshield.uk/wp-content/uploads/2026/02/IMG_3457-1.jpeg |
+| Christchurch slider "After": same kitchen refurbished | https://ecoshield.uk/wp-content/uploads/2026/02/IMG_CF0C1BDF-0085-4505-9278-A13B90377A32-scaled.jpeg |
+| Bournemouth slider "Before": rotten joists | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0809.jpeg |
+| Bournemouth slider "After": new floor | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0807.jpeg |
+| Winchester "Finished": lime plaster | https://ecoshield.uk/wp-content/uploads/2025/09/IMG_0800-scaled.jpeg |
+| Southbourne "Finished": new roof and solar | https://ecoshield.uk/wp-content/uploads/2025/10/Roof-Replacement-Solar-Installation-Southbourne-2.jpg |
 
-Winchester and Southbourne have no real before photo: keep a placeholder.
+Crop each slider pair to the same square so the two photos line up. Label
+the Poole pair "During" and "After", because its first photo shows the work
+in progress, not the mould.
+
+Winchester and Southbourne have no real before photo: show the finished photo
+with a "Finished" tag.
 Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
 (a manufacturer's diagram).
 
@@ -97,12 +103,15 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
 
 1. **Sticky header.** "Eco Shield", "Damp, mould and property protection",
    "Call Elliot 07369 286705" and a "Book a free survey" button.
-2. **Hero.** Headline: "Damp and mould fixed at the source." Sub-line: "Free
-   damp survey across Hampshire, Dorset, Wiltshire and the New Forest." Two
-   actions: "Book a free survey" (scrolls to the form) and "Call 07369
-   286705". Beside them, a round face photo of Elliot with "Elliot does your
-   survey himself." and a "Rated Excellent from 41 Google reviews" link to
-   the reviews. On the right, the hero wall (see design).
+2. **Hero.** A full-width photo of Elliot testing a wall with a damp meter,
+   with a dark gradient over the left side. On it, in white: "Damp and mould
+   fixed at the source." and "Free damp survey across Hampshire, Dorset,
+   Wiltshire and the New Forest." Two actions: "Book a free survey" (scrolls
+   to the form) and "Call 07369 286705". Below them, a round face photo of
+   Elliot with "Elliot does your survey himself." and a "Rated Excellent from
+   41 Google reviews" link to the reviews. On mobile, show the photo as a
+   band at the top that fades into the dark text area, so Elliot and the
+   meter stay in view.
 3. **Why choose us.** Four items with line icons:
    - Free damp survey: "Elliot checks your home and tells you what he finds.
      No charge."
@@ -111,41 +120,65 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
    - The cause, not the patch: "We find where the damp comes from, so it
      stays fixed."
    - Rated Excellent: "41 Google reviews. Most of them name Elliot."
-4. **The cowboy review.** Review 1, large, on a dark band with one big green
-   quote mark. This answers the biggest fear in this trade: hiring a cowboy.
-5. **Meet Elliot.** His portrait plus: "Elliot owns Eco Shield. He comes out
+4. **Meet Elliot.** His portrait plus: "Elliot owns Eco Shield. He comes out
    and does your survey himself." and "He finds what is causing the damp,
    not just the patch you can see. Then he fixes that." Review 4 below.
-6. **Who we help.** Homeowners (including buyers: "Elliot can survey it
+5. **Who we help.** Homeowners (including buyers: "Elliot can survey it
    before you sign"), Landlords and letting agents (mention Awaab's Law and
    link to that page), Housing associations. Then "We also help renters and
    commercial properties."
-7. **What are you seeing?** Problems by what the visitor sees, each linking
+6. **What are you seeing?** Problems by what the visitor sees, each linking
    to its service page: rising damp, condensation, black mould, timber
    decay, damp floors, cold rooms, roof leaks, rain soaking walls.
-8. **Don't leave it too late.** "Damp doesn't fix itself. The longer it
-   sits, the bigger the job and the bill." Six points with icons: mould
-   spreads, timber rots, plaster fails, heat escapes, your health suffers
-   (cite the NHS), landlords face deadlines (Awaab's Law). Show the Poole
-   mould-behind-the-units photo. End with a dark band: "Spotted damp or
-   mould? Get it checked now, while it's a small job." Book and Call buttons.
-9. **How it works.** Numbered circles joined by a line: Free survey, Written
+7. **Don't leave it too late.** Stack the real cost of leaving mould and
+   damp. Use general facts only and never invent prices.
+   - Intro: "Mould and damp don't go away on their own. The longer they're
+     left, the further they spread: into your home, your health and your
+     bank balance."
+   - Three stages with a coloured top edge that goes green, amber, brick
+     red: Caught early (find the cause, treat it, make good), Left a while
+     (strip and replaster, replace rotten skirting, treat every room), Left
+     for years (lift floors, replace joists, sometimes a full refurbishment,
+     linking the Bournemouth and Christchurch jobs). Each stage shows the
+     placeholder "Typical cost: confirm with Elliot".
+   - Three columns with icons. Your health: spores in the bedroom; the NHS
+     warns of breathing problems, asthma and allergies; babies, children,
+     older people and people with lung conditions are most at risk. Your
+     home: timber rots and dry rot can spread through brickwork; rising damp
+     salts mean plaster has to come off; mould stains paint, carpets,
+     clothes and furniture. Your money: a small treatment grows into new
+     plaster, floors and joists; damp walls raise heating bills; damp in a
+     buyer's survey can mean a lower offer or a lost sale; many home
+     insurance policies won't pay for damage that builds up slowly.
+   - The Poole mould-behind-the-units photo, with two notes beside it.
+     Buying a home: one buyer says Elliot's visit "saved us thousands of
+     pounds". Renting out a home: Awaab's Law is named after Awaab Ishak, a
+     two-year-old who died in 2020 after long exposure to mould in his
+     family's home; link to the Awaab's Law page. Add "Health information
+     from the NHS."
+   - End with a dark band: "Spotted damp or mould? Get it checked now, while
+     it's a small job." Book and Call buttons.
+8. **How it works.** Numbered circles joined by a line: Free survey, Written
    report, The fix, Guarantee. Guarantee shows the placeholder "Guarantee
    length: confirm with Elliot".
-10. **Recent work.** The 5 case studies in this order: Poole, Christchurch,
-    Bournemouth, Winchester, Southbourne. Before and after photos with small
-    tags on the images ("Before: black mould", "After: new kitchen").
-11. **What customers say.** Reviews 2 to 5, then "Rated Excellent from 41
-    Google reviews."
-12. **Book a free survey form.** "Tell us what's wrong and where you are.
+9. **Recent work.** "Drag across each photo to see the change." Before and
+   after sliders for Poole, Christchurch and Bournemouth, then finished
+   photos for Winchester and Southbourne. Each slider: the after photo
+   underneath, the before photo on top cut off at a white divider, a round
+   handle, and small tags in the top corners. Drag anywhere on the photo to
+   move it, and use the arrow keys too. Without JavaScript, the divider must
+   still be draggable (use CSS `resize` on the before layer).
+10. **What customers say.** Reviews 1, 2, 3 and 5 (review 4 is already in
+    Meet Elliot), then "Rated Excellent from 41 Google reviews."
+11. **Book a free survey form.** "Tell us what's wrong and where you are.
     Elliot will call you to pick a time." Fields: name, phone, postcode,
     "What's the problem?" as tap-to-pick options (Rising damp, Condensation
     or mould, Timber decay, Roof, Something else), optional photo upload
     with the hint "A photo helps Elliot see the problem before he visits".
     Button: "Book my free survey". Front-end only, with a clear success
-    message and a note that the preview doesn't send. Show the damp meter
-    photo of Elliot beside it, with the hours.
-13. **Footer.** Phone, email, office address, hours, areas covered, and
+    message and a note that the preview doesn't send. Show the photo of
+    Elliot kneeling with the damp meter beside it, with the hours.
+12. **Footer.** Phone, email, office address, hours, areas covered, and
     "Ventilation partner: Optimum Ventilation Management."
 
 On mobile, add a sticky bottom bar with "Call" and "WhatsApp"
@@ -163,16 +196,11 @@ default to "eco = bright green".
 
 - **Colour:** Lime putty `#ECEAE4` (page), Limewash `#F8F7F3` (white
   sections, form), Welsh slate `#252E37` (text and dark sections), Slate
-  grey `#56616B` (secondary text), Tide mark `#8C7B5B` (only in the wall
-  drawing), Meter green `#2D6A4E` (main buttons and the "dry" state only).
+  grey `#56616B` (secondary text), Meter green `#2D6A4E` (main buttons and accents only).
 - **Type:** Archivo only. Headings narrow (`wdth` 78) and bold, large and
   tight with balanced line breaks. Body at normal width.
-- **Bold element (spend boldness only here):** the hero is a drawn wall
-  with a brown tide mark of rising damp, a window running with condensation
-  and black mould in the corner. Once it's in view, the damp drains away,
-  the window clears and a damp meter strip moves from Wet to Dry. A switch
-  flips between damp and dry. Frame it in a dark slate casing with a soft
-  shadow, like a survey device. With reduced motion, show the dry wall.
+- **Bold elements:** the full-width hero photo of Elliot at work, and the
+  before and after sliders. Keep everything else calm.
 - **Premium, not flat:** alternate light, white and dark sections. Soft,
   layered shadows only on photos, the hero frame, the call-to-action band
   and the form. Corners of 6 to 12px. Icons in soft green-tinted circles.
@@ -194,8 +222,8 @@ and images with alt text and lazy loading.
 ## Check your work
 
 Use Playwright to screenshot at 390px and 1366px. Scroll first so lazy
-images load. Run an axe accessibility scan. Test the wall switch and the
-form with JavaScript on and off. Fix what looks off, then screenshot again.
+images load. Run an axe accessibility scan. Test the sliders and the form
+with JavaScript on and off. Fix what looks off, then screenshot again.
 Repeat until it looks finished.
 
 ## When you're done, give me
