@@ -673,6 +673,50 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 }
 
 /* ===== Round 3: photo hero, sliders, cost of waiting ===== */
+/* Loop 2: cards for routes and reviews, case grid, header */
+.brand-line { align-self: center; }
+.routes { border-top: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.route, .route + .route {
+  display: flex; flex-direction: column;
+  padding: 28px; border: 1px solid var(--rule); border-left: 1px solid var(--rule);
+  border-radius: 12px; background: var(--lime); box-shadow: var(--shadow-sm);
+}
+.route svg { width: 52px; height: 52px; padding: 12px; margin-bottom: 18px; background: var(--green-tint); border-radius: 50%; fill: none; stroke: var(--green); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.route .route-link { margin-top: auto; padding-top: 18px; color: var(--green-dark); }
+.routes-note { margin-top: 24px; }
+.rating-line { margin-top: 12px; font-size: 1.125rem; color: var(--slate-grey); }
+.rating-line strong { color: var(--slate); }
+.reviews { gap: 20px; }
+.review {
+  height: 100%;
+  border: 1px solid var(--rule); border-left: 1px solid var(--rule);
+  border-radius: 12px; background: var(--limewash);
+  padding: 56px 28px 26px; position: relative; box-shadow: var(--shadow-sm);
+}
+.review::before {
+  content: "\201C"; position: absolute; top: 4px; left: 24px;
+  font-size: 4.5rem; line-height: 1; font-weight: 700; color: var(--green);
+}
+.reviews li { display: flex; }
+.reviews li > .review { flex: 1; display: flex; flex-direction: column; }
+.review figcaption { margin-top: auto; padding-top: 16px; }
+.review blockquote p { font-size: 1.1875rem; }
+.cases { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.case { grid-column: span 2; }
+.case-wide { grid-column: span 3; }
+.case-wide .ba { aspect-ratio: 3 / 2; }
+.ph-inline { border: 0; background: var(--green-tint); color: var(--green-dark); border-radius: 6px; padding: 6px 10px; font-size: 0.875rem; }
+@media (max-width: 960px) {
+  .routes { grid-template-columns: 1fr; }
+  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case, .case-wide { grid-column: span 1; }
+  .case-wide .ba { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 720px) {
+  .route, .route + .route { padding: 22px; border-top: 1px solid var(--rule); }
+  .cases { grid-template-columns: 1fr; }
+}
+
 /* Problem cards */
 .problem-cards {
   list-style: none; margin: 0; padding: 0;
@@ -983,17 +1027,20 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
     </div>
     <div class="routes">
       <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V13l11-8 11 8v14z"/><path d="M13 27v-7h6v7"/></svg>
         <h3>Homeowners</h3>
         <p>Damp, mould or a room that never feels warm? We find the cause and fix it.</p>
         <p>Buying a home? Elliot can survey it before you sign.</p>
         <a class="route-link" href="#book">Book a free survey</a>
       </div>
       <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="5"/><path d="M16 16h12M24 16v4M28 16v3"/></svg>
         <h3>Landlords and letting agents</h3>
         <p>Awaab's Law puts new duties on landlords to deal with damp and mould quickly. We survey, write it up and fix it, so you have a clear record.</p>
         <a class="route-link" href="https://ecoshield.uk/awaabs-law/">What Awaab's Law means for you</a>
       </div>
       <div class="route">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="10" height="18"/><rect x="17" y="4" width="10" height="23"/><path d="M8 13h4M8 17h4M8 21h4M20 8h4M20 12h4M20 16h4M20 20h4"/></svg>
         <h3>Housing associations</h3>
         <p>We survey and treat damp and mould across your homes, from one property to a whole portfolio.</p>
         <a class="route-link" href="tel:07369286705">Talk to Elliot on 07369 286705</a>
@@ -1236,7 +1283,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <h3>Rising damp and floor restoration</h3>
         <a href="https://ecoshield.uk/rising-damp-floor-restoration-in-bournemouth/">Read the Bournemouth job</a>
       </li>
-      <li class="case">
+      <li class="case case-wide">
       <div class="ba ba-single">
         <img class="ba-after" src="images/winchester-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester">
         <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
@@ -1245,7 +1292,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <h3>Breathable lime plaster restoration</h3>
         <a href="https://ecoshield.uk/breathable-lime-plaster-restoration-in-winchester/">Read the Winchester job</a>
       </li>
-      <li class="case">
+      <li class="case case-wide">
       <div class="ba ba-single">
         <img class="ba-after" src="images/southbourne-after.jpg" width="1000" height="1000" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne">
         <span class="ba-tag ba-tag-b" aria-hidden="true">Finished</span>
@@ -1263,34 +1310,34 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
   <div class="wrap">
     <div class="section-head">
       <h2 id="reviews-title">What customers say</h2>
+      <p class="rating-line"><strong>Rated Excellent</strong> from 41 Google reviews</p>
     </div>
     <ul class="reviews">
       <li>
         <figure class="review">
-          <blockquote><p>“I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.”</p></blockquote>
+          <blockquote><p>I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.</p></blockquote>
           <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
         </figure>
       </li>
       <li>
         <figure class="review">
-          <blockquote><p>“Elliott was excellent, fitted in a visit to survey damp and roof of our potential new home and advised us of the issues before we signed, saved us thousands of pounds.”</p></blockquote>
+          <blockquote><p>Elliott was excellent, fitted in a visit to survey damp and roof of our potential new home and advised us of the issues before we signed, saved us thousands of pounds.</p></blockquote>
           <figcaption><strong>Mike</strong>, Google review</figcaption>
         </figure>
       </li>
       <li>
         <figure class="review">
-          <blockquote><p>“Elliot is an absolutely legend! Decent, Honest guy.”</p></blockquote>
+          <blockquote><p>Elliot is an absolutely legend! Decent, Honest guy.</p></blockquote>
           <figcaption><strong>Kryseis</strong>, Google review</figcaption>
         </figure>
       </li>
       <li>
         <figure class="review">
-          <blockquote><p>“The damp proofing and repairs were carried out promptly and neatly, and the fee that I paid is entirely fair for the quality standards and work ethic that I received.”</p></blockquote>
+          <blockquote><p>The damp proofing and repairs were carried out promptly and neatly, and the fee that I paid is entirely fair for the quality standards and work ethic that I received.</p></blockquote>
           <figcaption><strong>helen h</strong>, Google review</figcaption>
         </figure>
       </li>
     </ul>
-    <p class="reviews-total">Rated Excellent from 41 Google reviews.</p>
   </div>
 </section>
 

@@ -123,7 +123,8 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
 4. **Meet Elliot.** His portrait plus: "Elliot owns Eco Shield. He comes out
    and does your survey himself." and "He finds what is causing the damp,
    not just the patch you can see. Then he fixes that." Review 4 below.
-5. **Who we help.** Homeowners (including buyers: "Elliot can survey it
+5. **Who we help.** Three cards with icons in copper-tinted circles, links
+   pinned to the bottom: Homeowners (including buyers: "Elliot can survey it
    before you sign"), Landlords and letting agents (mention Awaab's Law and
    link to that page), Housing associations. Then "We also help renters and
    commercial properties."
@@ -169,14 +170,17 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
    report, The fix, Guarantee. Guarantee shows the placeholder "Guarantee
    length: confirm with Elliot".
 9. **Recent work.** "Drag across each photo to see the change." Before and
-   after sliders for Poole, Christchurch and Bournemouth, then finished
-   photos for Winchester and Southbourne. Each slider: the after photo
+   after sliders for Poole, Christchurch and Bournemouth in a row of three,
+   then finished photos for Winchester and Southbourne sharing the second
+   row at half width each, so there is no gap. Each slider: the after photo
    underneath, the before photo on top cut off at a white divider, a round
    handle, and small tags in the top corners. Drag anywhere on the photo to
    move it, and use the arrow keys too. Without JavaScript, the divider must
    still be draggable (use CSS `resize` on the before layer).
-10. **What customers say.** Reviews 1, 2, 3 and 5 (review 4 is already in
-    Meet Elliot), then "Rated Excellent from 41 Google reviews."
+10. **What customers say.** "Rated Excellent from 41 Google reviews" under
+    the heading, then reviews 1, 2, 3 and 5 (review 4 is already in Meet
+    Elliot) as white cards in a 2 by 2 grid, each with one large copper
+    quote mark and the name pinned to the bottom.
 11. **Book a free survey form.** "Tell us what's wrong and where you are.
     Elliot will call you to pick a time." Fields: name, phone, postcode,
     "What's the problem?" as tap-to-pick options (Rising damp, Condensation
