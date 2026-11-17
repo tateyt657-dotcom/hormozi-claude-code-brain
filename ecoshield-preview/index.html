@@ -320,6 +320,12 @@ p + p { margin-top: 12px; }
   font-weight: 600;
 }
 .ph-portrait { aspect-ratio: 4 / 5; width: 100%; max-width: 400px; }
+.portrait { width: 100%; max-width: 400px; aspect-ratio: 4 / 5; object-fit: cover; background: var(--placeholder); }
+.shot img, .shot .ph { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: var(--placeholder); }
+.shot figcaption { margin-top: 6px; font-size: 0.8125rem; color: var(--slate-grey); }
+.book-photo { margin-top: 40px; }
+.book-photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
+.book-photo figcaption { margin-top: 8px; font-size: 0.875rem; color: #C3C9CF; }
 .ph-inline {
   display: inline-block;
   background: var(--placeholder);
@@ -384,7 +390,7 @@ p + p { margin-top: 12px; }
   gap: 48px 32px;
 }
 .case-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-.case-photos .ph { aspect-ratio: 1 / 1; font-size: 0.8125rem; font-weight: 500; padding: 10px; }
+.case-photos .ph { font-size: 0.8125rem; font-weight: 500; padding: 10px; }
 .case-town { margin-top: 16px; font-size: 0.9375rem; color: var(--slate-grey); }
 .case h3 { margin-top: 4px; font-size: 1.1875rem; }
 .case a { display: inline-block; margin-top: 10px; font-weight: 600; }
@@ -502,7 +508,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 
 @media (max-width: 960px) {
   .hero .wrap, .elliot .wrap, .book .wrap { grid-template-columns: 1fr; gap: 40px; }
-  .elliot .ph-portrait { max-width: 360px; }
+  .elliot .ph-portrait, .elliot .portrait { max-width: 360px; }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
   .site-footer .wrap { grid-template-columns: 1fr 1fr; }
@@ -518,7 +524,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
   .hero { padding: 16px 0 64px; }
   .hero-sub { font-size: 1.1875rem; }
   .hero-actions .btn { width: 100%; }
-  .ph-portrait { aspect-ratio: 4 / 3; max-width: none; }
+  .ph-portrait, .portrait { aspect-ratio: 4 / 3; max-width: none; object-position: 50% 25%; }
   .routes { grid-template-columns: 1fr; border-top: 0; }
   .route, .route + .route { padding: 24px 0; border-left: 0; border-top: 1px solid var(--slate); }
   .problem { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
@@ -726,7 +732,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 <!-- 3. Meet Elliot -->
 <section class="section elliot" aria-labelledby="elliot-title">
   <div class="wrap">
-    <div class="ph ph-portrait" role="img" aria-label="Placeholder: photo of Elliot">Photo of Elliot goes here</div>
+    <img class="portrait" src="images/elliot.jpg" width="900" height="1125" loading="lazy" decoding="async" alt="Elliot, owner of Eco Shield, in his Eco Shield work gilet">
     <div class="elliot-text">
       <h2 id="elliot-title">Meet Elliot</h2>
       <p class="big">Elliot does your survey himself.</p>
@@ -859,8 +865,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
     <ul class="cases">
       <li class="case">
         <div class="case-photos">
-          <div class="ph" role="img" aria-label="Placeholder: before photo, Bournemouth">Before photo goes here</div>
-          <div class="ph" role="img" aria-label="Placeholder: after photo, Bournemouth">After photo goes here</div>
+          <figure class="shot"><img src="images/bournemouth-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Rotten floor joists and bare earth under a lifted floor in Bournemouth"><figcaption>Before: rotten joists</figcaption></figure>
+          <figure class="shot"><img src="images/bournemouth-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The same room with new timber floorboards laid"><figcaption>After: new floor</figcaption></figure>
         </div>
         <p class="case-town">Bournemouth</p>
         <h3>Rising damp and floor restoration</h3>
@@ -868,8 +874,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       </li>
       <li class="case">
         <div class="case-photos">
-          <div class="ph" role="img" aria-label="Placeholder: before photo, Poole">Before photo goes here</div>
-          <div class="ph" role="img" aria-label="Placeholder: after photo, Poole">After photo goes here</div>
+          <figure class="shot"><img src="images/poole-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Black mould and damp on the wall under a kitchen sink in a Poole bungalow"><figcaption>Before: black mould</figcaption></figure>
+          <figure class="shot"><img src="images/poole-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The finished kitchen in the Poole bungalow, clean and dry"><figcaption>After: new kitchen</figcaption></figure>
         </div>
         <p class="case-town">Poole</p>
         <h3>Severe black mould and rising damp in a bungalow</h3>
@@ -877,8 +883,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       </li>
       <li class="case">
         <div class="case-photos">
-          <div class="ph" role="img" aria-label="Placeholder: before photo, Christchurch">Before photo goes here</div>
-          <div class="ph" role="img" aria-label="Placeholder: after photo, Christchurch">After photo goes here</div>
+          <figure class="shot"><img src="images/christchurch-before.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Old kitchen in the Christchurch bungalow with worn floor and stained walls"><figcaption>Before: old kitchen</figcaption></figure>
+          <figure class="shot"><img src="images/christchurch-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The refurbished kitchen in the Christchurch bungalow"><figcaption>After: refurbished</figcaption></figure>
         </div>
         <p class="case-town">Christchurch</p>
         <h3>Full bungalow refurbishment</h3>
@@ -886,8 +892,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       </li>
       <li class="case">
         <div class="case-photos">
-          <div class="ph" role="img" aria-label="Placeholder: before photo, Winchester">Before photo goes here</div>
-          <div class="ph" role="img" aria-label="Placeholder: after photo, Winchester">After photo goes here</div>
+          <figure class="shot"><div class="ph" role="img" aria-label="Placeholder: before photo, Winchester">Before photo goes here</div><figcaption>Before</figcaption></figure>
+          <figure class="shot"><img src="images/winchester-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="A chimney breast and wall finished in breathable lime plaster in Winchester"><figcaption>After: lime plaster</figcaption></figure>
         </div>
         <p class="case-town">Winchester</p>
         <h3>Breathable lime plaster restoration</h3>
@@ -895,8 +901,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       </li>
       <li class="case">
         <div class="case-photos">
-          <div class="ph" role="img" aria-label="Placeholder: before photo, Southbourne">Before photo goes here</div>
-          <div class="ph" role="img" aria-label="Placeholder: after photo, Southbourne">After photo goes here</div>
+          <figure class="shot"><div class="ph" role="img" aria-label="Placeholder: before photo, Southbourne">Before photo goes here</div><figcaption>Before</figcaption></figure>
+          <figure class="shot"><img src="images/southbourne-after.jpg" width="800" height="800" loading="lazy" decoding="async" alt="New roof with solar panels on a bungalow in Southbourne"><figcaption>After: new roof and solar</figcaption></figure>
         </div>
         <p class="case-town">Southbourne</p>
         <h3>Roof replacement and solar</h3>
@@ -950,6 +956,10 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       <p>Tell us what's wrong and where you are. Elliot will call you to pick a time.</p>
       <p class="call-line">Prefer to talk? Call <a href="tel:07369286705">07369 286705</a></p>
       <p class="hours">Mon to Fri 8am to 7pm. Sat 8am to 4pm. Closed Sunday.</p>
+      <figure class="book-photo">
+        <img src="images/elliot-survey.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Elliot testing a wall with a damp meter during a survey">
+        <figcaption>Elliot on a damp survey.</figcaption>
+      </figure>
     </div>
 
     <div class="form-panel" id="form-panel">
