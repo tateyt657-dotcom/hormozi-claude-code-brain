@@ -1030,12 +1030,106 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
 .book-stack strong { color: #fff; }
 .book-stack svg { width: 28px; height: 28px; padding: 5px; border-radius: 50%; background: var(--green); fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 960px) { .book-photo { display: none; } }
+
+/* ===== Motion and UI polish ===== */
+.site-header { transition: box-shadow .25s ease, background-color .25s ease; }
+.site-header.is-scrolled { box-shadow: 0 6px 24px -12px rgba(20, 20, 20, 0.35); background: rgba(245, 245, 245, 0.94); }
+.progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+  background: var(--green); transform-origin: 0 50%; transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .progress { animation: grow-x linear both; animation-timeline: scroll(root); }
+}
+@keyframes grow-x { to { transform: scaleX(1); } }
+
+/* Hero entrance */
+@keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero-bg img { animation: settle 1.8s cubic-bezier(.2,.7,.2,1) both; }
+.hero h1 span, .hero .hero-sub, .hero-offer, .hero-actions, .hero-trust { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero h1 span:nth-child(1) { animation-delay: .1s; }
+.hero h1 span:nth-child(2) { animation-delay: .25s; }
+.hero .hero-sub { animation-delay: .4s; }
+.hero-offer { animation-delay: .5s; }
+.hero-actions { animation-delay: .6s; }
+.hero-trust { animation-delay: .75s; }
+
+/* Gentle reveal on scroll (content stays readable before it animates) */
+@supports (animation-timeline: view()) {
+  .section-head, .pcard, .hcard, .route, .reviews li, .stage, .case, .anchor-side, .why-list li,
+  .health-list li, .damage-col, .step, .late-cta, .elliot .portrait, .health-photo, .form-panel {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+}
+@keyframes reveal { from { translate: 0 36px; scale: .97; } to { translate: 0 0; scale: 1; } }
+
+/* Pulsing warning dots */
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(178, 58, 42, .45); } 70% { box-shadow: 0 0 0 10px rgba(178, 58, 42, 0); } 100% { box-shadow: 0 0 0 0 rgba(178, 58, 42, 0); } }
+.health-list li::before { animation: pulse-ring 2.4s ease-out infinite; }
+.health-list li:nth-child(2)::before { animation-delay: .6s; }
+.health-list li:nth-child(3)::before { animation-delay: 1.2s; }
+.health-list li:nth-child(4)::before { animation-delay: 1.8s; }
+
+/* Card hover lift, shared */
+.hcard, .route, .review, .stage, .damage-col, .anchor-side, .why-list li {
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.hcard:hover, .route:hover, .review:hover, .stage:hover, .damage-col:hover {
+  transform: translateY(-4px); box-shadow: var(--shadow-lg);
+}
+.why-list li:hover svg, .hcard:hover svg, .pcard:hover svg, .route:hover svg { transform: scale(1.08) rotate(-4deg); }
+.why-list svg, .hcard svg, .pcard svg, .route svg { transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+.anchor-now:hover { transform: translateY(-4px); }
+
+/* Buttons: shine sweep on primary */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent);
+  transform: skewX(-20deg); transition: left .6s ease;
+}
+.btn-primary:hover::after { left: 130%; }
+
+/* Count-up figure */
+.count { font-variant-numeric: tabular-nums; }
+
+/* Slider hint */
+.ba.is-nudging .ba-before, .ba.is-nudging .ba-handle { transition: width .5s cubic-bezier(.45,.05,.3,1), left .5s cubic-bezier(.45,.05,.3,1); }
+.js .ba-handle { transition: box-shadow .2s ease, transform .2s ease; }
+.ba:hover .ba-handle { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+
+/* Form polish */
+.field input[type="text"], .field input[type="tel"] { transition: border-color .2s ease, box-shadow .2s ease; }
+.field input[type="text"]:focus, .field input[type="tel"]:focus { border-color: var(--green); box-shadow: 0 0 0 4px var(--green-tint); outline: none; }
+.field input:focus-visible { outline: none; }
+.choice span { transition: background-color .15s ease, border-color .15s ease, transform .15s ease; }
+.choice span:hover { border-color: var(--green); transform: translateY(-1px); }
+.choice input:checked + span { background: var(--green); border-color: var(--green); }
+.success-tick { width: 56px; height: 56px; margin-bottom: 14px; fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.success-tick circle { stroke-dasharray: 151; stroke-dashoffset: 151; }
+.success-tick path { stroke-dasharray: 36; stroke-dashoffset: 36; }
+.form-panel.is-sent .success-tick circle, .success:target .success-tick circle { animation: draw .6s ease forwards; }
+.form-panel.is-sent .success-tick path, .success:target .success-tick path { animation: draw .4s ease .5s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg img, .hero h1 span, .hero .hero-sub, .hero-offer, .hero-actions, .hero-trust,
+  .section-head, .pcard, .hcard, .route, .reviews li, .stage, .case, .anchor-side, .why-list li,
+  .health-list li, .health-list li::before, .damage-col, .step, .late-cta, .elliot .portrait, .health-photo, .form-panel, .progress { animation: none !important; }
+  .success-tick circle, .success-tick path { stroke-dashoffset: 0; }
+  .hcard:hover, .route:hover, .review:hover, .stage:hover, .damage-col:hover, .anchor-now:hover, .choice span:hover { transform: none; }
+  .btn-primary::after { display: none; }
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
+  <div class="progress" aria-hidden="true"></div>
   <div class="wrap">
     <a class="brand" href="#top">
       <img class="brand-logo" src="images/logo.png" width="483" height="96" alt="Eco Shield">
@@ -1157,7 +1251,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
       <div class="anchor-vs" aria-hidden="true">vs</div>
       <div class="anchor-side anchor-later">
         <p class="anchor-label">Leave it for years</p>
-        <p class="anchor-price">£2,500 to £7,500+</p>
+        <p class="anchor-price">£<span class="count" data-to="2500">2,500</span> to £<span class="count" data-to="7500">7,500</span>+</p>
         <p>New damp proofing, plaster, joists and floors. UK guide price.</p>
       </div>
     </div>
@@ -1538,6 +1632,7 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
         <p class="form-note">The survey is free. You decide what happens next.<br>Preview only: this form does not send yet.</p>
       </form>
       <div class="success" role="status" aria-live="polite" tabindex="-1" id="booked">
+        <svg class="success-tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
         <h3>Your survey request is in.</h3>
         <p id="success-msg">Elliot will call you to pick a time for your free survey.</p>
         <p>Need him sooner? Call <a href="tel:07369286705">07369 286705</a>.</p>
@@ -1597,6 +1692,72 @@ h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; lette
     range.addEventListener('input', set);
     set();
   });
+
+
+  // ===== Motion and UI polish =====
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header = document.querySelector('.site-header');
+  var progress = document.querySelector('.progress');
+  var supportsScrollTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()');
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.scrollY || 0;
+      header.classList.toggle('is-scrolled', y > 8);
+      if (!supportsScrollTimeline && progress) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    // Count the cost up when it comes into view.
+    var counted = false;
+    var anchor = document.querySelector('.anchor');
+    if (anchor) {
+      var zeroed = false;
+      new IntersectionObserver(function (entries, obs) {
+        var e0 = entries[0];
+        if (!e0.isIntersecting || counted) return;
+        if (!zeroed) { zeroed = true; Array.prototype.forEach.call(anchor.querySelectorAll('.count'), function (el) { el.textContent = '0'; }); }
+        if (e0.intersectionRatio < 0.5) return;
+        counted = true; obs.disconnect();
+        Array.prototype.forEach.call(anchor.querySelectorAll('.count'), function (el) {
+          var to = +el.getAttribute('data-to'), start = null, dur = 1400;
+          function step(t) {
+            if (!start) start = t;
+            var k = Math.min(1, (t - start) / dur), e = 1 - Math.pow(1 - k, 3);
+            el.textContent = Math.round(to * e).toLocaleString('en-GB');
+            if (k < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }, { threshold: [0, 0.5] }).observe(anchor);
+    }
+    // Nudge each slider once so people see it can be dragged.
+    Array.prototype.forEach.call(document.querySelectorAll('.ba .ba-range'), function (range) {
+      var box = range.closest('.ba');
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var touched = false;
+        range.addEventListener('pointerdown', function () { touched = true; box.classList.remove('is-nudging'); }, { once: true });
+        var seq = [36, 64, 50], i = 0;
+        box.classList.add('is-nudging');
+        (function next() {
+          if (touched || i >= seq.length) { box.classList.remove('is-nudging'); return; }
+          range.value = seq[i]; box.style.setProperty('--pos', seq[i] + '%'); i++;
+          setTimeout(next, 550);
+        })();
+      }, { threshold: 0.7 });
+      io.observe(box);
+    });
+  }
 
   // Survey form: front end only.
   var form = document.getElementById('survey-form');
