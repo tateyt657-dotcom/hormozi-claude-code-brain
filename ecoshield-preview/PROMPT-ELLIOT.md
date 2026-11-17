@@ -127,9 +127,12 @@ Don't use IMG_7256.jpg (it looks like stock) or drimaster_house_detail.jpg
    before you sign"), Landlords and letting agents (mention Awaab's Law and
    link to that page), Housing associations. Then "We also help renters and
    commercial properties."
-6. **What are you seeing?** Problems by what the visitor sees, each linking
-   to its service page: rising damp, condensation, black mould, timber
-   decay, damp floors, cold rooms, roof leaks, rain soaking walls.
+6. **What are you seeing?** Nine cards, three across on desktop, two on
+   tablets, one on phones. Each card has a line icon in a copper-tinted
+   circle, the problem, what you see, and the matching service as a link;
+   the whole card is clickable. Rising damp, condensation, black mould,
+   timber decay, damp floors, cold rooms, roof leaks, rain soaking walls,
+   and damp in a rented home (links to the Awaab's Law page).
 7. **Don't leave it too late.** Stack the real cost of leaving mould and
    damp. Use general facts only and never invent prices.
    - Intro: "Mould and damp don't go away on their own. The longer they're
