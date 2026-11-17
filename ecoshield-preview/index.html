@@ -666,6 +666,177 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ===== Premium pass ===== */
+h1, h2, h3 { text-wrap: balance; }
+@media (min-width: 961px) { .hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
+:root {
+  --shadow-sm: 0 1px 2px rgba(25, 32, 39, 0.06), 0 2px 6px rgba(25, 32, 39, 0.05);
+  --shadow-lg: 0 2px 4px rgba(25, 32, 39, 0.06), 0 24px 48px -16px rgba(25, 32, 39, 0.28);
+  --radius: 8px;
+  --green-tint: #E3ECE6;
+  --footer: #1B2229;
+}
+html { scroll-padding-top: 88px; }
+body { -webkit-font-smoothing: antialiased; }
+
+/* Type: bigger, tighter display */
+h1 { font-size: clamp(2.75rem, 1.4rem + 4.6vw, 4.75rem); line-height: 1.02; letter-spacing: -0.025em; font-variation-settings: "wdth" 78; }
+h2 { font-size: clamp(2.125rem, 1.5rem + 2vw, 3.25rem); line-height: 1.05; letter-spacing: -0.02em; font-variation-settings: "wdth" 78; }
+.section { padding: 112px 0; border-top: 0; }
+.section-head { margin-bottom: 48px; }
+
+/* Section tones for rhythm */
+.tone-white { background: var(--limewash); }
+.tone-dark { background: var(--slate); color: var(--limewash); }
+
+/* Sticky header */
+.site-header {
+  position: sticky; top: 0; z-index: 30;
+  background: rgba(236, 234, 228, 0.86);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid rgba(37, 46, 55, 0.08);
+  padding: 14px 0;
+}
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.btn-small { min-height: 42px; padding: 8px 16px; font-size: 0.9375rem; }
+
+/* Buttons: a touch of depth */
+.btn { border-radius: 6px; transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.btn-primary { box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 6px 16px -6px rgba(45, 106, 78, 0.55); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 10px 22px -8px rgba(45, 106, 78, 0.6); }
+
+/* Hero */
+.hero { padding: 72px 0 112px; }
+.hero-sub { font-size: 1.375rem; max-width: 32ch; color: #3A4550; }
+.hero-trust img { box-shadow: 0 0 0 3px var(--limewash), var(--shadow-sm); }
+
+/* The wall as a survey instrument */
+.wall-figure {
+  background: var(--slate);
+  padding: 14px 14px 20px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+}
+.wall-frame { border-radius: 6px; overflow: hidden; }
+.wall-figure .meter { padding: 4px 6px 0; }
+.wall-figure .meter-label,
+.wall-figure .meter-words,
+.wall-figure .wall-caption { color: #C3C9CF; }
+.wall-figure .wall-caption { padding: 0 6px; }
+.wall-figure .meter-pin { background: var(--limewash); box-shadow: 0 0 0 2px var(--slate); }
+.wall-figure .wall-toggle { color: var(--limewash); border-color: #6B7681; border-radius: 6px; }
+.wall-figure .wall-toggle:hover { border-color: var(--limewash); }
+.wall-switch:focus-visible ~ .meter .wall-toggle { outline-color: var(--limewash); }
+
+/* Why choose us */
+.why { border-top: 1px solid rgba(37, 46, 55, 0.08); border-bottom: 1px solid rgba(37, 46, 55, 0.08); }
+.why-list li { padding-top: 40px; padding-bottom: 40px; }
+.why-list svg {
+  width: 52px; height: 52px; padding: 12px;
+  background: var(--green-tint);
+  border-radius: 50%;
+}
+
+/* Cowboy review on dark */
+.lead-review { padding: 120px 0; }
+.lead-review figure { position: relative; padding-top: 56px; }
+.lead-review figure::before {
+  content: "\201C";
+  position: absolute; top: -28px; left: -6px;
+  font-size: 9rem; line-height: 1; font-weight: 700;
+  color: #4E9A76;
+}
+.lead-review blockquote p { color: var(--limewash); font-weight: 500; }
+.lead-review figcaption { color: #AEB7BF; }
+.lead-review figcaption strong { color: var(--limewash); }
+
+/* Photos */
+.portrait, .book-photo img, .late-photo img { border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.ph { border-radius: var(--radius); }
+
+/* Who we help */
+.routes { border-top: 2px solid var(--slate); }
+.route h3 { font-size: 1.5rem; }
+
+/* Problems */
+.problems { border-top: 2px solid var(--slate); }
+.problem h3 { font-size: 1.375rem; }
+
+/* Don't leave it too late */
+.late-list svg { width: 40px; height: 40px; padding: 8px; background: var(--lime); border-radius: 50%; box-shadow: var(--shadow-sm); stroke: var(--slate); }
+.late-list li { grid-template-columns: 40px 1fr; }
+.late-cta { border-radius: 12px; box-shadow: var(--shadow-lg); padding: 40px 44px; }
+
+/* Steps */
+.step { border-top: 0; padding-top: 0; }
+.step::before {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--slate); color: var(--limewash);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+.steps { position: relative; }
+.steps::before {
+  content: ""; position: absolute; left: 28px; right: calc((100% - 96px) / 4 - 28px); top: 28px;
+  height: 2px; background: var(--rule); z-index: 0;
+}
+.step::before { position: relative; z-index: 1; box-shadow: 0 0 0 6px var(--lime); }
+.step h3 { font-size: 1.375rem; }
+
+/* Case studies: tags on photos */
+.case-photos { gap: 6px; }
+.shot { position: relative; }
+.shot img, .shot .ph { border-radius: 6px; }
+.shot figcaption {
+  position: absolute; left: 8px; top: 8px;
+  margin: 0;
+  background: rgba(27, 34, 41, 0.86);
+  color: #fff;
+  font-size: 0.75rem; font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  max-width: calc(100% - 16px);
+}
+.case { transition: transform .25s ease; }
+.case h3 { font-size: 1.3125rem; }
+
+/* Reviews */
+.review { border-top: 0; padding: 0 0 0 20px; border-left: 3px solid var(--green); }
+.review blockquote p { font-size: 1.25rem; color: var(--slate); }
+
+/* Booking */
+.book { padding: 120px 0; }
+.form-panel { border-radius: 12px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5); padding: 40px; }
+.field input[type="text"], .field input[type="tel"], .file-input, .choice span { border-radius: 6px; }
+.field input[type="text"]:focus, .field input[type="tel"]:focus { border-color: var(--slate); }
+
+/* Footer */
+.site-footer { background: var(--footer); border-top: 0; }
+
+@media (max-width: 960px) {
+  .steps::before { display: none; }
+}
+@media (max-width: 720px) {
+  html { scroll-padding-top: 72px; }
+  .section, .lead-review, .book { padding: 72px 0; }
+  .hero { padding: 32px 0 72px; }
+  .site-header { padding: 10px 0; }
+  .btn-small { display: none; }
+  .wall-figure { padding: 10px 10px 16px; border-radius: 12px; }
+  .lead-review figure { padding-top: 44px; }
+  .lead-review figure::before { font-size: 7rem; top: -22px; }
+  .late-cta { padding: 28px 22px; }
+  .form-panel { padding: 28px 20px; }
+  .step::before { width: 44px; height: 44px; font-size: 1.25rem; margin: 0; box-shadow: none; }
+  .step { padding-top: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -677,7 +848,10 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
       <span class="brand-name">Eco Shield</span>
       <span class="brand-line">Damp, mould and property protection</span>
     </a>
-    <a class="header-phone" href="tel:07369286705"><span>Call Elliot</span>07369 286705</a>
+    <div class="header-actions">
+      <a class="header-phone" href="tel:07369286705"><span>Call Elliot</span>07369 286705</a>
+      <a class="btn btn-primary btn-small" href="#book">Book a free survey</a>
+    </div>
   </div>
 </header>
 
@@ -833,12 +1007,12 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 </section>
 
 <!-- 2. The cowboy review -->
-<section class="section lead-review" aria-labelledby="lead-review-title">
+<section class="section lead-review tone-dark on-dark" aria-labelledby="lead-review-title">
   <div class="wrap">
     <h2 id="lead-review-title" class="visually-hidden">Why customers choose Elliot</h2>
     <figure>
       <blockquote>
-        <p>“I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.”</p>
+        <p>I had 3 damp specialists out for quotes. I choose Elliot as he was professional and the other 2 were giving off cowboy vibes. I am very happy in my decision as he overdelivered.</p>
       </blockquote>
       <figcaption><strong>danielwalsh1984</strong>, Google review</figcaption>
     </figure>
@@ -864,7 +1038,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 </section>
 
 <!-- 4. Who we help -->
-<section class="section" aria-labelledby="help-title">
+<section class="section tone-white" aria-labelledby="help-title">
   <div class="wrap">
     <div class="section-head">
       <h2 id="help-title">Who we help</h2>
@@ -944,7 +1118,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 </section>
 
 <!-- Don't leave it too late -->
-<section class="section late" aria-labelledby="late-title">
+<section class="section late tone-white" aria-labelledby="late-title">
   <div class="wrap">
     <div class="late-grid">
       <div>
@@ -1008,7 +1182,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
 </section>
 
 <!-- 7. Recent work -->
-<section class="section" aria-labelledby="work-title">
+<section class="section tone-white" aria-labelledby="work-title">
   <div class="wrap">
     <div class="section-head">
       <h2 id="work-title">Recent work</h2>
