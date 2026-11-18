@@ -1,0 +1,8 @@
+# One city or ZIP code per line. Lines starting with # are ignored.
+Dallas TX
+Fort Worth TX
+Plano TX
+Arlington TX
+Frisco TX
+75201
+75204

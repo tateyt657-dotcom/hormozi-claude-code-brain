@@ -11,7 +11,7 @@ Emails are not on Google Maps, so the tool visits each business website
 
 Usage:
     python lead_scraper.py "roofers in Dallas TX"
-    python lead_scraper.py "med spa" --cities cities.txt --max 60
+    python lead_scraper.py "roofers, plumbers" --locations locations.txt --max 60
     python lead_scraper.py --queries queries.txt --out leads.csv
     python lead_scraper.py "dentist in Miami" --headful   # watch the browser
 """
@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import csv
 import html
+import random
 import re
 import sys
 import time
@@ -297,24 +298,60 @@ def enrich_from_website(row: dict, timeout: int = 10, want_emails: bool = True) 
 # Main
 # ----------------------------------------------------------------------------
 
+def read_list(value: str | None) -> list[str]:
+    """Accept a file path (one item per line) or a comma-separated list."""
+    if not value:
+        return []
+    path = Path(value)
+    if path.is_file():
+        items = path.read_text(encoding="utf-8").splitlines()
+    else:
+        items = value.split(",")
+    return [i.strip() for i in items if i.strip() and not i.strip().startswith("#")]
+
+
 def build_queries(args) -> list[str]:
-    queries: list[str] = []
-    if args.query:
-        queries.append(args.query)
-    if args.queries:
-        queries += [l.strip() for l in Path(args.queries).read_text().splitlines() if l.strip()]
-    if args.cities:
-        cities = [l.strip() for l in Path(args.cities).read_text().splitlines() if l.strip()]
-        base = queries or []
-        queries = [f"{q} in {c}" for q in base for c in cities]
+    searches = read_list(args.query) + read_list(args.queries)
+    locations = read_list(args.locations)
+    if not locations:
+        return searches
+    queries = []
+    for search in searches:
+        for loc in locations:
+            # "near 75201" works best for ZIP codes, "in Dallas TX" for cities.
+            word = "near" if re.fullmatch(r"\d{5}(-\d{4})?", loc) else "in"
+            queries.append(f"{search} {word} {loc}")
     return queries
+
+
+PLACE_ID_RE = re.compile(r"!1s(0x[0-9a-f]+:0x[0-9a-f]+)", re.I)
+
+
+def place_key(url: str) -> str:
+    """Stable ID for a business, so repeats across searches get skipped."""
+    m = PLACE_ID_RE.search(url or "")
+    return m.group(1).lower() if m else (url or "").split("?")[0]
+
+
+def load_done(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return {l.strip() for l in path.read_text(encoding="utf-8").splitlines() if l.strip()}
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Scrape business leads from Google Maps.")
-    ap.add_argument("query", nargs="?", help='Search, e.g. "roofers in Dallas TX"')
-    ap.add_argument("--queries", help="Text file with one search per line")
-    ap.add_argument("--cities", help="Text file of cities. Runs each search in each city.")
+    ap.add_argument("query", nargs="?",
+                    help='Search(es), e.g. "roofers" or "roofers, plumbers". '
+                         'Can also be a file with one search per line.')
+    ap.add_argument("--queries", help="File (or comma list) of extra searches")
+    ap.add_argument("--locations", "--cities", dest="locations",
+                    help="File (one per line) or comma list of cities/ZIP codes. "
+                         "Runs every search in every location.")
+    ap.add_argument("--delay", type=float, default=3,
+                    help="Seconds to wait between searches (default 3). Raise it for huge runs.")
+    ap.add_argument("--restart", action="store_true",
+                    help="Re-run searches that already finished in an earlier run")
     ap.add_argument("--max", type=int, default=120, help="Max results per search (Maps caps near 120)")
     ap.add_argument("--out", default="leads.csv", help="Output CSV file")
     ap.add_argument("--no-emails", action="store_true", help="Skip email lookup (still checks for Facebook)")
@@ -328,6 +365,17 @@ def main() -> None:
     if not queries:
         ap.error("Give a search, or --queries FILE")
 
+    done_path = Path(args.out).with_suffix(".done.txt")
+    done = set() if args.restart else load_done(done_path)
+    todo = [q for q in queries if q not in done]
+    if len(todo) < len(queries):
+        print(f"Skipping {len(queries) - len(todo)} searches already finished "
+              f"(listed in {done_path.name}). Use --restart to redo them.")
+    queries = todo
+    if not queries:
+        sys.exit("All searches already finished.")
+    print(f"{len(queries)} searches to run.")
+
     out_path = Path(args.out)
     seen: set[str] = set()
     if out_path.exists():  # resume: skip places already saved
@@ -335,7 +383,7 @@ def main() -> None:
             reader = csv.DictReader(f)
             if reader.fieldnames and reader.fieldnames != FIELDS:
                 sys.exit(f"{out_path} has different columns (older version). Use a new --out file.")
-            seen = {row["maps_link"] for row in reader}
+            seen = {place_key(row["maps_link"]) for row in reader}
     new_file = not out_path.exists()
 
     with sync_playwright() as p, out_path.open("a", newline="", encoding="utf-8") as f:
@@ -355,8 +403,15 @@ def main() -> None:
 
         for qi, query in enumerate(queries, 1):
             print(f"\n[{qi}/{len(queries)}] {query}")
-            links = collect_place_links(page, query, args.max)
-            print(f"  found {len(links)} listings")
+            try:
+                links = collect_place_links(page, query, args.max)
+            except Exception as e:  # network hiccup or block: skip, retry next run
+                print(f"  ! search failed, will retry next run: {str(e).splitlines()[0]}")
+                time.sleep(args.delay)
+                continue
+            fresh = [l for l in links if place_key(l) not in seen]
+            print(f"  found {len(links)} listings, {len(fresh)} new")
+            links = fresh
             rows = []
             for i, link in enumerate(links, 1):
                 try:
@@ -364,9 +419,11 @@ def main() -> None:
                 except Exception as e:  # keep going on any one bad listing
                     print(f"  ! error on listing {i}: {e}")
                     continue
-                if not row or row["maps_link"] in seen:
+                key = place_key(row.get("maps_link", "")) if row else ""
+                if not row or key in seen:
                     continue
-                seen.add(row["maps_link"])
+                seen.add(key)
+                seen.add(place_key(link))
                 row["query"] = query
                 rows.append(row)
                 print(f"  {i:>3}. {row['name'][:45]:<45} {row['rating'] or '-':>4} ({row['review_count'] or 0})")
@@ -381,8 +438,12 @@ def main() -> None:
             for row in rows:
                 writer.writerow({k: row.get(k, "") for k in FIELDS})
             f.flush()
+            with done_path.open("a", encoding="utf-8") as d:
+                d.write(query + "\n")
             total += len(rows)
-            time.sleep(2)
+            print(f"  saved {len(rows)} | total this run: {total}")
+            if qi < len(queries):
+                time.sleep(args.delay + random.uniform(0, args.delay))
 
         browser.close()
         pool.shutdown()

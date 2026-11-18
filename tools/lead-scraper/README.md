@@ -16,16 +16,31 @@ Type a search like `roofers in Dallas TX`. You get a CSV with each business's:
 
 Maps shows phone, website, rating, and reviews on every listing. Google search
 pages don't, and Google shows a CAPTCHA (a "prove you're human" check) after a
-few pages. Maps gives up to about 120 businesses per search. To get more, use
-`--cities` to run the same search in many cities.
+few pages. Maps gives up to about 120 businesses per search. To get more, run the same
+search across many cities or ZIP codes. ZIP codes in big cities find the most.
 
-## Setup (one time)
+## Easiest way: the app
 
-You need Python 3.9 or newer.
+You need Python 3.9 or newer. On Windows, tick "Add Python to PATH" when you install it.
 
-```bash
-cd tools/lead-scraper
-```
+1. Open the `tools/lead-scraper` folder.
+2. Double-click **`start.bat`** (Windows) or **`start.command`** (Mac).
+   The first time, it installs what it needs. That takes a minute or two.
+3. A window opens. Type your business types, one per line (like `roofers`).
+4. Paste your locations, one per line. Cities (`Dallas TX`) or ZIP codes
+   (`75201`) both work. Or click **Load file...** to load a list.
+5. Click **Start**. Watch progress in the box at the bottom.
+6. Click **Open CSV** when it's done.
+
+Every business type runs in every location. So 3 business types and 50 ZIP
+codes is 150 searches.
+
+On Mac, if it says the file can't be opened, right-click `start.command` and
+choose Open. If that fails, run `chmod +x start.command` in Terminal first.
+
+## Command line (optional)
+
+Setup, once:
 
 ```bash
 pip install -r requirements.txt
@@ -35,48 +50,50 @@ pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-## Run it
-
 One search:
 
 ```bash
 python lead_scraper.py "roofers in Dallas TX"
 ```
 
-Same search across many cities (one city per line in the file):
+Bulk: several business types across a file of locations:
 
 ```bash
-python lead_scraper.py "med spa" --cities cities.example.txt --max 60
+python lead_scraper.py "roofers, plumbers" --locations locations.example.txt
+```
+
+Locations can also go inline, but don't put commas inside a location:
+
+```bash
+python lead_scraper.py "med spa" --locations "Austin TX, Houston TX, 78701"
 ```
 
 Only businesses with no real website (best for a web design offer):
 
 ```bash
-python lead_scraper.py "roofers in Dallas TX" --no-website-only --out no_site_leads.csv
+python lead_scraper.py "roofers" --locations locations.example.txt --no-website-only --out no_site_leads.csv
 ```
-
-Many different searches (one per line in the file):
-
-```bash
-python lead_scraper.py --queries my_searches.txt --out leads.csv
-```
-
-## Options
 
 | Option | What it does |
 |---|---|
+| `--locations file.txt` | Cities or ZIP codes, one per line (or a comma list). Runs every search in every location. |
 | `--max 50` | Stop at 50 businesses per search. Default is 120. |
 | `--out file.csv` | Save to a different file. Default is `leads.csv`. |
-| `--cities file.txt` | Runs your search as "search in city" for each city. |
-| `--queries file.txt` | Runs every search in the file. |
+| `--delay 5` | Seconds to wait between searches. Default 3. Raise it for big runs. |
+| `--restart` | Redo searches that already finished in an earlier run. |
 | `--no-emails` | Skips email lookup. Faster. Still finds Facebook links. |
 | `--no-website-only` | Saves only businesses with no website, or only Facebook/Instagram/Yelp. |
 | `--headful` | Opens a visible browser so you can watch it work. |
 
 ## Good to know
 
-- **It resumes.** Re-run the same command with the same `--out` file and it
-  skips businesses it already saved. Press Ctrl+C anytime. Saved rows stay.
+- **Big runs resume.** Each finished search is listed in a file next to your
+  CSV (`leads.done.txt`). Stop anytime, then start again with the same CSV.
+  It skips finished searches and businesses it already saved. Failed searches
+  get retried.
+- **No duplicates.** Nearby cities and ZIP codes return many of the same
+  businesses. The tool skips repeats before opening them, so they cost almost
+  no time.
 - **Emails won't be 100%.** Many local businesses only use a contact form or
   Facebook. Expect emails for roughly 30 to 60% of businesses with a website.
 - **No emails for Facebook-only businesses.** Facebook needs a login to read
