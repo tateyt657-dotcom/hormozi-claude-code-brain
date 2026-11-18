@@ -34,9 +34,19 @@ from playwright.sync_api import TimeoutError as PWTimeout
 from playwright.sync_api import sync_playwright
 
 FIELDS = [
-    "query", "name", "category", "phone", "website", "emails",
-    "address", "rating", "review_count", "maps_link",
+    "query", "name", "category", "phone", "website", "website_status",
+    "facebook", "instagram", "emails", "address", "rating", "review_count",
+    "maps_link",
 ]
+
+# A "website" on these domains means the business has no real site.
+SOCIAL_HOSTS = {
+    "facebook": ("facebook.com", "fb.com", "fb.me"),
+    "instagram": ("instagram.com",),
+}
+NOT_A_REAL_SITE = SOCIAL_HOSTS["facebook"] + SOCIAL_HOSTS["instagram"] + (
+    "yelp.com", "linktr.ee", "business.site", "nextdoor.com", "google.com",
+)
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -216,28 +226,71 @@ def extract_emails(page_html: str) -> set[str]:
     return clean
 
 
-def find_emails(website: str, timeout: int = 10) -> str:
-    if not website or not website.startswith("http"):
-        return ""
-    if any(d in website for d in ("facebook.com", "instagram.com", "yelp.com")):
-        return ""
+def host_matches(url: str, hosts: tuple[str, ...]) -> bool:
+    netloc = urlparse(url).netloc.lower()
+    return any(netloc == h or netloc.endswith("." + h) for h in hosts)
+
+
+def extract_social(page_html: str, base_url: str) -> dict:
+    """Find the business's Facebook and Instagram links on its website."""
+    soup = BeautifulSoup(page_html, "html.parser")
+    out = {"facebook": "", "instagram": ""}
+    for a in soup.select("a[href]"):
+        href = urljoin(base_url, a["href"]).split("?")[0].rstrip("/")
+        for key, hosts in SOCIAL_HOSTS.items():
+            if out[key] or not host_matches(href, hosts):
+                continue
+            path = urlparse(href).path.lower()
+            # Skip share buttons and generic pages, keep profile links.
+            if path in ("", "/") or any(s in path for s in ("sharer", "share", "/plugins", "/dialog", "/tr")):
+                continue
+            out[key] = href
+    return out
+
+
+def classify_website(website: str) -> str:
+    if not website:
+        return "none"
+    if host_matches(website, SOCIAL_HOSTS["facebook"]):
+        return "facebook_only"
+    if host_matches(website, NOT_A_REAL_SITE):
+        return "social_or_directory_only"
+    return "has_site"
+
+
+def enrich_from_website(row: dict, timeout: int = 10, want_emails: bool = True) -> dict:
+    """Fill website_status, facebook, instagram, and emails for one lead."""
+    website = row.get("website", "")
+    result = {"website_status": classify_website(website), "facebook": "", "instagram": "", "emails": ""}
+    for key, hosts in SOCIAL_HOSTS.items():
+        if website and host_matches(website, hosts):
+            result[key] = website
+    if result["website_status"] != "has_site":
+        return result  # Facebook/Instagram pages need a login to read, so stop here.
+
     session = requests.Session()
     session.headers["User-Agent"] = UA
     base = f"{urlparse(website).scheme}://{urlparse(website).netloc}"
     emails: set[str] = set()
-    for url in [website] + [urljoin(base, p) for p in CONTACT_PATHS]:
+    pages = [website] + ([urljoin(base, p) for p in CONTACT_PATHS] if want_emails else [])
+    for url in pages:
         try:
             r = session.get(url, timeout=timeout, allow_redirects=True)
-            if r.ok and "text/html" in r.headers.get("content-type", ""):
-                emails |= extract_emails(r.text)
         except requests.RequestException:
             continue
+        if not (r.ok and "text/html" in r.headers.get("content-type", "")):
+            continue
+        if want_emails:
+            emails |= extract_emails(r.text)
+        for key, link in extract_social(r.text, r.url).items():
+            result[key] = result[key] or link
         if emails and url != website:
             break  # home page + first contact page with a hit is enough
     # Put emails on the business's own domain first.
     domain = urlparse(website).netloc.replace("www.", "")
     ranked = sorted(emails, key=lambda e: (domain not in e, e))
-    return "; ".join(ranked[:5])
+    result["emails"] = "; ".join(ranked[:5])
+    return result
 
 
 # ----------------------------------------------------------------------------
@@ -264,7 +317,9 @@ def main() -> None:
     ap.add_argument("--cities", help="Text file of cities. Runs each search in each city.")
     ap.add_argument("--max", type=int, default=120, help="Max results per search (Maps caps near 120)")
     ap.add_argument("--out", default="leads.csv", help="Output CSV file")
-    ap.add_argument("--no-emails", action="store_true", help="Skip website email lookup")
+    ap.add_argument("--no-emails", action="store_true", help="Skip email lookup (still checks for Facebook)")
+    ap.add_argument("--no-website-only", action="store_true",
+                    help="Only save businesses with no real website (none, or just Facebook/Instagram)")
     ap.add_argument("--headful", action="store_true", help="Show the browser window")
     ap.add_argument("--chrome-path", help="Path to a Chrome/Chromium binary (optional)")
     args = ap.parse_args()
@@ -277,7 +332,10 @@ def main() -> None:
     seen: set[str] = set()
     if out_path.exists():  # resume: skip places already saved
         with out_path.open(newline="", encoding="utf-8") as f:
-            seen = {row["maps_link"] for row in csv.DictReader(f)}
+            reader = csv.DictReader(f)
+            if reader.fieldnames and reader.fieldnames != FIELDS:
+                sys.exit(f"{out_path} has different columns (older version). Use a new --out file.")
+            seen = {row["maps_link"] for row in reader}
     new_file = not out_path.exists()
 
     with sync_playwright() as p, out_path.open("a", newline="", encoding="utf-8") as f:
@@ -313,10 +371,13 @@ def main() -> None:
                 rows.append(row)
                 print(f"  {i:>3}. {row['name'][:45]:<45} {row['rating'] or '-':>4} ({row['review_count'] or 0})")
 
-            if not args.no_emails:
-                print("  finding emails on websites...")
-                for row, emails in zip(rows, pool.map(lambda r: find_emails(r["website"]), rows)):
-                    row["emails"] = emails
+            print("  checking websites for emails and Facebook...")
+            enrich = lambda r: enrich_from_website(r, want_emails=not args.no_emails)
+            for row, extra in zip(rows, pool.map(enrich, rows)):
+                row.update(extra)
+            if args.no_website_only:
+                rows = [r for r in rows if r["website_status"] != "has_site"]
+                print(f"  {len(rows)} have no real website")
             for row in rows:
                 writer.writerow({k: row.get(k, "") for k in FIELDS})
             f.flush()

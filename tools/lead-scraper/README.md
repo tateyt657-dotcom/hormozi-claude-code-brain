@@ -5,6 +5,8 @@ Type a search like `roofers in Dallas TX`. You get a CSV with each business's:
 - name and category
 - phone number
 - website
+- website status: `none`, `facebook_only`, `social_or_directory_only`, or `has_site`
+- Facebook and Instagram links (from Maps, or found on their website)
 - email(s), found on the business's website
 - address
 - Google rating and review count
@@ -47,6 +49,12 @@ Same search across many cities (one city per line in the file):
 python lead_scraper.py "med spa" --cities cities.example.txt --max 60
 ```
 
+Only businesses with no real website (best for a web design offer):
+
+```bash
+python lead_scraper.py "roofers in Dallas TX" --no-website-only --out no_site_leads.csv
+```
+
 Many different searches (one per line in the file):
 
 ```bash
@@ -61,7 +69,8 @@ python lead_scraper.py --queries my_searches.txt --out leads.csv
 | `--out file.csv` | Save to a different file. Default is `leads.csv`. |
 | `--cities file.txt` | Runs your search as "search in city" for each city. |
 | `--queries file.txt` | Runs every search in the file. |
-| `--no-emails` | Skips website visits. Much faster, but no emails. |
+| `--no-emails` | Skips email lookup. Faster. Still finds Facebook links. |
+| `--no-website-only` | Saves only businesses with no website, or only Facebook/Instagram/Yelp. |
 | `--headful` | Opens a visible browser so you can watch it work. |
 
 ## Good to know
@@ -70,6 +79,9 @@ python lead_scraper.py --queries my_searches.txt --out leads.csv
   skips businesses it already saved. Press Ctrl+C anytime. Saved rows stay.
 - **Emails won't be 100%.** Many local businesses only use a contact form or
   Facebook. Expect emails for roughly 30 to 60% of businesses with a website.
+- **No emails for Facebook-only businesses.** Facebook needs a login to read
+  pages, so the tool saves the Facebook link and phone but can't pull an email.
+  Call them, or message them on Facebook.
 - **Speed.** Plan on about 2 to 4 seconds per business, plus email lookup.
   120 leads takes around 5 to 10 minutes.
 - **Go slow.** Running thousands of searches back to back can get your IP
