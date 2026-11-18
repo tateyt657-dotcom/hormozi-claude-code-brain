@@ -20,6 +20,12 @@ HERE = Path(__file__).resolve().parent
 SCRAPER = HERE / "lead_scraper.py"
 
 
+# Fixed light colors so the boxes stay visible in Mac dark mode.
+BOX = dict(bg="white", fg="black", insertbackground="black", relief="solid",
+           borderwidth=1, highlightthickness=1, highlightbackground="#888888",
+           highlightcolor="#3b82f6")
+
+
 class App(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
@@ -40,13 +46,13 @@ class App(tk.Tk):
         root.pack(fill="both", expand=True)
 
         ttk.Label(root, text="What businesses? (one per line, e.g. roofers)").pack(anchor="w", **pad)
-        self.searches = tk.Text(root, height=4)
+        self.searches = tk.Text(root, height=4, **BOX)
         self.searches.pack(fill="x", **pad)
 
         ttk.Label(root, text="Locations: cities or ZIP codes (one per line, paste as many as you want)").pack(anchor="w", **pad)
         loc_row = ttk.Frame(root)
         loc_row.pack(fill="x", **pad)
-        self.locations = tk.Text(loc_row, height=7)
+        self.locations = tk.Text(loc_row, height=7, **BOX)
         self.locations.pack(side="left", fill="both", expand=True)
         ttk.Button(loc_row, text="Load file...", command=self._load_locations).pack(side="left", padx=6, anchor="n")
 
@@ -88,7 +94,7 @@ class App(tk.Tk):
         self.status = ttk.Label(btns, text="Ready")
         self.status.pack(side="right")
 
-        self.log = scrolledtext.ScrolledText(root, height=16, state="disabled", font=("Courier", 10))
+        self.log = scrolledtext.ScrolledText(root, height=16, state="disabled", font=("Courier", 11), **BOX)
         self.log.pack(fill="both", expand=True, **pad)
 
     # --------------------------------------------------------------- actions
