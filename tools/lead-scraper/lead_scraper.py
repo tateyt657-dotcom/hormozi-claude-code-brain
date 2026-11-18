@@ -47,6 +47,12 @@ SOCIAL_HOSTS = {
 }
 NOT_A_REAL_SITE = SOCIAL_HOSTS["facebook"] + SOCIAL_HOSTS["instagram"] + (
     "yelp.com", "linktr.ee", "business.site", "nextdoor.com", "google.com",
+    # Trade directories and listing sites (US + UK). A listing is not a website.
+    "checkatrade.com", "trustatrade.com", "mybuilder.com", "ratedpeople.com",
+    "yell.com", "bark.com", "houzz.com", "houzz.co.uk", "thumbtack.com",
+    "angi.com", "angieslist.com", "homeadvisor.com", "bbb.org", "trustpilot.com",
+    "yellowpages.com", "freeindex.co.uk", "thomsonlocal.com", "scoot.co.uk",
+    "tiktok.com", "x.com", "twitter.com", "linkedin.com", "wa.me", "whatsapp.com",
 )
 
 UA = (
@@ -232,12 +238,30 @@ def host_matches(url: str, hosts: tuple[str, ...]) -> bool:
     return any(netloc == h or netloc.endswith("." + h) for h in hosts)
 
 
+def clean_social_url(href: str) -> str:
+    """Tidy a Facebook/Instagram link down to the main profile page."""
+    u = urlparse(href)
+    path = u.path.rstrip("/")
+    if u.path.lower().startswith("/profile.php"):
+        m = re.search(r"(?:^|&)id=(\d+)", u.query)
+        return f"https://www.facebook.com/profile.php?id={m.group(1)}" if m else ""
+    m = re.match(r"^/pg/([^/]+)", path, re.I)  # /pg/Name/reviews -> /Name
+    if m:
+        path = "/" + m.group(1)
+    elif host_matches(href, SOCIAL_HOSTS["facebook"]):
+        # /Name/reviews, /Name/photos ... -> /Name  (keeps /p/Name-123)
+        parts = [x for x in path.split("/") if x]
+        if parts and parts[0].lower() != "p":
+            path = "/" + parts[0]
+    return f"https://{u.netloc}{path}"
+
+
 def extract_social(page_html: str, base_url: str) -> dict:
     """Find the business's Facebook and Instagram links on its website."""
     soup = BeautifulSoup(page_html, "html.parser")
     out = {"facebook": "", "instagram": ""}
     for a in soup.select("a[href]"):
-        href = urljoin(base_url, a["href"]).split("?")[0].rstrip("/")
+        href = urljoin(base_url, a["href"].strip())
         for key, hosts in SOCIAL_HOSTS.items():
             if out[key] or not host_matches(href, hosts):
                 continue
@@ -245,7 +269,7 @@ def extract_social(page_html: str, base_url: str) -> dict:
             # Skip share buttons and generic pages, keep profile links.
             if path in ("", "/") or any(s in path for s in ("sharer", "share", "/plugins", "/dialog", "/tr")):
                 continue
-            out[key] = href
+            out[key] = clean_social_url(href)
     return out
 
 
