@@ -1,0 +1,185 @@
+# England: London boroughs, then cities and large towns.
+# London is split by borough because Google Maps stops at about 120 results per search.
+Barking and Dagenham London
+Barnet London
+Bexley London
+Brent London
+Bromley London
+Camden London
+Croydon London
+Ealing London
+Enfield London
+Greenwich London
+Hackney London
+Hammersmith and Fulham London
+Haringey London
+Harrow London
+Havering London
+Hillingdon London
+Hounslow London
+Islington London
+Kensington and Chelsea London
+Kingston upon Thames London
+Lambeth London
+Lewisham London
+Merton London
+Newham London
+Redbridge London
+Richmond upon Thames London
+Southwark London
+Sutton London
+Tower Hamlets London
+Waltham Forest London
+Wandsworth London
+Westminster London
+Birmingham
+Manchester
+Liverpool
+Leeds
+Sheffield
+Bristol
+Newcastle upon Tyne
+Sunderland
+Nottingham
+Leicester
+Coventry
+Bradford
+Wakefield
+Hull
+Stoke-on-Trent
+Wolverhampton
+Derby
+Southampton
+Portsmouth
+Plymouth
+Reading
+Northampton
+Luton
+Milton Keynes
+Brighton
+Bournemouth
+Poole
+Swindon
+Peterborough
+Cambridge
+Oxford
+Norwich
+Ipswich
+Colchester
+Chelmsford
+Southend-on-Sea
+Basildon
+York
+Exeter
+Gloucester
+Cheltenham
+Bath
+Worcester
+Hereford
+Lincoln
+Preston
+Blackpool
+Blackburn
+Burnley
+Lancaster
+Bolton
+Wigan
+Stockport
+Oldham
+Rochdale
+Salford
+Bury
+Warrington
+St Helens
+Birkenhead
+Southport
+Chester
+Crewe
+Macclesfield
+Huddersfield
+Halifax
+Doncaster
+Rotherham
+Barnsley
+Middlesbrough
+Stockton-on-Tees
+Darlington
+Hartlepool
+Durham
+Gateshead
+South Shields
+Carlisle
+Telford
+Shrewsbury
+Stafford
+Walsall
+West Bromwich
+Dudley
+Solihull
+Nuneaton
+Rugby
+Leamington Spa
+Redditch
+Kidderminster
+Mansfield
+Chesterfield
+Grimsby
+Scunthorpe
+Harrogate
+Scarborough
+Watford
+St Albans
+Stevenage
+Hemel Hempstead
+Harlow
+Slough
+Maidenhead
+High Wycombe
+Aylesbury
+Bedford
+Guildford
+Woking
+Crawley
+Worthing
+Eastbourne
+Hastings
+Chichester
+Maidstone
+Canterbury
+Ashford Kent
+Tunbridge Wells
+Chatham
+Gillingham Kent
+Dartford
+Margate
+Folkestone
+Basingstoke
+Winchester
+Salisbury
+Fareham
+Havant
+Gosport
+Eastleigh
+Andover
+Torquay
+Taunton
+Yeovil
+Weymouth
+Truro
+Newquay
+Barnstaple
+Bracknell
+Wokingham
+Newbury
+Kettering
+Corby
+Wellingborough
+Loughborough
+Hinckley
+Grantham
+Boston Lincolnshire
+King's Lynn
+Great Yarmouth
+Lowestoft
+Bury St Edmunds
+Huntingdon
