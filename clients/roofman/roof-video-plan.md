@@ -4,11 +4,7 @@
 
 The effect is a scroll-scrubbed image sequence, the same trick Apple uses on its product pages. You turn a video into about 150 to 180 still frames. As the visitor scrolls, the page draws the matching frame on a canvas, so scrolling down "plays" the roof build and scrolling up rewinds it.
 
-The engine is already built into `index.html`. Today it runs an illustrated roof drawn in code. To switch it to real footage, drop the frames into `frames/` and set one line:
-
-```js
-const ROOF_FRAMES = {count:180, path:i=>`frames/roof_${String(i).padStart(4,'0')}.webp`};
-```
+Note: the 3D and illustrated animations were removed from `index.html`. The page now uses a scroll photo story built from real job photos. If he films a timelapse, the frames can be added back as a new scroll section.
 
 ## The correct build order (UK pitched roof)
 

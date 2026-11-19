@@ -24,16 +24,17 @@ Build a one-page homepage for **Roofman**, a family roofing company from Leek, S
 ## Page order
 
 1. **Top bar (dark):** "No deposit. You only pay when you're happy with the job." and "Free quote within 24 hours".
-2. **Sticky header:** logo, nav (New Roofs, Roof Cleaning, Our Work, Reviews, Areas), and one tap-to-call number: **0800 038 5724**. Use no other numbers.
+2. **Sticky header:** logo, nav (Our Process, Roof Cleaning, Our Work, Reviews, Areas), and one tap-to-call number: **0800 038 5724**. Use no other numbers.
 3. **Hero:** dark overlay on a real roof photo.
    - Headline: "Your roof cleaned, treated and guaranteed for 10 years"
    - Subhead: "We strip out the moss, treat every tile and fix broken ones while we're up there. You don't pay a penny until you've inspected the work."
    - Three ticks: no deposit, 10 year guarantee, beat any genuine like-for-like quote.
-   - Quote form on the right with 3 fields only (name, phone, postcode) and an optional roof photo upload. Button: "Get my free quote".
+   - Hero background: a real roof photo, slightly darkened.
+   - Two-step quote form on the right. Step 1: one tap on what they need (Roof cleaning / Roof repair / New roof / Not sure). Step 2: postcode, first name, mobile, optional best time to call and optional roof photo. Button: "Get my free quote". Show "Rather talk? Call free on 0800 038 5724" under it.
 4. **Green trust strip:** 10 YEARS guarantee / £0 deposit / 24 HRS quote / UK-WIDE, family team from Leek.
 5. **Big testimonial:** "My best quote was £9,000 until Roofman came along for a quarter of the price!" from Mrs Lawton, Essex, next to before and after photos.
-6. **Scroll animation: "Scroll to watch us build one".** A sticky section where scrolling builds a new roof in this order: old mossy roof, strip tiles, remove old felt and battens, check rafters, breathable membrane, new battens, lay tiles from the gutter up, fit the ridge, then a "10 year guarantee" badge pops in. Show a step list on the left and a progress bar. See `roof-video-plan.md`.
-7. **Packages:** Semi-detached £895, Standard detached £1,195 (tag it "Most booked"), Large detached £1,795. Each includes: every tile cleaned and treated with fungicide, gutters and fascias cleaned, moss and debris cleared, free minor repairs, 10 year guarantee. Under the cards: "Got a quote elsewhere? We'll beat any genuine like-for-like price."
+6. **Scroll photo story: "Scroll through a real job".** A sticky section that steps through real job photos as you scroll: thick moss, lichen close-up, harness on, washing tiles, halfway clean, fungicide, then before/after photos of the same house that wipe across as you scroll. Finish with a "10 year guarantee" badge.
+7. **Packages:** Semi-detached £895, Standard detached £1,195, Large detached £1,795. Each includes: every tile cleaned and treated with fungicide, gutters and fascias cleaned, moss and debris cleared, free minor repairs, 10 year guarantee. Under the cards: "Got a quote elsewhere? We'll beat any genuine like-for-like price."
 8. **Gallery:** real job photos with one-line captions.
 9. **Reviews:** 3 cards with real quotes from Neil (Leek), Mrs Harrison (Cheshire) and Mr W (Alderley Edge). Leave a slot for the live Google rating. Never invent ratings or review counts.
 10. **How it works:** 4 steps. Send details, get a fixed quote, we do the job, inspect then pay.
