@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Powell Reel</title>
+<style>
+  :root { --blue:#004aad; --navy:#00307a; --tint:#e8f0fb; --white:#ffffff; --ink:#0b1b33; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:var(--blue); font-family:'Inter',sans-serif; }
+  .scene { position:absolute; inset:0; overflow:hidden; }
+  .blue { background:var(--blue); color:var(--white); }
+  .white { background:var(--white); color:var(--ink); }
+  .el { position:absolute; left:90px; right:90px; opacity:0; will-change:transform,opacity; }
+  .c { text-align:center; }
+  .h0 { font-size:150px; font-weight:900; letter-spacing:-5px; line-height:1; }
+  .h1 { font-size:104px; font-weight:900; letter-spacing:-3px; line-height:1.02; }
+  .h2 { font-size:72px; font-weight:800; letter-spacing:-2px; line-height:1.08; }
+  .p  { font-size:50px; font-weight:600; line-height:1.25; letter-spacing:-0.5px; }
+  .tag { display:inline-block; font-size:34px; font-weight:800; letter-spacing:3px; padding:16px 30px; border-radius:999px; }
+  .blue .tag { background:rgba(255,255,255,.14); color:#fff; }
+  .white .tag { background:var(--tint); color:var(--blue); }
+  .hl { color:var(--blue); }
+  .soft { opacity:.78; }
+  svg { display:block; }
+</style>
+</head>
+<body>
+
+<!-- SCENE 1: hook -->
+<div class="scene blue" id="s1">
+  <svg id="roofs" width="1080" height="1920" style="position:absolute;inset:0">
+    <polyline id="r1" points="-60,1500 540,1050 1140,1500" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="26"/>
+    <polyline id="r2" points="-60,1700 540,1250 1140,1700" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="26"/>
+    <polyline id="r3" points="-60,1900 540,1450 1140,1900" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="26"/>
+  </svg>
+  <div class="el c" id="s1tag" style="top:300px"><span class="tag">OWNERS OF 3 TO 8 MAN CREWS</span></div>
+  <div class="el c h0" id="s1a" style="top:400px;font-size:190px;letter-spacing:-7px;line-height:.95">UK<br>ROOFERS.</div>
+  <div class="el c h1" id="s1b" style="top:820px">Lads sat in<br>the van with<br>no jobs booked?</div>
+  <div class="el c p soft" id="s1c" style="top:1200px">Wages are still due on Friday.</div>
+</div>
+
+<!-- SCENE 2: problem -->
+<div class="scene white" id="s2">
+  <div class="el c h1" id="s2a" style="top:340px">Word of mouth<br><span class="hl">isn't steady.</span></div>
+  <div class="el" id="s2bar" style="top:700px">
+    <div style="display:flex;align-items:center;gap:28px;height:150px;padding:0 44px;border-radius:999px;background:#fff;box-shadow:0 18px 50px rgba(0,48,122,.18),0 0 0 4px var(--tint);">
+      <svg width="62" height="62" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5" fill="none" stroke="#004aad" stroke-width="2.6"/><line x1="15" y1="15" x2="21" y2="21" stroke="#004aad" stroke-width="2.8" stroke-linecap="round"/></svg>
+      <div style="font-size:60px;font-weight:600;color:var(--ink)"><span id="typed"></span><span id="caret" style="color:var(--blue)">|</span></div>
+    </div>
+  </div>
+  <div class="el c h2" id="s2c" style="top:960px;font-size:62px">Homeowners are searching.<br><span class="hl">Your next job is right there.</span></div>
+</div>
+
+<!-- SCENE 3: proof -->
+<div class="scene blue" id="s3">
+  <div class="el c" id="s3tag" style="top:290px"><span class="tag">REAL RESULT · ONE UK ROOFER</span></div>
+  <div class="el c" id="s3a" style="top:420px">
+    <div class="h1" style="font-size:120px">£2,500</div>
+    <div class="p soft">ad spend</div>
+  </div>
+  <div class="el c" id="s3arrow" style="top:690px">
+    <svg width="120" height="130" viewBox="0 0 120 130" style="margin:0 auto"><path d="M60 8 V108 M18 72 L60 116 L102 72" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="el c" id="s3b" style="top:850px">
+    <div class="h0" id="count" style="font-size:210px;letter-spacing:-8px">£0</div>
+    <div class="p">in completed roofing jobs</div>
+  </div>
+  <div class="el" id="s3chips" style="top:1200px;display:flex;justify-content:center;gap:24px">
+    <div class="chip" id="ch1" style="opacity:0"><b>48</b> leads</div>
+    <div class="chip" id="ch2" style="opacity:0"><b>30%</b> closed</div>
+    <div class="chip" id="ch3" style="opacity:0"><b>3</b> months</div>
+  </div>
+  <style>.chip{background:#fff;color:var(--blue);font-size:42px;font-weight:600;padding:24px 34px;border-radius:24px}.chip b{font-weight:900}</style>
+</div>
+
+<!-- SCENE 4: guarantee -->
+<div class="scene white" id="s4">
+  <div class="el c h1" id="s4a" style="top:300px">Booked jobs<br>from Google.</div>
+  <div class="el c" id="s4stamp" style="top:570px">
+    <div style="display:inline-block;border:14px solid var(--blue);color:var(--blue);border-radius:28px;padding:14px 40px;font-size:96px;font-weight:900;letter-spacing:2px">GUARANTEED</div>
+  </div>
+  <div class="el c h2" id="s4b" style="top:800px">in <span class="hl">90 days.</span></div>
+  <div class="el" id="s4bar" style="top:950px">
+    <div style="position:relative;height:56px;border-radius:999px;background:var(--tint);overflow:hidden">
+      <div id="fill" style="position:absolute;left:0;top:0;bottom:0;width:0;background:var(--blue);border-radius:999px"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:18px;font-size:36px;font-weight:700;color:#5b6b85">
+      <span>Day 1</span><span id="hit" style="color:var(--blue);opacity:0">Job target hit ✓</span><span>Day 90</span>
+    </div>
+  </div>
+  <div class="el c p" id="s4c" style="top:1140px">Your monthly fee doesn't start<br><b class="hl">till we hit your job target.</b></div>
+</div>
+
+<!-- SCENE 5: scarcity + CTA -->
+<div class="scene blue" id="s5">
+  <div class="el c h1" id="s5a" style="top:290px">One roofer<br>per area.</div>
+  <div class="el c" id="s5map" style="top:560px">
+    <svg width="760" height="430" viewBox="0 0 760 430" style="margin:0 auto" id="grid"></svg>
+  </div>
+  <div class="el c" id="s5cta" style="top:1060px">
+    <div id="btn" style="display:inline-block;background:#fff;color:var(--blue);font-size:50px;font-weight:900;letter-spacing:-1px;padding:38px 48px;white-space:nowrap;border-radius:30px;box-shadow:0 20px 60px rgba(0,0,0,.25)">See if your area is available →</div>
+  </div>
+  <div class="el c" id="s5logo" style="top:1320px">
+    <div style="display:inline-flex;align-items:center;gap:26px">
+      <!-- Placeholder mark. Swap for the real logo file. -->
+      <svg width="120" height="80" viewBox="0 0 120 80"><path d="M4 76 L34 26 L50 50 L66 8 L88 44 L98 30 L116 76 Z" fill="#fff"/></svg>
+      <div style="text-align:left">
+        <div style="font-size:54px;font-weight:900;letter-spacing:-1.5px">Powell Marketing UK</div>
+        <div style="font-size:30px;font-weight:600;opacity:.75">Booked roofing jobs from Google, guaranteed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x,a=0,b=1) => Math.min(b,Math.max(a,x));
+const prog = (t,a,b) => clamp((t-a)/(b-a));
+const outCubic = x => 1-Math.pow(1-x,3);
+const outBack = x => { const c1=1.70158,c3=c1+1; return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2); };
+const lerp = (a,b,x) => a+(b-a)*x;
+
+// Pop element in at `start`, optional exit at `end`.
+function pop(id,t,start,{dur=0.45,dy=70,scale=0.92,end=null}={}){
+  const el=$(id); const p=prog(t,start,start+dur);
+  const e=outBack(p), o=outCubic(p);
+  el.style.opacity=o;
+  el.style.transform=`translateY(${lerp(dy,0,e)}px) scale(${lerp(scale,1,e)})`;
+}
+
+// Scene start times (seconds). Total 20s.
+const T=[0,3.2,6.2,11.4,16.0];
+const scenes=['s1','s2','s3','s4','s5'];
+
+// Build area grid for scene 5
+(function(){
+  const g=$('grid'); let html='';
+  const cols=9, rows=5;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    const x=40+c*85, y=40+r*85;
+    html+=`<rect class="cell" data-i="${r*cols+c}" x="${x-32}" y="${y-32}" width="64" height="64" rx="14" fill="rgba(255,255,255,.14)"/>`;
+  }
+  html+=`<g id="pin"><path d="M0 -70 C-34 -70 -50 -44 -50 -24 C-50 6 0 50 0 50 C0 50 50 6 50 -24 C50 -44 34 -70 0 -70 Z" fill="#fff"/><circle cx="0" cy="-24" r="17" fill="#004aad"/></g>`;
+  g.innerHTML=html;
+})();
+const PIN_CELL=22; // centre cell
+
+function wipe(id,t,start){
+  // Roof-peak shaped reveal rising from the bottom.
+  const p=outCubic(prog(t,start-0.3,start+0.25));
+  const el=$(id);
+  if(start===0){ el.style.clipPath='none'; return; }
+  const Y=lerp(115,-35,p);
+  el.style.clipPath=`polygon(0% 100%, 0% ${Y+30}%, 50% ${Y}%, 100% ${Y+30}%, 100% 100%)`;
+  el.style.visibility = p<=0 ? 'hidden' : 'visible';
+}
+
+function render(t){
+  scenes.forEach((s,i)=>{ $(s).style.zIndex=i+1; wipe(s,t,T[i]); });
+
+  // S1
+  ['r1','r2','r3'].forEach((r,i)=>{ $(r).style.transform=`translateY(${lerp(120,-60,prog(t,0,3.2))+i*0}px)`; });
+  pop('s1tag',t,0.05,{dy:30});
+  pop('s1a',t,0.15,{dy:90,scale:0.8});
+  pop('s1b',t,0.85);
+  pop('s1c',t,1.9,{dy:40});
+
+  // S2
+  pop('s2a',t,3.45);
+  pop('s2bar',t,4.0,{dy:50});
+  const q='roofer near me';
+  const n=Math.round(q.length*prog(t,4.3,5.1));
+  $('typed').textContent=q.slice(0,n);
+  $('caret').style.opacity = (Math.floor(t*3)%2===0 || (t>4.3&&t<5.1)) ? 1 : 0;
+  pop('s2c',t,5.25,{dy:40});
+
+  // S3
+  pop('s3tag',t,6.35,{dy:30});
+  pop('s3a',t,6.6);
+  pop('s3arrow',t,7.15,{dy:-40});
+  pop('s3b',t,7.4,{scale:0.85});
+  const v=Math.round(58000*outCubic(prog(t,7.5,9.4))/100)*100;
+  $('count').textContent='£'+v.toLocaleString('en-GB');
+  $('s3chips').style.opacity=t>9.4?1:0;
+  ['ch1','ch2','ch3'].forEach((c,i)=>{
+    const p=outBack(prog(t,9.55+i*0.22,9.95+i*0.22));
+    $(c).style.opacity=clamp(p); $(c).style.transform=`translateY(${lerp(50,0,p)}px)`;
+  });
+
+  // S4
+  pop('s4a',t,11.65);
+  { const el=$('s4stamp'), p=prog(t,12.2,12.55);
+    el.style.opacity=p>0?1:0;
+    const s=lerp(2.4,1,outCubic(p)), rot=lerp(-14,-4,outCubic(p));
+    el.style.transform=`scale(${s}) rotate(${rot}deg)`; }
+  pop('s4b',t,12.75,{dy:40});
+  pop('s4bar',t,13.0,{dy:40});
+  $('fill').style.width=(100*outCubic(prog(t,13.2,14.4)))+'%';
+  $('hit').style.opacity=prog(t,14.3,14.6);
+  pop('s4c',t,14.4,{dy:40});
+
+  // S5
+  pop('s5a',t,16.25);
+  pop('s5map',t,16.5,{dy:40});
+  document.querySelectorAll('.cell').forEach(c=>{
+    const i=+c.dataset.i; const lit = i===PIN_CELL && t>17.05;
+    c.setAttribute('fill', lit ? '#ffffff' : 'rgba(255,255,255,.14)');
+  });
+  { const p=prog(t,16.75,17.1), b=outBack(prog(t,17.0,17.3));
+    const x=40+(PIN_CELL%9)*85, y=40+Math.floor(PIN_CELL/9)*85-10;
+    const pin=$('pin'); pin.style.opacity=p>0?1:0;
+    pin.setAttribute('transform',`translate(${x},${lerp(y-400,y,outCubic(p))}) scale(${lerp(0.9,1,b)})`); }
+  pop('s5cta',t,17.5,{scale:0.8});
+  const pulse = t>18.2 ? 1+0.035*Math.sin((t-18.2)*Math.PI*2.2) : 1;
+  $('btn').style.transform=`scale(${pulse})`;
+  pop('s5logo',t,18.0,{dy:40});
+}
+window.render=render;
+render(0);
+</script>
+</body>
+</html>
