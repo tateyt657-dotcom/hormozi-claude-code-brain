@@ -1,0 +1,365 @@
+<title>Roofing Hero Concepts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: a gallery of five full-width hero sections, each a different fictional roofer with its own identity.
+   Single fixed look per concept (no theme switching): every colour is set explicitly. */
+:root{
+  color-scheme:light;
+  --page:#e9ecee; --page-ink:#1c2328; --page-mute:#5d6870;
+  /* 1 Slatewright: heritage slate */
+  --s-ink:#0f1a22; --s-brass:#c8a25a; --s-cream:#f3efe6;
+  /* 2 Ridgeback: emergency */
+  --r-black:#0c0c0c; --r-hivis:#ffd400; --r-red:#ff4b3a;
+  /* 3 Halloway & Sons: family firm */
+  --h-bg:#f7f6f2; --h-ink:#1e2a24; --h-green:#1f4d3a; --h-brick:#a8432f; --h-line:#e2dfd6;
+  /* 4 Levelline: flat roofs */
+  --l-blue:#0b3d91; --l-sky:#eaf1ff; --l-ink:#0d1b33; --l-cyan:#1fb5d6;
+  /* 5 Clearmoss: roof cleaning */
+  --c-green:#2e7d32; --c-mint:#c8f2c9; --c-ink:#0f2412;
+  --f-body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--page-ink);font-family:var(--f-body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.in{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2{text-wrap:balance;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid #3b82f6;outline-offset:3px}
+
+/* gallery chrome */
+.intro{padding-block:44px 28px}
+.intro h1{font-family:"Bricolage Grotesque",var(--f-body);font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.5px}
+.intro p{color:var(--page-mute);margin-top:8px;max-width:640px;font-size:16px;line-height:1.55}
+.label{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;padding-block:26px 12px;font-size:13px;color:var(--page-mute)}
+.label b{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--page-ink)}
+.label span{background:#fff;border:1px solid #d6dbdf;border-radius:999px;padding:3px 10px}
+.frame{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(20,30,40,.18);position:relative}
+.foot{padding-block:40px 60px;color:var(--page-mute);font-size:13px;line-height:1.6}
+
+/* shared bits */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;position:relative;z-index:2}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:500}
+.nav a{text-decoration:none}
+.tel{font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;font:inherit;font-weight:700;font-size:16px;padding:15px 24px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.ok{font-size:13px;margin-top:8px;min-height:18px}
+@media(max-width:860px){.nav ul{display:none}}
+
+/* ============ 1 SLATEWRIGHT ============ */
+.s{position:relative;color:var(--s-cream);background:var(--s-ink)}
+.s::before{content:"";position:absolute;inset:0;background:url(img/slatewright.jpg) 60% 40%/cover}
+.s::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,26,34,.94) 0%,rgba(15,26,34,.82) 38%,rgba(15,26,34,.25) 75%,rgba(15,26,34,.15))}
+.s .in{position:relative;z-index:1}
+.s .logo{display:flex;align-items:center;gap:12px;font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;letter-spacing:.5px}
+.s .logo small{display:block;font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--s-brass);font-weight:600}
+.s .nav ul a{color:rgba(243,239,230,.8)}
+.s .nav .tel{color:var(--s-brass);font-weight:600}
+.s-body{padding-block:70px 90px;max-width:620px}
+.s-kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--s-brass);font-weight:600;display:flex;align-items:center;gap:12px}
+.s-kicker::before{content:"";width:34px;height:1px;background:var(--s-brass)}
+.s h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(44px,6vw,78px);line-height:.98;margin-top:22px;letter-spacing:-.5px}
+.s h2 em{color:var(--s-brass);font-style:italic}
+.s-sub{font-size:18px;line-height:1.6;color:rgba(243,239,230,.82);margin-top:22px;max-width:520px}
+.s-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.s .btn{background:var(--s-brass);color:var(--s-ink);border-radius:2px;letter-spacing:.5px}
+.s .btn.alt{background:transparent;color:var(--s-cream);border:1px solid rgba(243,239,230,.45)}
+.s-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:46px;border-top:1px solid rgba(200,162,90,.35);padding-top:22px}
+.s-facts div{padding-right:28px;margin-right:28px;border-right:1px solid rgba(243,239,230,.18)}
+.s-facts div:last-child{border:0;margin:0;padding:0}
+.s-facts b{display:block;font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;color:var(--s-cream)}
+.s-facts span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,230,.65)}
+@media(max-width:600px){.s::after{background:linear-gradient(180deg,rgba(15,26,34,.55),rgba(15,26,34,.92) 60%)}.s-body{padding-block:120px 56px}.s-facts div{padding-right:16px;margin-right:16px}}
+
+/* ============ 2 RIDGEBACK ============ */
+.r{position:relative;color:#fff;background:var(--r-black);overflow:hidden}
+.r::before{content:"";position:absolute;inset:0;background:url(img/ridgeback.jpg) center 35%/cover;filter:grayscale(.35) contrast(1.05)}
+.r::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,12,.7),rgba(12,12,12,.86) 55%,rgba(12,12,12,.95))}
+.r .in{position:relative;z-index:1}
+.r-strip{position:relative;z-index:1;background:var(--r-hivis);color:var(--r-black);font-weight:700;font-size:14px}
+.r-strip .in{display:flex;justify-content:space-between;gap:12px;padding-block:9px;flex-wrap:wrap}
+.r .logo{font-family:Anton,Impact,sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.r .logo i{display:inline-grid;place-items:center;width:38px;height:38px;background:var(--r-hivis);color:var(--r-black);font-style:normal;border-radius:6px}
+.r .nav ul a{color:rgba(255,255,255,.75)}
+.r-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end;padding-block:56px 70px}
+.live{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+.live i{width:10px;height:10px;border-radius:50%;background:#2fd36b;box-shadow:0 0 0 0 rgba(47,211,107,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(47,211,107,0)}100%{box-shadow:0 0 0 0 rgba(47,211,107,0)}}
+.r h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(52px,8vw,112px);line-height:.92;margin-top:22px;letter-spacing:.5px}
+.r h2 span{color:var(--r-hivis)}
+.r-sub{font-size:19px;line-height:1.55;color:rgba(255,255,255,.82);margin-top:18px;max-width:540px}
+.r-call{background:#fff;color:var(--r-black);border-radius:16px;padding:22px}
+.r-call p{font-size:14px;font-weight:600;color:#555}
+.r-call .num{display:block;font-family:Anton,Impact,sans-serif;font-size:clamp(34px,4vw,44px);letter-spacing:1px;margin:4px 0 14px;text-decoration:none;color:var(--r-black)}
+.r .btn{width:100%;background:var(--r-hivis);color:var(--r-black);border-radius:10px;font-size:17px}
+.r .btn.dark{background:var(--r-black);color:#fff;margin-top:10px}
+.r-ticks{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;font-weight:600;font-size:15px}
+.r-ticks span::before{content:"";display:inline-block;width:8px;height:8px;background:var(--r-hivis);margin-right:8px;transform:rotate(45deg)}
+@media(max-width:860px){.r-body{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:36px 40px}}
+
+/* ============ 3 HALLOWAY & SONS ============ */
+.h{background:var(--h-bg);color:var(--h-ink)}
+.h .logo{font-family:"Bricolage Grotesque",var(--f-body);font-weight:800;font-size:23px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.h .logo svg{flex:none}
+.h .nav ul a{color:#4b5650}
+.h .nav .tel{font-weight:700;color:var(--h-green)}
+.h-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;padding-block:40px 70px}
+.h-eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:600;color:var(--h-green);background:#e6efe9;border-radius:999px;padding:6px 12px}
+.h h2{font-family:"Bricolage Grotesque",var(--f-body);font-weight:800;font-size:clamp(40px,5.2vw,66px);line-height:1.02;letter-spacing:-1.5px;margin-top:20px}
+.h h2 u{text-decoration:none;background:linear-gradient(transparent 70%,#f2c9bd 70%)}
+.h-sub{font-size:18px;line-height:1.6;color:#4b5650;margin-top:18px;max-width:500px}
+.h-form{display:flex;gap:8px;margin-top:28px;background:#fff;border:1.5px solid var(--h-line);border-radius:14px;padding:7px;max-width:470px;box-shadow:0 10px 30px rgba(30,42,36,.08)}
+.h-form input{flex:1;min-width:0;border:0;font:inherit;font-size:17px;padding:12px 12px;background:transparent;color:var(--h-ink)}
+.h-form input:focus{outline:none}
+.h-form:focus-within{border-color:var(--h-green)}
+.h .btn{background:var(--h-green);color:#fff;border-radius:10px;flex:none;padding:14px 18px}
+@media(max-width:420px){.h-form{flex-direction:column}.h .btn{width:100%}}
+.h .ok{color:var(--h-green)}
+.h-people{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:14px;color:#4b5650}
+.h-people .faces{display:flex}
+.h-people .faces span{width:34px;height:34px;border-radius:50%;border:2px solid var(--h-bg);margin-left:-8px;display:grid;place-items:center;font-weight:700;font-size:12px;color:#fff}
+.h-people .faces span:first-child{margin-left:0}
+.h-photo{position:relative}
+.h-photo img{width:100%;aspect-ratio:4/4.3;object-fit:cover;border-radius:22px}
+.h-badge{position:absolute;left:-22px;bottom:34px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 18px 40px rgba(30,42,36,.18);display:flex;gap:12px;align-items:center;max-width:250px}
+.h-badge b{display:block;font-family:"Bricolage Grotesque",var(--f-body);font-size:22px;color:var(--h-brick);line-height:1}
+.h-badge span{font-size:13px;color:#4b5650}
+.h-badge2{position:absolute;right:-14px;top:30px;background:var(--h-green);color:#fff;border-radius:14px;padding:10px 14px;font-weight:700;font-size:14px;box-shadow:0 14px 30px rgba(31,77,58,.3)}
+@media(max-width:860px){.h-body{grid-template-columns:minmax(0,1fr);gap:36px;padding-block:20px 50px}.h-badge{left:12px}.h-badge2{right:12px}}
+
+/* ============ 4 LEVELLINE ============ */
+.l{position:relative;background:var(--l-ink);color:#fff;font-family:Manrope,var(--f-body)}
+.l::before{content:"";position:absolute;inset:0;background:url(img/levelline.jpg) 30% 40%/cover}
+.l::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,27,51,.93) 30%,rgba(11,61,145,.6) 65%,rgba(11,61,145,.35))}
+.l .in{position:relative;z-index:1}
+.l .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.3px}
+.l .logo i{width:30px;height:10px;border-radius:2px;background:var(--l-cyan);box-shadow:0 7px 0 rgba(255,255,255,.85),0 14px 0 rgba(255,255,255,.4);margin-top:-14px}
+.l .nav ul a{color:rgba(255,255,255,.78)}
+.l-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding-block:50px 80px}
+.l-tag{font-size:13px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--l-cyan)}
+.l h2{font-weight:800;font-size:clamp(38px,5vw,62px);line-height:1.05;letter-spacing:-1.5px;margin-top:16px}
+.l-sub{font-size:18px;line-height:1.6;color:rgba(255,255,255,.8);margin-top:18px;max-width:520px}
+.l-stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:34px;margin-top:34px}
+.l-stats b{display:block;font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.l-stats span{font-size:13px;color:rgba(255,255,255,.7)}
+.l-card{background:#fff;color:var(--l-ink);border-radius:18px;padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.l-card h3{margin:0;font-size:22px;font-weight:800}
+.l-card p.m{color:#5b6b85;font-size:14px;margin:4px 0 16px}
+.l-card .lab{font-size:13px;font-weight:700;margin-bottom:8px}
+.l-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.l-opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid #d8e1f0;background:#fff;border-radius:10px;padding:11px 6px;cursor:pointer;color:var(--l-ink)}
+.l-opts button small{display:block;font-weight:500;font-size:11px;color:#6b7b95}
+.l-opts button[aria-pressed="true"]{border-color:var(--l-blue);background:var(--l-sky)}
+.l-card input{width:100%;font:inherit;font-size:16px;border:1.5px solid #d8e1f0;border-radius:10px;padding:13px;margin-bottom:10px}
+.l-card input:focus{outline:none;border-color:var(--l-blue)}
+.l .btn{width:100%;background:var(--l-blue);color:#fff;border-radius:10px}
+.l .ok{color:var(--l-blue)}
+@media(max-width:860px){.l-body{grid-template-columns:minmax(0,1fr);gap:30px;padding-block:30px 50px}.l-stats{gap:22px}}
+
+/* ============ 5 CLEARMOSS ============ */
+.c{position:relative;color:#fff;font-family:"Plus Jakarta Sans",var(--f-body);background:var(--c-ink)}
+.c .nav{position:absolute;left:0;right:0;top:0;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));max-width:1240px;margin:0 auto}
+.c .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px}
+.c .nav ul a{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.c .nav .tel{font-weight:700}
+.cmp{position:relative;height:clamp(560px,78vh,720px);--pos:50%;user-select:none;touch-action:pan-y;overflow:hidden}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp .aft{clip-path:inset(0 0 0 var(--pos))}
+.cmp .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,36,18,.55),rgba(15,36,18,.1) 30%,rgba(15,36,18,.15) 55%,rgba(15,36,18,.88));pointer-events:none}
+.cmp .bar{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;pointer-events:none;box-shadow:0 0 12px rgba(0,0,0,.4)}
+.cmp .knob{position:absolute;top:44%;left:var(--pos);width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:#fff;color:var(--c-green);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);pointer-events:none;font-weight:800;font-size:13px}
+.cmp input{position:absolute;inset:0;opacity:0;pointer-events:none}
+.cmp input:focus-visible~.knob{outline:3px solid var(--c-mint);outline-offset:4px}
+.cmp .tg{position:absolute;top:96px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;pointer-events:none}
+.cmp .tg.b{left:max(20px,env(safe-area-inset-left,0px));background:rgba(15,36,18,.75)}
+.cmp .tg.a{right:max(20px,env(safe-area-inset-right,0px));background:var(--c-green)}
+.c-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-block:0 44px;pointer-events:none}
+.c-copy .in{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.c h2{font-weight:800;font-size:clamp(38px,5.4vw,68px);line-height:1;letter-spacing:-1.5px;max-width:720px}
+.c h2 span{color:var(--c-mint)}
+.c-sub{font-size:18px;line-height:1.55;color:rgba(255,255,255,.88);margin-top:14px;max-width:560px}
+.c-box{pointer-events:auto;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:18px 20px;min-width:0}
+.c-box .price{font-size:14px;color:rgba(255,255,255,.85)}
+.c-box .price b{font-size:34px;color:#fff;display:block;line-height:1.1}
+.c .btn{background:var(--c-mint);color:var(--c-ink);margin-top:12px;width:100%}
+.c-hint{position:absolute;left:50%;top:calc(44% + 46px);transform:translateX(-50%);font-size:13px;font-weight:600;background:rgba(15,36,18,.7);padding:5px 12px;border-radius:999px;pointer-events:none;white-space:nowrap;transition:opacity .4s}
+@media(max-width:700px){.c-copy{position:relative;background:var(--c-ink);padding-block:24px 34px}.cmp{height:440px}.cmp .shade{background:linear-gradient(180deg,rgba(15,36,18,.55),rgba(15,36,18,0) 35%)}.c-box{width:100%}}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="in intro">
+  <h1>Roofing hero concepts</h1>
+  <p>Five homepage hero sections for five fictional UK roofing firms, each in a different style. Names, phone numbers and details are made up for illustration. The numbers use Ofcom's ranges reserved for drama, so they ring no one.</p>
+</div>
+
+<!-- ================= 1 SLATEWRIGHT ================= -->
+<div class="in label"><b>Concept 1</b><span>Slatewright Roofing</span><span>Heritage slate specialist</span><span>Kendal &amp; the Lakes</span></div>
+<div class="in"><div class="frame">
+<section class="s" aria-label="Concept 1: Slatewright Roofing">
+  <div class="in">
+    <nav class="nav">
+      <div class="logo"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M3 17L17 4l14 13" fill="none" stroke="#c8a25a" stroke-width="2"/><path d="M8 17v12h18V17" fill="none" stroke="#c8a25a" stroke-width="2"/><path d="M8 21h18M8 25h18" stroke="#c8a25a" stroke-width="1"/></svg><div>Slatewright<small>Roofing &amp; Leadwork</small></div></div>
+      <ul><li><a href="#s">Slate roofs</a></li><li><a href="#s">Leadwork</a></li><li><a href="#s">Listed buildings</a></li><li><a href="#s">Our work</a></li></ul>
+      <span class="tel">01632 960418</span>
+    </nav>
+    <div class="s-body">
+      <div class="s-kicker">Natural slate &amp; heritage roofing</div>
+      <h2>Slate roofs, laid the way they were <em>meant to last.</em></h2>
+      <p class="s-sub">Welsh and Cumbrian slate, hand-dressed and fixed by time-served slaters. From a single slipped slate to a full listed-building re-roof.</p>
+      <div class="s-ctas"><a class="btn" href="#s">Book a roof survey</a><a class="btn alt" href="#s">See our restorations</a></div>
+      <div class="s-facts"><div><b>Since 1998</b><span>Family slaters</span></div><div><b>60 year</b><span>Slate life</span></div><div><b>Free</b><span>Written survey</span></div></div>
+    </div>
+  </div>
+</section>
+</div></div>
+
+<!-- ================= 2 RIDGEBACK ================= -->
+<div class="in label"><b>Concept 2</b><span>Ridgeback Roof Repairs</span><span>Emergency call-outs</span><span>Greater Manchester</span></div>
+<div class="in"><div class="frame">
+<section class="r" aria-label="Concept 2: Ridgeback Roof Repairs">
+  <div class="r-strip"><div class="in"><span>Storm damage? We're taking calls now.</span><span class="tel">0161 496 0731</span></div></div>
+  <div class="in">
+    <nav class="nav">
+      <div class="logo"><i aria-hidden="true">R</i>Ridgeback</div>
+      <ul><li><a href="#r">Leaks</a></li><li><a href="#r">Storm damage</a></li><li><a href="#r">Insurance work</a></li><li><a href="#r">Areas</a></li></ul>
+      <span class="tel" style="font-weight:700">0161 496 0731</span>
+    </nav>
+    <div class="r-body">
+      <div>
+        <span class="live"><i></i>Roofers out on jobs across Manchester now</span>
+        <h2>Roof leaking? <span>We'll be there today.</span></h2>
+        <p class="r-sub">Call before 2pm and we'll have a roofer at your door the same day. Tarp up, leak stopped, then a fixed price for the proper repair.</p>
+        <div class="r-ticks"><span>Same-day call-outs</span><span>Photos of every repair</span><span>Insurance claims handled</span></div>
+      </div>
+      <div class="r-call">
+        <p>Call the emergency line</p>
+        <span class="num tel">0161 496 0731</span>
+        <a class="btn" href="#r">Call now</a>
+        <a class="btn dark" href="#r">Send us a photo instead</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div></div>
+
+<!-- ================= 3 HALLOWAY & SONS ================= -->
+<div class="in label"><b>Concept 3</b><span>Halloway &amp; Sons Roofing</span><span>Family-run local firm</span><span>Leeds</span></div>
+<div class="in"><div class="frame">
+<section class="h" aria-label="Concept 3: Halloway and Sons Roofing">
+  <div class="in">
+    <nav class="nav">
+      <div class="logo"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#1f4d3a"/><path d="M8 19l10-9 10 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18v9h12v-9" fill="none" stroke="#f2c9bd" stroke-width="2.6" stroke-linejoin="round"/></svg>Halloway &amp; Sons</div>
+      <ul><li><a href="#h">Repairs</a></li><li><a href="#h">New roofs</a></li><li><a href="#h">Guttering</a></li><li><a href="#h">About us</a></li></ul>
+      <span class="tel">0113 496 0254</span>
+    </nav>
+    <div class="h-body">
+      <div>
+        <span class="h-eyebrow">Three generations of Leeds roofers</span>
+        <h2>The roofers your <u>neighbours</u> already use.</h2>
+        <p class="h-sub">Repairs, re-roofs and guttering from a family firm that answers its own phone. We turn up when we say, tidy up after, and explain every job in plain English.</p>
+        <form class="h-form" id="hForm" novalidate><label for="hpc" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your postcode</label><input id="hpc" placeholder="Enter your postcode" autocomplete="postal-code"><button class="btn" type="submit">Get a free quote</button></form>
+        <p class="ok" id="hOk" aria-live="polite"></p>
+        <div class="h-people"><div class="faces" aria-hidden="true"><span style="background:#1f4d3a">TH</span><span style="background:#a8432f">JH</span><span style="background:#36516b">DH</span></div>Tom, James and Dan Halloway</div>
+      </div>
+      <div class="h-photo">
+        <img src="img/halloway.jpg" alt="Row of family homes with newly fitted tiled roofs">
+        <div class="h-badge2">Free roof check</div>
+        <div class="h-badge"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a8432f" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><b>Since 1987</b><span>Family-run, fully insured</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div></div>
+
+<!-- ================= 4 LEVELLINE ================= -->
+<div class="in label"><b>Concept 4</b><span>Levelline Flat Roofing</span><span>Flat roof specialist</span><span>Birmingham &amp; West Midlands</span></div>
+<div class="in"><div class="frame">
+<section class="l" aria-label="Concept 4: Levelline Flat Roofing">
+  <div class="in">
+    <nav class="nav">
+      <div class="logo"><i aria-hidden="true"></i>Levelline</div>
+      <ul><li><a href="#l">Rubber (EPDM)</a></li><li><a href="#l">Fibreglass (GRP)</a></li><li><a href="#l">Garages &amp; extensions</a></li><li><a href="#l">Commercial</a></li></ul>
+      <span class="tel" style="font-weight:700">0121 496 0582</span>
+    </nav>
+    <div class="l-body">
+      <div>
+        <div class="l-tag">Flat roofs only. That's all we do.</div>
+        <h2>A flat roof that stays dry for the next 20 years.</h2>
+        <p class="l-sub">Rubber and fibreglass flat roofs for garages, extensions, dormers and businesses. Fitted in a day on most homes, with a written guarantee.</p>
+        <div class="l-stats"><div><b>1 day</b><span>Most home installs</span></div><div><b>20 yrs</b><span>Written guarantee</span></div><div><b>0</b><span>Seams to leak (EPDM)</span></div></div>
+      </div>
+      <form class="l-card" id="lForm" novalidate>
+        <h3>Price your flat roof</h3>
+        <p class="m">Pick a roof type and we'll send a guide price today.</p>
+        <div class="lab">Roof type</div>
+        <div class="l-opts" role="group" aria-label="Roof type">
+          <button type="button" aria-pressed="true">Rubber<small>EPDM</small></button>
+          <button type="button" aria-pressed="false">Fibreglass<small>GRP</small></button>
+          <button type="button" aria-pressed="false">Not sure<small>We'll advise</small></button>
+        </div>
+        <label for="lsize" class="lab" style="display:block">Roughly how big?</label>
+        <input id="lsize" placeholder="e.g. single garage, or 4m x 3m">
+        <label for="lpc" class="lab" style="display:block">Postcode</label>
+        <input id="lpc" placeholder="e.g. B15 2TT" autocomplete="postal-code">
+        <button class="btn" type="submit">Get my guide price</button>
+        <p class="ok" id="lOk" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</div></div>
+
+<!-- ================= 5 CLEARMOSS ================= -->
+<div class="in label"><b>Concept 5</b><span>Clearmoss Roof Care</span><span>Roof cleaning &amp; moss removal</span><span>Bristol &amp; Bath</span></div>
+<div class="in"><div class="frame">
+<section class="c" aria-label="Concept 5: Clearmoss Roof Care">
+  <nav class="nav">
+    <div class="logo"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z" fill="#c8f2c9"/><path d="M4 20c4-4 7-7 11-10" stroke="#0f2412" stroke-width="1.6" fill="none"/></svg>Clearmoss</div>
+    <ul><li><a href="#c">Moss removal</a></li><li><a href="#c">Roof cleaning</a></li><li><a href="#c">Gutters</a></li><li><a href="#c">Prices</a></li></ul>
+    <span class="tel">0117 496 0369</span>
+  </nav>
+  <div class="cmp" id="cmp">
+    <img src="img/clearmoss-before.jpg" alt="Roof tiles covered in moss and plant growth before cleaning">
+    <img class="aft" src="img/clearmoss-after.jpg" alt="Clean roof tiles after moss removal">
+    <div class="shade"></div>
+    <span class="tg b">Before</span><span class="tg a">After</span>
+    <div class="bar"></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the roof before and after cleaning">
+    <div class="knob" aria-hidden="true">&#8596;</div>
+    <span class="c-hint" id="cHint">Drag to see the difference</span>
+  </div>
+  <div class="c-copy">
+    <div class="in">
+      <div style="min-width:0">
+        <h2>Moss off. Roof <span>looking new</span> in a day.</h2>
+        <p class="c-sub">We hand-clear every tile, wash off the stains and treat the roof so the moss stays away for years.</p>
+      </div>
+      <div class="c-box">
+        <div class="price">Most semi-detached roofs <b>from £395</b></div>
+        <a class="btn" href="#c">Get my fixed price</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div></div>
+
+<div class="in foot">All five businesses are fictional, made for portfolio and pitch use. Photos are public domain (CC0) from rawpixel and the WordPress Photo Directory.</div>
+
+<script>
+// sample forms: they never send anything, just confirm the interaction
+document.getElementById('hForm').addEventListener('submit',e=>{e.preventDefault();const v=document.getElementById('hpc').value.trim();document.getElementById('hOk').textContent=v?`Sample only: a real site would send ${v.toUpperCase()} to the roofer.`:'Enter a postcode to try it.'});
+document.getElementById('lForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('lOk').textContent='Sample only: a real site would send this to the roofer.'});
+document.querySelectorAll('.l-opts button').forEach(b=>b.addEventListener('click',()=>document.querySelectorAll('.l-opts button').forEach(o=>o.setAttribute('aria-pressed',o===b))));
+// before/after drag on the Clearmoss hero
+(()=>{const box=document.getElementById('cmp'),r=box.querySelector('input'),hint=document.getElementById('cHint');let drag=false;
+  const set=v=>{v=Math.max(0,Math.min(100,v));r.value=v;box.style.setProperty('--pos',v+'%')};
+  const at=e=>{const b=box.getBoundingClientRect();set((e.clientX-b.left)/b.width*100);hint.style.opacity=0};
+  box.addEventListener('pointerdown',e=>{if(e.target.closest('a,button'))return;drag=true;box.setPointerCapture(e.pointerId);at(e);r.focus({preventScroll:true})});
+  box.addEventListener('pointermove',e=>{if(drag)at(e)});['pointerup','pointercancel'].forEach(t=>box.addEventListener(t,()=>drag=false));
+  r.addEventListener('input',()=>{set(+r.value);hint.style.opacity=0});set(50);})();
+</script>
