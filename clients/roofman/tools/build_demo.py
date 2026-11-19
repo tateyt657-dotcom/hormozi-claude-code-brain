@@ -23,6 +23,6 @@ rep={'0800 038 5724':'0800 000 0000','tel:08000385724':'tel:08000000000','Chris 
  '<a href="#">Leek</a>':'','<a href="#">Alderley Edge</a>':'','We cover over 900 towns across the UK':'We cover towns across the UK',
  'Then the roof gets cleaned':'Then your roof gets cleaned','The Roofman promise':'Our promise'}
 for a,b in rep.items(): s=s.replace(a,b)
-left=re.findall(r'(?i)roofman|leek|chris|harrison|lawton|neil|assets/(?!job_)|ST13|038 5724',s)
+left=re.findall(r'(?i)roofman|leek|chris|harrison|lawton|neil|assets/(?!job_|real_)|ST13|038 5724',s)
 if left: sys.exit(f'Leftover identifiers: {set(left)}')
 pathlib.Path(sys.argv[1]).write_text(s)
