@@ -1,365 +1,281 @@
 <title>Roofing Hero Concepts</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* Layout: a gallery of five full-width hero sections, each a different fictional roofer with its own identity.
-   Single fixed look per concept (no theme switching): every colour is set explicitly. */
-:root{
-  color-scheme:light;
-  --page:#e9ecee; --page-ink:#1c2328; --page-mute:#5d6870;
-  /* 1 Slatewright: heritage slate */
-  --s-ink:#0f1a22; --s-brass:#c8a25a; --s-cream:#f3efe6;
-  /* 2 Ridgeback: emergency */
-  --r-black:#0c0c0c; --r-hivis:#ffd400; --r-red:#ff4b3a;
-  /* 3 Halloway & Sons: family firm */
-  --h-bg:#f7f6f2; --h-ink:#1e2a24; --h-green:#1f4d3a; --h-brick:#a8432f; --h-line:#e2dfd6;
-  /* 4 Levelline: flat roofs */
-  --l-blue:#0b3d91; --l-sky:#eaf1ff; --l-ink:#0d1b33; --l-cyan:#1fb5d6;
-  /* 5 Clearmoss: roof cleaning */
-  --c-green:#2e7d32; --c-mint:#c8f2c9; --c-ink:#0f2412;
-  --f-body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>/* Layout: gallery of five hero concepts. Every hero shares the Roofman house style
+   (darkened photo, Barlow Condensed uppercase headline, 2-step quote card, icon trust strip);
+   each section sets its own --accent / --accent-ink / --dark and a layout + header variant.
+   Fixed light gallery page; each hero sets every colour explicitly. */
+:root{color-scheme:light;--page:#e8ebed;--page-ink:#1c2328;--page-mute:#5d6870;--ink:#1f2427;--slate:#6b7378;--line:#e2e6e3;
+  --f-body:Barlow,system-ui,-apple-system,"Segoe UI",sans-serif;--f-head:"Barlow Condensed",Barlow,"Arial Narrow",sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:var(--page);color:var(--page-ink);font-family:var(--f-body);-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
-.in{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-h1,h2{text-wrap:balance;margin:0}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.in{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 :focus-visible{outline:3px solid #3b82f6;outline-offset:3px}
 
 /* gallery chrome */
-.intro{padding-block:44px 28px}
-.intro h1{font-family:"Bricolage Grotesque",var(--f-body);font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.5px}
-.intro p{color:var(--page-mute);margin-top:8px;max-width:640px;font-size:16px;line-height:1.55}
-.label{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;padding-block:26px 12px;font-size:13px;color:var(--page-mute)}
-.label b{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--page-ink)}
+.intro{padding-block:44px 24px}
+.intro h1{font-family:var(--f-head);font-size:clamp(34px,4vw,48px);text-transform:uppercase;letter-spacing:.3px}
+.intro p{color:var(--page-mute);margin-top:8px;max-width:680px;font-size:17px;line-height:1.55}
+.label{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding-block:30px 12px;font-size:13px;color:var(--page-mute)}
+.label b{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--page-ink);margin-right:4px}
 .label span{background:#fff;border:1px solid #d6dbdf;border-radius:999px;padding:3px 10px}
-.frame{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(20,30,40,.18);position:relative}
+.frame{border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(20,30,40,.18);background:#fff}
 .foot{padding-block:40px 60px;color:var(--page-mute);font-size:13px;line-height:1.6}
 
-/* shared bits */
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px;position:relative;z-index:2}
-.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:500}
-.nav a{text-decoration:none}
-.tel{font-variant-numeric:tabular-nums;white-space:nowrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;font:inherit;font-weight:700;font-size:16px;padding:15px 24px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
-.btn:hover{transform:translateY(-2px)}
-.ok{font-size:13px;margin-top:8px;min-height:18px}
-@media(max-width:860px){.nav ul{display:none}}
+/* ---------- shared hero pieces ---------- */
+.firm{font-family:var(--f-body);color:#fff;background:var(--dark)}
+.hero{position:relative;overflow:hidden}
+.hero>.bg,.photo>.bg{position:absolute;inset:0;background:var(--img) var(--pos)/cover;animation:drift 22s ease-out both}
+.hero>.ov{position:absolute;inset:0;background:var(--ov)}
+.hero>.hd,.hero>.in{position:relative;z-index:1}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:800;font-size:25px;text-transform:uppercase;letter-spacing:.3px;line-height:1}
+.logo small{display:block;font-family:var(--f-body);font-size:11px;font-weight:600;letter-spacing:2px;opacity:.75;margin-top:3px}
+.logo .mark{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);flex:none}
+.links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:600;font-size:16px}
+.links a{opacity:.85}.links a:hover{opacity:1}
+.tel{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-head);font-weight:700;font-size:22px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tel svg{width:34px;height:34px;padding:8px;border-radius:50%;background:var(--accent);color:var(--accent-ink);box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;font:inherit;font-weight:700;font-size:17px;padding:15px 24px;cursor:pointer;background:var(--accent);color:var(--accent-ink);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.btn.sm{font-size:15px;padding:11px 18px}.btn.sm svg{width:16px;height:16px}
 
-/* ============ 1 SLATEWRIGHT ============ */
-.s{position:relative;color:var(--s-cream);background:var(--s-ink)}
-.s::before{content:"";position:absolute;inset:0;background:url(img/slatewright.jpg) 60% 40%/cover}
-.s::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,26,34,.94) 0%,rgba(15,26,34,.82) 38%,rgba(15,26,34,.25) 75%,rgba(15,26,34,.15))}
-.s .in{position:relative;z-index:1}
-.s .logo{display:flex;align-items:center;gap:12px;font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:700;letter-spacing:.5px}
-.s .logo small{display:block;font-family:var(--f-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--s-brass);font-weight:600}
-.s .nav ul a{color:rgba(243,239,230,.8)}
-.s .nav .tel{color:var(--s-brass);font-weight:600}
-.s-body{padding-block:70px 90px;max-width:620px}
-.s-kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--s-brass);font-weight:600;display:flex;align-items:center;gap:12px}
-.s-kicker::before{content:"";width:34px;height:1px;background:var(--s-brass)}
-.s h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(44px,6vw,78px);line-height:.98;margin-top:22px;letter-spacing:-.5px}
-.s h2 em{color:var(--s-brass);font-style:italic}
-.s-sub{font-size:18px;line-height:1.6;color:rgba(243,239,230,.82);margin-top:22px;max-width:520px}
-.s-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.s .btn{background:var(--s-brass);color:var(--s-ink);border-radius:2px;letter-spacing:.5px}
-.s .btn.alt{background:transparent;color:var(--s-cream);border:1px solid rgba(243,239,230,.45)}
-.s-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:46px;border-top:1px solid rgba(200,162,90,.35);padding-top:22px}
-.s-facts div{padding-right:28px;margin-right:28px;border-right:1px solid rgba(243,239,230,.18)}
-.s-facts div:last-child{border:0;margin:0;padding:0}
-.s-facts b{display:block;font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;color:var(--s-cream)}
-.s-facts span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,230,.65)}
-@media(max-width:600px){.s::after{background:linear-gradient(180deg,rgba(15,26,34,.55),rgba(15,26,34,.92) 60%)}.s-body{padding-block:120px 56px}.s-facts div{padding-right:16px;margin-right:16px}}
+.copy h1{font-family:var(--f-head);font-weight:800;text-transform:uppercase;font-size:clamp(38px,4.6vw,62px);line-height:1;letter-spacing:.2px}
+.copy h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 90%,color-mix(in srgb,var(--accent) 50%,transparent) 90%)}
+.copy .sub{font-size:20px;line-height:1.55;color:rgba(255,255,255,.88);margin-top:18px;max-width:540px}
+.seework{display:inline-flex;gap:8px;margin-top:20px;font-weight:700;font-size:17px;border-bottom:2px solid var(--accent);padding-bottom:2px}
 
-/* ============ 2 RIDGEBACK ============ */
-.r{position:relative;color:#fff;background:var(--r-black);overflow:hidden}
-.r::before{content:"";position:absolute;inset:0;background:url(img/ridgeback.jpg) center 35%/cover;filter:grayscale(.35) contrast(1.05)}
-.r::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,12,.7),rgba(12,12,12,.86) 55%,rgba(12,12,12,.95))}
-.r .in{position:relative;z-index:1}
-.r-strip{position:relative;z-index:1;background:var(--r-hivis);color:var(--r-black);font-weight:700;font-size:14px}
-.r-strip .in{display:flex;justify-content:space-between;gap:12px;padding-block:9px;flex-wrap:wrap}
-.r .logo{font-family:Anton,Impact,sans-serif;font-size:26px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.r .logo i{display:inline-grid;place-items:center;width:38px;height:38px;background:var(--r-hivis);color:var(--r-black);font-style:normal;border-radius:6px}
-.r .nav ul a{color:rgba(255,255,255,.75)}
-.r-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end;padding-block:56px 70px}
-.live{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
-.live i{width:10px;height:10px;border-radius:50%;background:#2fd36b;box-shadow:0 0 0 0 rgba(47,211,107,.7);animation:pulse 1.8s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(47,211,107,0)}100%{box-shadow:0 0 0 0 rgba(47,211,107,0)}}
-.r h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(52px,8vw,112px);line-height:.92;margin-top:22px;letter-spacing:.5px}
-.r h2 span{color:var(--r-hivis)}
-.r-sub{font-size:19px;line-height:1.55;color:rgba(255,255,255,.82);margin-top:18px;max-width:540px}
-.r-call{background:#fff;color:var(--r-black);border-radius:16px;padding:22px}
-.r-call p{font-size:14px;font-weight:600;color:#555}
-.r-call .num{display:block;font-family:Anton,Impact,sans-serif;font-size:clamp(34px,4vw,44px);letter-spacing:1px;margin:4px 0 14px;text-decoration:none;color:var(--r-black)}
-.r .btn{width:100%;background:var(--r-hivis);color:var(--r-black);border-radius:10px;font-size:17px}
-.r .btn.dark{background:var(--r-black);color:#fff;margin-top:10px}
-.r-ticks{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;font-weight:600;font-size:15px}
-.r-ticks span::before{content:"";display:inline-block;width:8px;height:8px;background:var(--r-hivis);margin-right:8px;transform:rotate(45deg)}
-@media(max-width:860px){.r-body{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:36px 40px}}
+/* quote card (same 2-step flow as the Roofman build) */
+.qcard{background:#fff;color:var(--ink);border-radius:16px;padding:24px;box-shadow:0 24px 50px rgba(0,0,0,.3);min-width:0}
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.qhead h3{font-family:var(--f-head);font-size:30px;font-weight:700}
+.qstep{font-size:13px;font-weight:700;color:var(--slate);white-space:nowrap}
+.qbar{height:5px;background:#eef0ee;border-radius:9px;margin:10px 0 16px;overflow:hidden}
+.qbar i{display:block;height:100%;width:50%;background:var(--dark);border-radius:9px;transition:width .3s}
+legend{font-weight:700;font-size:19px;margin-bottom:12px;padding:0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:grid;gap:2px;text-align:left;padding:13px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .15s,transform .15s}
+.opt b{font-size:16px}.opt span{font-size:13px;color:var(--slate)}
+.opt:hover{border-color:var(--dark);transform:translateY(-2px)}
+.opt[aria-pressed="true"]{border-color:var(--dark);background:#f3f5f4}
+.fine{font-size:13px;color:var(--slate);margin-top:10px;text-align:center}
+.done{color:var(--dark);font-weight:600}
+.chosen{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#f2f4f3;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:15px}
+.back{border:0;background:none;font:inherit;font-weight:700;font-size:14px;color:#066aab;cursor:pointer}
+.field{margin-bottom:10px}
+.field label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+.field input{width:100%;padding:13px;border:2px solid var(--line);border-radius:10px;font:inherit;font-size:17px;color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--dark)}
+.qcard .btn{background:var(--dark);color:#fff}
+.btn.wide{width:100%}
+.callalt{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:center;font-size:15px;color:#3b4246}
+.p2:not([hidden]){animation:paneIn .35s ease-out}
 
-/* ============ 3 HALLOWAY & SONS ============ */
-.h{background:var(--h-bg);color:var(--h-ink)}
-.h .logo{font-family:"Bricolage Grotesque",var(--f-body);font-weight:800;font-size:23px;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
-.h .logo svg{flex:none}
-.h .nav ul a{color:#4b5650}
-.h .nav .tel{font-weight:700;color:var(--h-green)}
-.h-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;padding-block:40px 70px}
-.h-eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:600;color:var(--h-green);background:#e6efe9;border-radius:999px;padding:6px 12px}
-.h h2{font-family:"Bricolage Grotesque",var(--f-body);font-weight:800;font-size:clamp(40px,5.2vw,66px);line-height:1.02;letter-spacing:-1.5px;margin-top:20px}
-.h h2 u{text-decoration:none;background:linear-gradient(transparent 70%,#f2c9bd 70%)}
-.h-sub{font-size:18px;line-height:1.6;color:#4b5650;margin-top:18px;max-width:500px}
-.h-form{display:flex;gap:8px;margin-top:28px;background:#fff;border:1.5px solid var(--h-line);border-radius:14px;padding:7px;max-width:470px;box-shadow:0 10px 30px rgba(30,42,36,.08)}
-.h-form input{flex:1;min-width:0;border:0;font:inherit;font-size:17px;padding:12px 12px;background:transparent;color:var(--h-ink)}
-.h-form input:focus{outline:none}
-.h-form:focus-within{border-color:var(--h-green)}
-.h .btn{background:var(--h-green);color:#fff;border-radius:10px;flex:none;padding:14px 18px}
-@media(max-width:420px){.h-form{flex-direction:column}.h .btn{width:100%}}
-.h .ok{color:var(--h-green)}
-.h-people{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:14px;color:#4b5650}
-.h-people .faces{display:flex}
-.h-people .faces span{width:34px;height:34px;border-radius:50%;border:2px solid var(--h-bg);margin-left:-8px;display:grid;place-items:center;font-weight:700;font-size:12px;color:#fff}
-.h-people .faces span:first-child{margin-left:0}
-.h-photo{position:relative}
-.h-photo img{width:100%;aspect-ratio:4/4.3;object-fit:cover;border-radius:22px}
-.h-badge{position:absolute;left:-22px;bottom:34px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 18px 40px rgba(30,42,36,.18);display:flex;gap:12px;align-items:center;max-width:250px}
-.h-badge b{display:block;font-family:"Bricolage Grotesque",var(--f-body);font-size:22px;color:var(--h-brick);line-height:1}
-.h-badge span{font-size:13px;color:#4b5650}
-.h-badge2{position:absolute;right:-14px;top:30px;background:var(--h-green);color:#fff;border-radius:14px;padding:10px 14px;font-weight:700;font-size:14px;box-shadow:0 14px 30px rgba(31,77,58,.3)}
-@media(max-width:860px){.h-body{grid-template-columns:minmax(0,1fr);gap:36px;padding-block:20px 50px}.h-badge{left:12px}.h-badge2{right:12px}}
+/* trust strip */
+.trust{background:var(--accent);color:var(--accent-ink);padding-block:22px;position:relative}
+.trust .in{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center}
+.trust svg{display:block;margin:0 auto 6px;opacity:.9}
+.trust b{display:block;font-family:var(--f-head);font-size:28px;line-height:1;font-weight:800}
+.trust span{font-size:14px;opacity:.85}
+.trust b .count{font-size:inherit;opacity:1}
 
-/* ============ 4 LEVELLINE ============ */
-.l{position:relative;background:var(--l-ink);color:#fff;font-family:Manrope,var(--f-body)}
-.l::before{content:"";position:absolute;inset:0;background:url(img/levelline.jpg) 30% 40%/cover}
-.l::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,27,51,.93) 30%,rgba(11,61,145,.6) 65%,rgba(11,61,145,.35))}
-.l .in{position:relative;z-index:1}
-.l .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.3px}
-.l .logo i{width:30px;height:10px;border-radius:2px;background:var(--l-cyan);box-shadow:0 7px 0 rgba(255,255,255,.85),0 14px 0 rgba(255,255,255,.4);margin-top:-14px}
-.l .nav ul a{color:rgba(255,255,255,.78)}
-.l-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding-block:50px 80px}
-.l-tag{font-size:13px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--l-cyan)}
-.l h2{font-weight:800;font-size:clamp(38px,5vw,62px);line-height:1.05;letter-spacing:-1.5px;margin-top:16px}
-.l-sub{font-size:18px;line-height:1.6;color:rgba(255,255,255,.8);margin-top:18px;max-width:520px}
-.l-stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:34px;margin-top:34px}
-.l-stats b{display:block;font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
-.l-stats span{font-size:13px;color:rgba(255,255,255,.7)}
-.l-card{background:#fff;color:var(--l-ink);border-radius:18px;padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
-.l-card h3{margin:0;font-size:22px;font-weight:800}
-.l-card p.m{color:#5b6b85;font-size:14px;margin:4px 0 16px}
-.l-card .lab{font-size:13px;font-weight:700;margin-bottom:8px}
-.l-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
-.l-opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid #d8e1f0;background:#fff;border-radius:10px;padding:11px 6px;cursor:pointer;color:var(--l-ink)}
-.l-opts button small{display:block;font-weight:500;font-size:11px;color:#6b7b95}
-.l-opts button[aria-pressed="true"]{border-color:var(--l-blue);background:var(--l-sky)}
-.l-card input{width:100%;font:inherit;font-size:16px;border:1.5px solid #d8e1f0;border-radius:10px;padding:13px;margin-bottom:10px}
-.l-card input:focus{outline:none;border-color:var(--l-blue)}
-.l .btn{width:100%;background:var(--l-blue);color:#fff;border-radius:10px}
-.l .ok{color:var(--l-blue)}
-@media(max-width:860px){.l-body{grid-template-columns:minmax(0,1fr);gap:30px;padding-block:30px 50px}.l-stats{gap:22px}}
+/* ---------- header variants ---------- */
+.hd .in{display:flex;align-items:center;justify-content:space-between;gap:18px;height:80px}
+.hd-clear{border-bottom:1px solid rgba(255,255,255,.14)}
+.topbar{background:var(--accent);color:var(--accent-ink);font-size:14px;position:relative;z-index:1}
+.topbar .in{display:flex;justify-content:space-between;gap:12px;padding-block:8px;flex-wrap:wrap}
+.hd-solid{background:#0b0b0c;border-bottom:3px solid var(--accent)}
+.hd-white{background:#fff;color:var(--ink)}
+.hd-white .in{display:grid;grid-template-columns:1fr auto 1fr}
+.hd-white .r{display:flex;justify-content:flex-end;align-items:center;gap:26px}
+.hd-white .logo .mark{background:var(--dark);color:var(--accent)}
+.hd-white .tel svg{background:var(--dark);color:#fff}
+.hd-pill{padding-top:16px}
+.hd-pill .in{height:auto}
+.pill{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;color:var(--ink);border-radius:999px;padding:10px 12px 10px 18px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.pill .logo .mark{background:var(--dark);color:var(--accent)}
+.pill .tel svg{background:var(--dark);color:#fff}
+.hd-min{background:var(--dark)}
+.tel.ghost{border:1.5px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 16px 4px 4px}
 
-/* ============ 5 CLEARMOSS ============ */
-.c{position:relative;color:#fff;font-family:"Plus Jakarta Sans",var(--f-body);background:var(--c-ink)}
-.c .nav{position:absolute;left:0;right:0;top:0;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));max-width:1240px;margin:0 auto}
-.c .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px}
-.c .nav ul a{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.c .nav .tel{font-weight:700}
-.cmp{position:relative;height:clamp(560px,78vh,720px);--pos:50%;user-select:none;touch-action:pan-y;overflow:hidden}
-.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-.cmp .aft{clip-path:inset(0 0 0 var(--pos))}
-.cmp .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,36,18,.55),rgba(15,36,18,.1) 30%,rgba(15,36,18,.15) 55%,rgba(15,36,18,.88));pointer-events:none}
-.cmp .bar{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;pointer-events:none;box-shadow:0 0 12px rgba(0,0,0,.4)}
-.cmp .knob{position:absolute;top:44%;left:var(--pos);width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:#fff;color:var(--c-green);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);pointer-events:none;font-weight:800;font-size:13px}
-.cmp input{position:absolute;inset:0;opacity:0;pointer-events:none}
-.cmp input:focus-visible~.knob{outline:3px solid var(--c-mint);outline-offset:4px}
-.cmp .tg{position:absolute;top:96px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;pointer-events:none}
-.cmp .tg.b{left:max(20px,env(safe-area-inset-left,0px));background:rgba(15,36,18,.75)}
-.cmp .tg.a{right:max(20px,env(safe-area-inset-right,0px));background:var(--c-green)}
-.c-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-block:0 44px;pointer-events:none}
-.c-copy .in{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.c h2{font-weight:800;font-size:clamp(38px,5.4vw,68px);line-height:1;letter-spacing:-1.5px;max-width:720px}
-.c h2 span{color:var(--c-mint)}
-.c-sub{font-size:18px;line-height:1.55;color:rgba(255,255,255,.88);margin-top:14px;max-width:560px}
-.c-box{pointer-events:auto;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:18px 20px;min-width:0}
-.c-box .price{font-size:14px;color:rgba(255,255,255,.85)}
-.c-box .price b{font-size:34px;color:#fff;display:block;line-height:1.1}
-.c .btn{background:var(--c-mint);color:var(--c-ink);margin-top:12px;width:100%}
-.c-hint{position:absolute;left:50%;top:calc(44% + 46px);transform:translateX(-50%);font-size:13px;font-weight:600;background:rgba(15,36,18,.7);padding:5px 12px;border-radius:999px;pointer-events:none;white-space:nowrap;transition:opacity .4s}
-@media(max-width:700px){.c-copy{position:relative;background:var(--c-ink);padding-block:24px 34px}.cmp{height:440px}.cmp .shade{background:linear-gradient(180deg,rgba(15,36,18,.55),rgba(15,36,18,0) 35%)}.c-box{width:100%}}
+/* ---------- layout variants ---------- */
+.grid{display:grid;gap:56px;align-items:center}
+.lay-left .grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);padding-block:70px 84px}
+.lay-right .grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);padding-block:64px 80px}
+.lay-right .copy{order:2;text-align:right;justify-self:end}
+.lay-right .copy .sub{margin-left:auto}
+.lay-center .grid{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;padding-block:64px 70px;gap:34px}
+.lay-center .copy{max-width:860px}.lay-center .copy .sub{margin-inline:auto}
+.lay-center .qcard{width:100%;max-width:820px;text-align:left}
+.lay-center .opts{grid-template-columns:repeat(4,1fr)}
+.lay-center .p2:not([hidden]){display:grid;grid-template-columns:repeat(3,1fr);gap:0 12px}
+.lay-center .p2 .chosen,.lay-center .p2 .btn,.lay-center .p2 .fine{grid-column:1/-1}
+.lay-bottom .grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;padding-block:110px 0}
+.lay-bottom .copy{padding-bottom:70px}
+.lay-bottom .qcard{margin-bottom:-110px;position:relative;z-index:3}
+.lay-bottom .hero{overflow:visible}
+.lay-bottom .trust{padding-block:30px}
+.lay-bottom .trust .in{grid-template-columns:repeat(4,1fr);padding-right:calc(45% + 20px)}
+.lay-split .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:640px}
+.lay-split .panel{background:var(--dark);display:flex;justify-content:flex-end}
+.lay-split .panel-in{max-width:620px;width:100%;padding:56px max(20px,env(safe-area-inset-left,0px)) 56px 40px;display:grid;gap:30px;align-content:center}
+.lay-split .photo{position:relative;overflow:hidden}
+.lay-split .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--dark),transparent 18%)}
+.lay-split .copy h1{font-size:clamp(36px,4vw,54px)}
 
+/* ---------- motion ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+@keyframes paneIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.copy>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.copy .sub{animation-delay:.15s}.copy .seework{animation-delay:.3s}
+.qcard{animation:rise .9s .25s cubic-bezier(.2,.7,.2,1) both}
+
+/* ---------- phones and tablets ---------- */
+@media(max-width:900px){
+  .links{display:none}
+  .grid,.lay-left .grid,.lay-right .grid,.lay-bottom .grid{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:44px 40px}
+  .lay-right .copy{order:0;text-align:left;justify-self:stretch}.lay-right .copy .sub{margin-left:0}
+  .lay-bottom .copy{padding-bottom:0}.lay-bottom .qcard{margin-bottom:0}
+  .lay-bottom .trust .in{padding-right:max(20px,env(safe-area-inset-right,0px));grid-template-columns:1fr 1fr}
+  .lay-bottom .trust{padding-block:22px}
+  .lay-center .opts{grid-template-columns:1fr 1fr}
+  .lay-center .p2:not([hidden]){display:block}
+  .hd-white .in{display:flex}.hd-white .r .links{display:none}
+  .lay-split .split{grid-template-columns:minmax(0,1fr)}
+  .lay-split .photo{order:-1;height:240px}.lay-split .photo::after{background:linear-gradient(0deg,var(--dark),transparent 45%)}
+  .lay-split .panel-in{padding:28px max(20px,env(safe-area-inset-left,0px)) 40px;max-width:none}
+  .trust .in{grid-template-columns:1fr 1fr;gap:18px 10px}
+  .topbar span{display:none}
+  .copy .sub{font-size:18px}
+}
+@media(max-width:520px){
+  .logo{font-size:21px}.logo small{display:none}.logo .mark{width:34px;height:34px}
+  .tel span{display:none}.tel.ghost{padding:4px}
+  .hd .btn.sm{font-size:0;padding:10px}.hd .btn.sm svg{width:18px;height:18px}
+  .pill{padding:8px 8px 8px 14px}
+}
+@media(max-width:400px){.opts,.lay-center .opts{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-
-<div class="in intro">
-  <h1>Roofing hero concepts</h1>
-  <p>Five homepage hero sections for five fictional UK roofing firms, each in a different style. Names, phone numbers and details are made up for illustration. The numbers use Ofcom's ranges reserved for drama, so they ring no one.</p>
-</div>
-
-<!-- ================= 1 SLATEWRIGHT ================= -->
-<div class="in label"><b>Concept 1</b><span>Slatewright Roofing</span><span>Heritage slate specialist</span><span>Kendal &amp; the Lakes</span></div>
-<div class="in"><div class="frame">
-<section class="s" aria-label="Concept 1: Slatewright Roofing">
-  <div class="in">
-    <nav class="nav">
-      <div class="logo"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M3 17L17 4l14 13" fill="none" stroke="#c8a25a" stroke-width="2"/><path d="M8 17v12h18V17" fill="none" stroke="#c8a25a" stroke-width="2"/><path d="M8 21h18M8 25h18" stroke="#c8a25a" stroke-width="1"/></svg><div>Slatewright<small>Roofing &amp; Leadwork</small></div></div>
-      <ul><li><a href="#s">Slate roofs</a></li><li><a href="#s">Leadwork</a></li><li><a href="#s">Listed buildings</a></li><li><a href="#s">Our work</a></li></ul>
-      <span class="tel">01632 960418</span>
-    </nav>
-    <div class="s-body">
-      <div class="s-kicker">Natural slate &amp; heritage roofing</div>
-      <h2>Slate roofs, laid the way they were <em>meant to last.</em></h2>
-      <p class="s-sub">Welsh and Cumbrian slate, hand-dressed and fixed by time-served slaters. From a single slipped slate to a full listed-building re-roof.</p>
-      <div class="s-ctas"><a class="btn" href="#s">Book a roof survey</a><a class="btn alt" href="#s">See our restorations</a></div>
-      <div class="s-facts"><div><b>Since 1998</b><span>Family slaters</span></div><div><b>60 year</b><span>Slate life</span></div><div><b>Free</b><span>Written survey</span></div></div>
-    </div>
-  </div>
-</section>
-</div></div>
-
-<!-- ================= 2 RIDGEBACK ================= -->
-<div class="in label"><b>Concept 2</b><span>Ridgeback Roof Repairs</span><span>Emergency call-outs</span><span>Greater Manchester</span></div>
-<div class="in"><div class="frame">
-<section class="r" aria-label="Concept 2: Ridgeback Roof Repairs">
-  <div class="r-strip"><div class="in"><span>Storm damage? We're taking calls now.</span><span class="tel">0161 496 0731</span></div></div>
-  <div class="in">
-    <nav class="nav">
-      <div class="logo"><i aria-hidden="true">R</i>Ridgeback</div>
-      <ul><li><a href="#r">Leaks</a></li><li><a href="#r">Storm damage</a></li><li><a href="#r">Insurance work</a></li><li><a href="#r">Areas</a></li></ul>
-      <span class="tel" style="font-weight:700">0161 496 0731</span>
-    </nav>
-    <div class="r-body">
-      <div>
-        <span class="live"><i></i>Roofers out on jobs across Manchester now</span>
-        <h2>Roof leaking? <span>We'll be there today.</span></h2>
-        <p class="r-sub">Call before 2pm and we'll have a roofer at your door the same day. Tarp up, leak stopped, then a fixed price for the proper repair.</p>
-        <div class="r-ticks"><span>Same-day call-outs</span><span>Photos of every repair</span><span>Insurance claims handled</span></div>
-      </div>
-      <div class="r-call">
-        <p>Call the emergency line</p>
-        <span class="num tel">0161 496 0731</span>
-        <a class="btn" href="#r">Call now</a>
-        <a class="btn dark" href="#r">Send us a photo instead</a>
-      </div>
-    </div>
-  </div>
-</section>
-</div></div>
-
-<!-- ================= 3 HALLOWAY & SONS ================= -->
-<div class="in label"><b>Concept 3</b><span>Halloway &amp; Sons Roofing</span><span>Family-run local firm</span><span>Leeds</span></div>
-<div class="in"><div class="frame">
-<section class="h" aria-label="Concept 3: Halloway and Sons Roofing">
-  <div class="in">
-    <nav class="nav">
-      <div class="logo"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#1f4d3a"/><path d="M8 19l10-9 10 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18v9h12v-9" fill="none" stroke="#f2c9bd" stroke-width="2.6" stroke-linejoin="round"/></svg>Halloway &amp; Sons</div>
-      <ul><li><a href="#h">Repairs</a></li><li><a href="#h">New roofs</a></li><li><a href="#h">Guttering</a></li><li><a href="#h">About us</a></li></ul>
-      <span class="tel">0113 496 0254</span>
-    </nav>
-    <div class="h-body">
-      <div>
-        <span class="h-eyebrow">Three generations of Leeds roofers</span>
-        <h2>The roofers your <u>neighbours</u> already use.</h2>
-        <p class="h-sub">Repairs, re-roofs and guttering from a family firm that answers its own phone. We turn up when we say, tidy up after, and explain every job in plain English.</p>
-        <form class="h-form" id="hForm" novalidate><label for="hpc" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your postcode</label><input id="hpc" placeholder="Enter your postcode" autocomplete="postal-code"><button class="btn" type="submit">Get a free quote</button></form>
-        <p class="ok" id="hOk" aria-live="polite"></p>
-        <div class="h-people"><div class="faces" aria-hidden="true"><span style="background:#1f4d3a">TH</span><span style="background:#a8432f">JH</span><span style="background:#36516b">DH</span></div>Tom, James and Dan Halloway</div>
-      </div>
-      <div class="h-photo">
-        <img src="img/halloway.jpg" alt="Row of family homes with newly fitted tiled roofs">
-        <div class="h-badge2">Free roof check</div>
-        <div class="h-badge"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a8432f" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><b>Since 1987</b><span>Family-run, fully insured</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-</div></div>
-
-<!-- ================= 4 LEVELLINE ================= -->
-<div class="in label"><b>Concept 4</b><span>Levelline Flat Roofing</span><span>Flat roof specialist</span><span>Birmingham &amp; West Midlands</span></div>
-<div class="in"><div class="frame">
-<section class="l" aria-label="Concept 4: Levelline Flat Roofing">
-  <div class="in">
-    <nav class="nav">
-      <div class="logo"><i aria-hidden="true"></i>Levelline</div>
-      <ul><li><a href="#l">Rubber (EPDM)</a></li><li><a href="#l">Fibreglass (GRP)</a></li><li><a href="#l">Garages &amp; extensions</a></li><li><a href="#l">Commercial</a></li></ul>
-      <span class="tel" style="font-weight:700">0121 496 0582</span>
-    </nav>
-    <div class="l-body">
-      <div>
-        <div class="l-tag">Flat roofs only. That's all we do.</div>
-        <h2>A flat roof that stays dry for the next 20 years.</h2>
-        <p class="l-sub">Rubber and fibreglass flat roofs for garages, extensions, dormers and businesses. Fitted in a day on most homes, with a written guarantee.</p>
-        <div class="l-stats"><div><b>1 day</b><span>Most home installs</span></div><div><b>20 yrs</b><span>Written guarantee</span></div><div><b>0</b><span>Seams to leak (EPDM)</span></div></div>
-      </div>
-      <form class="l-card" id="lForm" novalidate>
-        <h3>Price your flat roof</h3>
-        <p class="m">Pick a roof type and we'll send a guide price today.</p>
-        <div class="lab">Roof type</div>
-        <div class="l-opts" role="group" aria-label="Roof type">
-          <button type="button" aria-pressed="true">Rubber<small>EPDM</small></button>
-          <button type="button" aria-pressed="false">Fibreglass<small>GRP</small></button>
-          <button type="button" aria-pressed="false">Not sure<small>We'll advise</small></button>
-        </div>
-        <label for="lsize" class="lab" style="display:block">Roughly how big?</label>
-        <input id="lsize" placeholder="e.g. single garage, or 4m x 3m">
-        <label for="lpc" class="lab" style="display:block">Postcode</label>
-        <input id="lpc" placeholder="e.g. B15 2TT" autocomplete="postal-code">
-        <button class="btn" type="submit">Get my guide price</button>
-        <p class="ok" id="lOk" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-</section>
-</div></div>
-
-<!-- ================= 5 CLEARMOSS ================= -->
-<div class="in label"><b>Concept 5</b><span>Clearmoss Roof Care</span><span>Roof cleaning &amp; moss removal</span><span>Bristol &amp; Bath</span></div>
-<div class="in"><div class="frame">
-<section class="c" aria-label="Concept 5: Clearmoss Roof Care">
-  <nav class="nav">
-    <div class="logo"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z" fill="#c8f2c9"/><path d="M4 20c4-4 7-7 11-10" stroke="#0f2412" stroke-width="1.6" fill="none"/></svg>Clearmoss</div>
-    <ul><li><a href="#c">Moss removal</a></li><li><a href="#c">Roof cleaning</a></li><li><a href="#c">Gutters</a></li><li><a href="#c">Prices</a></li></ul>
-    <span class="tel">0117 496 0369</span>
-  </nav>
-  <div class="cmp" id="cmp">
-    <img src="img/clearmoss-before.jpg" alt="Roof tiles covered in moss and plant growth before cleaning">
-    <img class="aft" src="img/clearmoss-after.jpg" alt="Clean roof tiles after moss removal">
-    <div class="shade"></div>
-    <span class="tg b">Before</span><span class="tg a">After</span>
-    <div class="bar"></div>
-    <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the roof before and after cleaning">
-    <div class="knob" aria-hidden="true">&#8596;</div>
-    <span class="c-hint" id="cHint">Drag to see the difference</span>
-  </div>
-  <div class="c-copy">
-    <div class="in">
-      <div style="min-width:0">
-        <h2>Moss off. Roof <span>looking new</span> in a day.</h2>
-        <p class="c-sub">We hand-clear every tile, wash off the stains and treat the roof so the moss stays away for years.</p>
-      </div>
-      <div class="c-box">
-        <div class="price">Most semi-detached roofs <b>from £395</b></div>
-        <a class="btn" href="#c">Get my fixed price</a>
-      </div>
-    </div>
-  </div>
-</section>
-</div></div>
+<div class="in intro"><h1>Roofing hero concepts</h1><p>Five fictional UK roofing firms on the same proven homepage design: darkened roof photo, bold headline, 2-step quote form and trust strip. Each has its own colours, layout and header. Names and numbers are made up; the phone numbers use Ofcom's drama ranges, so they ring no one.</p></div>
+<div class="in label"><b>Concept 1</b><span>Slatewright Roofing &amp; Leadwork</span><span>Kendal &amp; the Lakes</span><span>Text left, form right</span><span>See-through header</span></div>
+<div class="in"><div class="frame"><section class="firm lay-left hdr-clear" id="slatewright" style="--accent:#f2b134;--accent-ink:#1a1405;--dark:#0f1d2b;--img:url(img/slatewright.jpg);--pos:65% 40%;--ov:linear-gradient(95deg,rgba(10,22,34,.92) 25%,rgba(10,22,34,.6) 55%,rgba(10,22,34,.35))" aria-label="Concept 1: Slatewright"><div class="hero"><div class="bg"></div><div class="ov"></div><header class="hd hd-clear"><div class="in"><a class="logo" href="#slatewright"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span>Slatewright<small>Roofing &amp; Leadwork</small></span></a><ul class="links"><li><a href="#">Services</a></li><li><a href="#">Our Work</a></li><li><a href="#">Prices</a></li><li><a href="#">Areas</a></li></ul><a class="tel" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg><span>01632 960418</span></a></div></header><div class="in grid"><div class="copy"><h1>Slate roofs fixed properly. <em>Built to last 60 years.</em></h1><p class="sub">Natural slate repairs and re-roofs by time-served slaters. Free written survey on every job.</p><a class="seework" href="#">See our work <span aria-hidden="true">&rarr;</span></a></div><div class="qcard" id="q-slatewright">
+  <form class="qform" novalidate>
+    <div class="qhead"><h3>Get your free quote</h3><span class="qstep">Step 1 of 2</span></div>
+    <div class="qbar" aria-hidden="true"><i></i></div>
+    <fieldset class="p1"><legend>What do you need?</legend><div class="opts"><button type="button" class="opt" data-v="Slate repair" aria-pressed="false"><b>Slate repair</b><span>Slipped or broken slates</span></button><button type="button" class="opt" data-v="New slate roof" aria-pressed="false"><b>New slate roof</b><span>Full re-roof</span></button><button type="button" class="opt" data-v="Leadwork" aria-pressed="false"><b>Leadwork</b><span>Chimneys, valleys, flashing</span></button><button type="button" class="opt" data-v="Not sure" aria-pressed="false"><b>Not sure</b><span>We'll take a look</span></button></div><p class="fine">Takes about 20 seconds. No obligation.</p></fieldset>
+    <fieldset class="p2" hidden><legend class="sr">Your details</legend>
+      <div class="chosen"><span>You chose: <b class="ch"></b></span><button type="button" class="back">Change</button></div>
+      <div class="field"><label for="pc-slatewright">Postcode</label><input id="pc-slatewright" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. AB1 2CD"></div>
+      <div class="field"><label for="n-slatewright">First name</label><input id="n-slatewright" autocomplete="given-name"></div>
+      <div class="field"><label for="p-slatewright">Mobile number</label><input id="p-slatewright" type="tel" inputmode="tel" autocomplete="tel" placeholder="07..."></div>
+      <button class="btn wide" type="submit">Get my free quote</button>
+      <p class="fine done" aria-live="polite"></p>
+    </fieldset>
+    <div class="callalt">Rather talk? Call free on <b>01632 960418</b></div>
+  </form>
+</div></div></div><div class="trust"><div class="in"><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b><span class='count' data-to='60'>60</span> YEARS</b><span>Natural slate life</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>SINCE <span class='count' data-to='1998'>1998</span></b><span>Family slaters</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg><b>FREE</b><span>Written roof survey</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>CUMBRIA</b><span>Kendal &amp; the Lakes</span></div></div></div></section></div></div>
+<div class="in label"><b>Concept 2</b><span>Ridgeback Roof Repairs</span><span>Greater Manchester</span><span>Form left, text right</span><span>Top bar + solid header</span></div>
+<div class="in"><div class="frame"><section class="firm lay-right hdr-bar" id="ridgeback" style="--accent:#ffd400;--accent-ink:#111;--dark:#111214;--img:url(img/ridgeback.jpg);--pos:center 35%;--ov:linear-gradient(265deg,rgba(14,14,16,.92) 30%,rgba(14,14,16,.7) 60%,rgba(14,14,16,.55))" aria-label="Concept 2: Ridgeback"><div class="hero"><div class="bg"></div><div class="ov"></div><div class="topbar"><div class="in"><b>Storm damage? We're taking calls now.</b><span>Same-day visits across Greater Manchester</span></div></div><header class="hd hd-solid"><div class="in"><a class="logo" href="#ridgeback"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span>Ridgeback<small>Roof Repairs</small></span></a><ul class="links"><li><a href="#">Services</a></li><li><a href="#">Our Work</a></li><li><a href="#">Prices</a></li><li><a href="#">Areas</a></li></ul><a class="btn sm" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg> Call 0161 496 0731</a></div></header><div class="in grid"><div class="copy"><h1>Roof leaking? <em>We'll be there today.</em></h1><p class="sub">Call before 2pm for a same-day visit. Tarp up, leak stopped, then a fixed price for the proper fix.</p><a class="seework" href="#">See our work <span aria-hidden="true">&rarr;</span></a></div><div class="qcard" id="q-ridgeback">
+  <form class="qform" novalidate>
+    <div class="qhead"><h3>Get your free quote</h3><span class="qstep">Step 1 of 2</span></div>
+    <div class="qbar" aria-hidden="true"><i></i></div>
+    <fieldset class="p1"><legend>What do you need?</legend><div class="opts"><button type="button" class="opt" data-v="Leak" aria-pressed="false"><b>Leak</b><span>Water coming in</span></button><button type="button" class="opt" data-v="Storm damage" aria-pressed="false"><b>Storm damage</b><span>Tiles or ridge off</span></button><button type="button" class="opt" data-v="Flat roof" aria-pressed="false"><b>Flat roof</b><span>Garage or extension</span></button><button type="button" class="opt" data-v="Something else" aria-pressed="false"><b>Something else</b><span>Tell us what's up</span></button></div><p class="fine">Takes about 20 seconds. No obligation.</p></fieldset>
+    <fieldset class="p2" hidden><legend class="sr">Your details</legend>
+      <div class="chosen"><span>You chose: <b class="ch"></b></span><button type="button" class="back">Change</button></div>
+      <div class="field"><label for="pc-ridgeback">Postcode</label><input id="pc-ridgeback" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. AB1 2CD"></div>
+      <div class="field"><label for="n-ridgeback">First name</label><input id="n-ridgeback" autocomplete="given-name"></div>
+      <div class="field"><label for="p-ridgeback">Mobile number</label><input id="p-ridgeback" type="tel" inputmode="tel" autocomplete="tel" placeholder="07..."></div>
+      <button class="btn wide" type="submit">Get my free quote</button>
+      <p class="fine done" aria-live="polite"></p>
+    </fieldset>
+    <div class="callalt">Rather talk? Call free on <b>0161 496 0731</b></div>
+  </form>
+</div></div></div><div class="trust"><div class="in"><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>SAME DAY</b><span>Call before 2pm</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><b>PHOTOS</b><span>Of every repair</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg><b>INSURANCE</b><span>Claims handled</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>MANCHESTER</b><span>And all of GM</span></div></div></div></section></div></div>
+<div class="in label"><b>Concept 3</b><span>Halloway &amp; Sons Roofing</span><span>Leeds</span><span>Centred text, wide form</span><span>Centred logo header</span></div>
+<div class="in"><div class="frame"><section class="firm lay-center hdr-centre" id="halloway" style="--accent:#f3e3c3;--accent-ink:#1f3a2c;--dark:#16261e;--img:url(img/halloway.jpg);--pos:center 45%;--ov:linear-gradient(180deg,rgba(18,34,26,.78),rgba(18,34,26,.72) 55%,rgba(18,34,26,.9))" aria-label="Concept 3: Halloway &amp; Sons"><div class="hero"><div class="bg"></div><div class="ov"></div><header class="hd hd-white"><div class="in"><ul class="links l"><li><a href="#">Repairs</a></li><li><a href="#">New roofs</a></li></ul><a class="logo" href="#halloway"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span>Halloway &amp; Sons<small>Roofing</small></span></a><div class="r"><ul class="links"><li><a href="#">Our Work</a></li></ul><a class="tel" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg><span>0113 496 0254</span></a></div></div></header><div class="in grid"><div class="copy"><h1>The roofers your neighbours <em>already use.</em></h1><p class="sub">Three generations of Leeds roofers. We turn up when we say, tidy up after, and explain every job in plain English.</p><a class="seework" href="#">See our work <span aria-hidden="true">&rarr;</span></a></div><div class="qcard" id="q-halloway">
+  <form class="qform" novalidate>
+    <div class="qhead"><h3>Get your free quote</h3><span class="qstep">Step 1 of 2</span></div>
+    <div class="qbar" aria-hidden="true"><i></i></div>
+    <fieldset class="p1"><legend>What do you need?</legend><div class="opts"><button type="button" class="opt" data-v="Roof repair" aria-pressed="false"><b>Roof repair</b><span>Leaks, slipped tiles</span></button><button type="button" class="opt" data-v="New roof" aria-pressed="false"><b>New roof</b><span>Full re-roof</span></button><button type="button" class="opt" data-v="Guttering" aria-pressed="false"><b>Guttering</b><span>Fascias and soffits</span></button><button type="button" class="opt" data-v="Not sure" aria-pressed="false"><b>Not sure</b><span>We'll take a look</span></button></div><p class="fine">Takes about 20 seconds. No obligation.</p></fieldset>
+    <fieldset class="p2" hidden><legend class="sr">Your details</legend>
+      <div class="chosen"><span>You chose: <b class="ch"></b></span><button type="button" class="back">Change</button></div>
+      <div class="field"><label for="pc-halloway">Postcode</label><input id="pc-halloway" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. AB1 2CD"></div>
+      <div class="field"><label for="n-halloway">First name</label><input id="n-halloway" autocomplete="given-name"></div>
+      <div class="field"><label for="p-halloway">Mobile number</label><input id="p-halloway" type="tel" inputmode="tel" autocomplete="tel" placeholder="07..."></div>
+      <button class="btn wide" type="submit">Get my free quote</button>
+      <p class="fine done" aria-live="polite"></p>
+    </fieldset>
+    <div class="callalt">Rather talk? Call free on <b>0113 496 0254</b></div>
+  </form>
+</div></div></div><div class="trust"><div class="in"><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><b>SINCE <span class='count' data-to='1987'>1987</span></b><span>Family-run</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15 15c3 0 6 1.5 6 4"/></svg><b>3 GENERATIONS</b><span>Of Halloway roofers</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>INSURED</b><span>Fully, for every job</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>LEEDS</b><span>And West Yorkshire</span></div></div></div></section></div></div>
+<div class="in label"><b>Concept 4</b><span>Levelline Flat Roofing</span><span>Birmingham &amp; West Midlands</span><span>Text low, form overlaps strip</span><span>Floating pill header</span></div>
+<div class="in"><div class="frame"><section class="firm lay-bottom hdr-pill" id="levelline" style="--accent:#35d0f0;--accent-ink:#06233a;--dark:#0a2a63;--img:url(img/levelline.jpg);--pos:30% 40%;--ov:linear-gradient(15deg,rgba(6,26,64,.94) 30%,rgba(11,61,145,.55) 70%,rgba(11,61,145,.35))" aria-label="Concept 4: Levelline"><div class="hero"><div class="bg"></div><div class="ov"></div><header class="hd hd-pill"><div class="in"><div class="pill"><a class="logo" href="#levelline"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span>Levelline<small>Flat Roofing</small></span></a><ul class="links"><li><a href="#">Services</a></li><li><a href="#">Our Work</a></li><li><a href="#">Prices</a></li><li><a href="#">Areas</a></li></ul><a class="tel" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg><span>0121 496 0582</span></a></div></div></header><div class="in grid"><div class="copy"><h1>A flat roof that stays dry <em>for the next 20 years.</em></h1><p class="sub">Rubber and fibreglass flat roofs for garages, extensions and businesses. Most homes done in one day.</p><a class="seework" href="#">See our work <span aria-hidden="true">&rarr;</span></a></div><div class="qcard" id="q-levelline">
+  <form class="qform" novalidate>
+    <div class="qhead"><h3>Get your free quote</h3><span class="qstep">Step 1 of 2</span></div>
+    <div class="qbar" aria-hidden="true"><i></i></div>
+    <fieldset class="p1"><legend>What do you need?</legend><div class="opts"><button type="button" class="opt" data-v="Rubber (EPDM)" aria-pressed="false"><b>Rubber (EPDM)</b><span>No seams to leak</span></button><button type="button" class="opt" data-v="Fibreglass (GRP)" aria-pressed="false"><b>Fibreglass (GRP)</b><span>Hard-wearing finish</span></button><button type="button" class="opt" data-v="Repair" aria-pressed="false"><b>Repair</b><span>Leak or blister</span></button><button type="button" class="opt" data-v="Not sure" aria-pressed="false"><b>Not sure</b><span>We'll advise</span></button></div><p class="fine">Takes about 20 seconds. No obligation.</p></fieldset>
+    <fieldset class="p2" hidden><legend class="sr">Your details</legend>
+      <div class="chosen"><span>You chose: <b class="ch"></b></span><button type="button" class="back">Change</button></div>
+      <div class="field"><label for="pc-levelline">Postcode</label><input id="pc-levelline" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. AB1 2CD"></div>
+      <div class="field"><label for="n-levelline">First name</label><input id="n-levelline" autocomplete="given-name"></div>
+      <div class="field"><label for="p-levelline">Mobile number</label><input id="p-levelline" type="tel" inputmode="tel" autocomplete="tel" placeholder="07..."></div>
+      <button class="btn wide" type="submit">Get my free quote</button>
+      <p class="fine done" aria-live="polite"></p>
+    </fieldset>
+    <div class="callalt">Rather talk? Call free on <b>0121 496 0582</b></div>
+  </form>
+</div></div></div><div class="trust"><div class="in"><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b><span class='count' data-to='1'>1</span> DAY</b><span>Most home installs</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b><span class='count' data-to='20'>20</span> YEARS</b><span>Written guarantee</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg><b>FLAT ROOFS</b><span>Only. That's all we do</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>MIDLANDS</b><span>Birmingham and around</span></div></div></div></section></div></div>
+<div class="in label"><b>Concept 5</b><span>Clearmoss Roof Care</span><span>Bristol &amp; Bath</span><span>Split screen</span><span>Minimal header</span></div>
+<div class="in"><div class="frame"><section class="firm lay-split hdr-minimal" id="clearmoss" style="--accent:#9ff0c9;--accent-ink:#06302a;--dark:#0b3b36;--img:url(img/clearmoss-after.jpg);--pos:center;--ov:none" aria-label="Concept 5: Clearmoss"><header class="hd hd-min"><div class="in"><a class="logo" href="#clearmoss"><span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span>Clearmoss<small>Roof Care</small></span></a><a class="tel ghost" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg><span>0117 496 0369</span></a></div></header><div class="split"><div class="panel"><div class="panel-in"><div class="copy"><h1>Moss off. <em>Roof looking new in a day.</em></h1><p class="sub">Every tile cleared by hand, washed and treated so the moss stays away for years. Most semis from £395.</p><a class="seework" href="#">See our work <span aria-hidden="true">&rarr;</span></a></div><div class="qcard" id="q-clearmoss">
+  <form class="qform" novalidate>
+    <div class="qhead"><h3>Get your free quote</h3><span class="qstep">Step 1 of 2</span></div>
+    <div class="qbar" aria-hidden="true"><i></i></div>
+    <fieldset class="p1"><legend>What do you need?</legend><div class="opts"><button type="button" class="opt" data-v="Moss removal" aria-pressed="false"><b>Moss removal</b><span>Thick moss or lichen</span></button><button type="button" class="opt" data-v="Roof clean" aria-pressed="false"><b>Roof clean</b><span>Stains and algae</span></button><button type="button" class="opt" data-v="Gutters" aria-pressed="false"><b>Gutters</b><span>Cleared and flushed</span></button><button type="button" class="opt" data-v="Not sure" aria-pressed="false"><b>Not sure</b><span>We'll take a look</span></button></div><p class="fine">Takes about 20 seconds. No obligation.</p></fieldset>
+    <fieldset class="p2" hidden><legend class="sr">Your details</legend>
+      <div class="chosen"><span>You chose: <b class="ch"></b></span><button type="button" class="back">Change</button></div>
+      <div class="field"><label for="pc-clearmoss">Postcode</label><input id="pc-clearmoss" autocomplete="postal-code" autocapitalize="characters" placeholder="e.g. AB1 2CD"></div>
+      <div class="field"><label for="n-clearmoss">First name</label><input id="n-clearmoss" autocomplete="given-name"></div>
+      <div class="field"><label for="p-clearmoss">Mobile number</label><input id="p-clearmoss" type="tel" inputmode="tel" autocomplete="tel" placeholder="07..."></div>
+      <button class="btn wide" type="submit">Get my free quote</button>
+      <p class="fine done" aria-live="polite"></p>
+    </fieldset>
+    <div class="callalt">Rather talk? Call free on <b>0117 496 0369</b></div>
+  </form>
+</div></div></div><div class="photo"><div class="bg"></div></div></div><div class="trust"><div class="in"><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20c4-4 7-7 11-10"/></svg><b>FROM £<span class='count' data-to='395'>395</span></b><span>Most semi-detached</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b><span class='count' data-to='1'>1</span> DAY</b><span>Most roofs</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>TREATED</b><span>So moss stays away</span></div><div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>BRISTOL</b><span>And Bath</span></div></div></div></section></div></div>
 
 <div class="in foot">All five businesses are fictional, made for portfolio and pitch use. Photos are public domain (CC0) from rawpixel and the WordPress Photo Directory.</div>
-
-<script>
-// sample forms: they never send anything, just confirm the interaction
-document.getElementById('hForm').addEventListener('submit',e=>{e.preventDefault();const v=document.getElementById('hpc').value.trim();document.getElementById('hOk').textContent=v?`Sample only: a real site would send ${v.toUpperCase()} to the roofer.`:'Enter a postcode to try it.'});
-document.getElementById('lForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('lOk').textContent='Sample only: a real site would send this to the roofer.'});
-document.querySelectorAll('.l-opts button').forEach(b=>b.addEventListener('click',()=>document.querySelectorAll('.l-opts button').forEach(o=>o.setAttribute('aria-pressed',o===b))));
-// before/after drag on the Clearmoss hero
-(()=>{const box=document.getElementById('cmp'),r=box.querySelector('input'),hint=document.getElementById('cHint');let drag=false;
-  const set=v=>{v=Math.max(0,Math.min(100,v));r.value=v;box.style.setProperty('--pos',v+'%')};
-  const at=e=>{const b=box.getBoundingClientRect();set((e.clientX-b.left)/b.width*100);hint.style.opacity=0};
-  box.addEventListener('pointerdown',e=>{if(e.target.closest('a,button'))return;drag=true;box.setPointerCapture(e.pointerId);at(e);r.focus({preventScroll:true})});
-  box.addEventListener('pointermove',e=>{if(drag)at(e)});['pointerup','pointercancel'].forEach(t=>box.addEventListener(t,()=>drag=false));
-  r.addEventListener('input',()=>{set(+r.value);hint.style.opacity=0});set(50);})();
+<script>// 2-step quote cards: one tap picks the job, step 2 takes postcode, name and mobile.
+// Sample only: nothing is sent anywhere.
+document.querySelectorAll('.qcard').forEach(card=>{
+  const p1=card.querySelector('.p1'),p2=card.querySelector('.p2'),step=card.querySelector('.qstep'),bar=card.querySelector('.qbar i');
+  const go=n=>{p1.hidden=n!==1;p2.hidden=n!==2;step.textContent=`Step ${n} of 2`;bar.style.width=n===1?'50%':'100%'};
+  card.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+    card.querySelectorAll('.opt').forEach(o=>o.setAttribute('aria-pressed',o===b));
+    card.querySelector('.ch').textContent=b.dataset.v;go(2);
+    setTimeout(()=>p2.querySelector('input').focus({preventScroll:true}),60);
+  }));
+  card.querySelector('.back').addEventListener('click',()=>go(1));
+  card.querySelector('form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=p2.querySelectorAll('input')[1].value.trim().split(' ')[0];
+    card.querySelector('.done').textContent=name?`Sample only: thanks ${name}, a real site would send this straight to the roofer.`:'Fill in your details to try it.';
+  });
+});
+// count the trust numbers up when they scroll into view
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if('IntersectionObserver' in window&&!reduce){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+    const el=e.target,to=+el.dataset.to,from=to>1000?to-25:0,t0=performance.now();
+    const step=t=>{const k=Math.min(1,(t-t0)/1100);el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)};
+    requestAnimationFrame(step)}),{threshold:.6});
+  document.querySelectorAll('.count').forEach(c=>io.observe(c));
+}
 </script>
