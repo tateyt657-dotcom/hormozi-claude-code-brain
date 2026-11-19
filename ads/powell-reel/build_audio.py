@@ -7,7 +7,7 @@ Outputs:
 Needs models/kokoro.onnx and models/voices-v1.0.bin (Kokoro TTS, from
 github.com/thewh1teagle/kokoro-onnx releases, tag model-files-v1.0).
 """
-import json, re
+import json, os, re
 import numpy as np
 import soundfile as sf
 from scipy.signal import butter, sosfilt, resample_poly, fftconvolve
@@ -56,7 +56,8 @@ def trim(a, thr=0.012, pad=0.02):
 # ---------------------------------------------------------------- voiceover
 def build_vo():
     from kokoro_onnx import Kokoro
-    k = Kokoro("models/kokoro.onnx", "models/voices-v1.0.bin")
+    md = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
+    k = Kokoro(os.path.join(md, "kokoro.onnx"), os.path.join(md, "voices-v1.0.bin"))
     t = LEAD_IN
     scenes, clips = [], []
     for si, sents in enumerate(SCENES):
