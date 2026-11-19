@@ -117,7 +117,7 @@ nav a:hover{color:var(--green-dark)}
 .hud .bar{flex:1;height:6px;background:rgba(0,0,0,.25);border-radius:9px;overflow:hidden}
 .hud .bar i{display:block;height:100%;width:0;background:var(--green)}
 .hud .label{background:rgba(17,22,26,.85);padding:6px 12px;border-radius:999px;font-weight:700;font-size:14px;white-space:nowrap}
-.badge{position:absolute;right:20px;top:20px;width:130px;height:130px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Barlow Condensed";font-size:20px;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:scale(0) rotate(-20deg);transition:transform .45s cubic-bezier(.3,1.6,.5,1);z-index:2}
+.badge{position:absolute;right:20px;bottom:56px;width:130px;height:130px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Barlow Condensed";font-size:20px;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:scale(0) rotate(-20deg);transition:transform .45s cubic-bezier(.3,1.6,.5,1);z-index:2}
 .badge b{font-size:46px;display:block}
 .badge.show{transform:scale(1) rotate(-8deg)}
 .mobile-step{display:none}
@@ -132,6 +132,21 @@ nav a:hover{color:var(--green-dark)}
   .badge{width:96px;height:96px;font-size:15px}.badge b{font-size:34px}
 }
 .build-outro{text-align:center;padding:40px 0 80px}
+.modes{display:inline-flex;gap:4px;margin-top:22px;padding:4px;background:rgba(255,255,255,.08);border-radius:999px}
+.modes button{font:inherit;font-weight:700;font-size:15px;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;background:transparent;color:#c8d0cc}
+.modes button[aria-selected="true"]{background:var(--green);color:#fff}
+.modes button:focus-visible{outline:3px solid #9fd534;outline-offset:2px}
+.story{position:absolute;inset:0;background:#11161a}
+.story .sl{position:absolute;inset:0;opacity:0;overflow:hidden;will-change:opacity}
+.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.story .after{clip-path:inset(0 0 0 100%)}
+.story .divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.5);left:0}
+.story .divider::after{content:"";position:absolute;top:50%;left:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6' fill='none' stroke='%2311161a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/22px no-repeat}
+.story .tag{position:absolute;top:16px;padding:5px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:rgba(17,22,26,.8)}
+.story .tag.b{left:16px}.story .tag.a{right:16px;background:var(--green)}
+.story .cap{position:absolute;left:16px;top:16px;max-width:70%;background:rgba(17,22,26,.82);color:#fff;padding:8px 14px;border-radius:12px;font-family:"Barlow Condensed";font-size:22px;line-height:1.1}
+.story .real{position:absolute;right:16px;top:16px;background:rgba(255,255,255,.92);color:#11161a;font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px}
+@media(max-width:900px){.story .cap{font-size:18px}}
 
 /* Packages */
 .packages .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
@@ -304,9 +319,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <!-- ROOF BUILD SCROLL -->
 <section class="build" id="build">
   <div class="wrap build-intro">
-    <div class="eyebrow">Need a new roof?</div>
-    <h2>Scroll to watch us build one</h2>
-    <p class="lead">Every new roof goes on in the same careful order. Here's what happens on your house, from stripping the old tiles to the final ridge.</p>
+    <div class="eyebrow">See exactly what we do</div>
+    <h2 id="buildTitle">Scroll through a real job</h2>
+    <p class="lead" id="buildLead">These are real photos from our own jobs. Scroll down and watch a mossy roof come back to life.</p>
+    <div class="modes" role="tablist" aria-label="Choose what to watch">
+      <button type="button" role="tab" id="modePhotos" aria-selected="true">Real job photos</button>
+      <button type="button" role="tab" id="mode3d" aria-selected="false">New roof in 3D</button>
+    </div>
   </div>
   <div class="scrolly" id="scrolly">
     <div class="stage">
@@ -316,6 +335,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           <svg id="roof" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid slice" aria-label="Animation of a new roof being built"></svg>
           <canvas id="gl" aria-label="3D animation of a new roof being built"></canvas>
           <canvas id="frames" hidden></canvas>
+          <div class="story" id="story"></div>
           <div class="badge" id="badge"><div><b>10</b>YEAR<br>GUARANTEE</div></div>
           <div class="hud"><span class="label" id="hudLabel">Old roof</span><div class="bar"><i id="hudBar"></i></div></div>
         </div>
@@ -323,7 +343,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       </div>
     </div>
   </div>
-  <div class="build-outro"><a class="btn" href="#quote">Get a free new roof quote</a></div>
+  <div class="build-outro"><a class="btn" href="#quote" id="buildCta">Get my free roof quote</a></div>
 </section>
 
 <!-- PROMISE -->
@@ -454,7 +474,8 @@ document.getElementById('qform').addEventListener('submit',e=>{e.preventDefault(
 */
 const ROOF_FRAMES = null; // e.g. {count:180, path:i=>`frames/roof_${String(i).padStart(4,'0')}.webp`}
 
-const STEPS=[
+let STEPS;
+const STEPS_3D=[
   {t:'Old roof',      d:'Worn, mossy tiles letting water in.',                                   a:0.00,b:0.06},
   {t:'Strip the tiles',d:'Old tiles come off from the ridge down, and get cleared away safely.',  a:0.06,b:0.24},
   {t:'Remove old felt and battens',d:'The tired felt and rotten battens come off too.',         a:0.24,b:0.31},
@@ -466,7 +487,37 @@ const STEPS=[
   {t:'Done and guaranteed',d:'Site cleared, you inspect, then you pay.',                          a:0.95,b:1.01},
 ];
 const stepsEl=document.getElementById('steps');
-STEPS.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<span class="n">${i+1}</span><div><h4>${s.t}</h4><p>${s.d}</p></div>`;stepsEl.appendChild(li)});
+/* real job photo story: each slide is a real photo from the client's own jobs */
+const STORY=[
+  {t:'The problem',d:'Moss holds water on the tiles. In winter it freezes and cracks them.',img:'assets/job_moss.jpg',cap:'Moss this thick lets water in'},
+  {t:'Up close',d:'Lichen eats into the surface and stains the whole roof.',img:'assets/job_lichen.jpg',cap:'Lichen eating into the tiles'},
+  {t:'Safety first',d:'Harnessed and roped on before we touch a tile.',img:'assets/job_harness.jpg',cap:'Harnessed and roped on'},
+  {t:'Clean every tile',d:'We wash every tile by hand, from the ridge down.',img:'assets/job_wash.jpg',cap:'Every tile washed by hand'},
+  {t:'Halfway there',d:'Cleaned tiles at the bottom. Still to do at the top.',img:'assets/job_halfway.jpg',cap:'Clean at the bottom. Still to do at the top.'},
+  {t:'Fungicidal treatment',d:'A treatment that stops the moss coming back.',img:'assets/job_fungicide.jpg',cap:'Treated so the moss stays away'},
+  {t:'Ridge cleaned up',d:'Ridge tiles get the same care as the rest of the roof.',before:'assets/job_ridge_before.jpg',after:'assets/job_ridge_after.jpg'},
+  {t:'The result',d:'Same house, same angle. Before and after.',before:'assets/job_house_before.jpg',after:'assets/job_house_after.jpg'},
+  {t:'Done and guaranteed',d:'You inspect it, then you pay. Backed by our 10 year guarantee.',before:'assets/job_house2_before.jpg',after:'assets/job_house2_after.jpg'},
+];
+STORY.forEach((s,i,a)=>{s.a=i/a.length;s.b=(i+1)/a.length+(i===a.length-1?.01:0)});
+const storyEl=document.getElementById('story');
+STORY.forEach(s=>{const d=document.createElement('div');d.className='sl';
+  d.innerHTML=s.img?`<img src="${s.img}" alt="${s.cap}" loading="lazy"><div class="cap">${s.cap}</div><span class="real">Real job photo</span>`
+    :`<img src="${s.before}" alt="${s.t}: before" loading="lazy"><img class="after" src="${s.after}" alt="${s.t}: after" loading="lazy"><div class="divider"></div><span class="tag b">Before</span><span class="tag a">After</span>`;
+  storyEl.appendChild(d);s.el=d;s.im=d.querySelector('img');s.af=d.querySelector('.after');s.dv=d.querySelector('.divider')});
+function renderStory(p){
+  const fade=.025;
+  STORY.forEach((s,i)=>{
+    const t=clamp((p-s.a)/(s.b-s.a));
+    const op=i===0?1-clamp((p-s.b)/fade):clamp((p-s.a+fade)/fade)*(i===STORY.length-1?1:1-clamp((p-s.b)/fade));
+    s.el.style.opacity=op.toFixed(3);s.el.style.visibility=op>0?'visible':'hidden';
+    if(op<=0)return;
+    if(s.img){s.im.style.transform=`scale(${(1.04+.1*t).toFixed(4)}) translate(${(-1.5*t).toFixed(2)}%,${(-1*t).toFixed(2)}%)`}
+    else{const x=ease(clamp((t-.12)/.68))*100;s.af.style.clipPath=`inset(0 0 0 ${(100-x).toFixed(2)}%)`;s.dv.style.left=`calc(${(100-x).toFixed(2)}% - 1.5px)`;s.dv.style.opacity=x>0&&x<100?1:0}
+  });
+}
+function buildSteps(){stepsEl.innerHTML='';STEPS.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<span class="n">${i+1}</span><div><h4>${s.t}</h4><p>${s.d}</p></div>`;stepsEl.appendChild(li)})}
+STEPS=STORY;buildSteps();
 
 const NS='http://www.w3.org/2000/svg', svg=document.getElementById('roof');
 const el=(tag,attrs,parent=svg)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e};
@@ -860,11 +911,27 @@ function init3D(){
 /* ===== scroll driver ===== */
 const scrolly=document.getElementById('scrolly'),badge=document.getElementById('badge'),hudLabel=document.getElementById('hudLabel'),hudBar=document.getElementById('hudBar'),mstep=document.getElementById('mstep');
 const local=(p,a,b)=>clamp((p-a)/(b-a));
-let GL=null;
-try{GL=init3D()}catch(e){console.warn('3D roof unavailable, using illustration',e);GL=null}
-if(GL){svg.style.display='none'}else{document.getElementById('gl').hidden=true}
+let GL=null,mode='photos',glTried=false,lastP=0;
+const glCanvas=document.getElementById('gl');
+function setMode(m){
+  mode=m;
+  document.getElementById('modePhotos').setAttribute('aria-selected',m==='photos');
+  document.getElementById('mode3d').setAttribute('aria-selected',m==='3d');
+  document.getElementById('buildTitle').textContent=m==='photos'?'Scroll through a real job':'Scroll to watch a new roof go on';
+  document.getElementById('buildLead').textContent=m==='photos'
+    ?'These are real photos from our own jobs. Scroll down and watch a mossy roof come back to life.'
+    :'Every new roof goes on in the same careful order. Here it is in 3D, from stripping the old tiles to the final ridge.';
+  storyEl.hidden=m!=='photos';
+  if(m==='3d'&&!glTried){glTried=true;try{GL=init3D()}catch(e){console.warn('3D roof unavailable, using illustration',e);GL=null}}
+  glCanvas.hidden=!(m==='3d'&&GL);svg.style.display=(m==='3d'&&!GL)?'':'none';
+  STEPS=m==='photos'?STORY:STEPS_3D;buildSteps();render(lastP);
+}
+document.getElementById('modePhotos').addEventListener('click',()=>setMode('photos'));
+document.getElementById('mode3d').addEventListener('click',()=>setMode('3d'));
+svg.style.display='none';glCanvas.hidden=true;
 function render(p){
-  if(GL)GL.update(p);else renderSVG(p);
+  lastP=p;
+  if(mode==='photos')renderStory(p);else if(GL)GL.update(p);else renderSVG(p);
   renderUI(p);
 }
 function renderSVG(p){
