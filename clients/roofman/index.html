@@ -35,6 +35,7 @@ section{padding:80px 0}
 .topbar{background:var(--ink);color:#fff;font-size:15px}
 .topbar .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
 .topbar b{color:#b6e35a}
+@media(max-width:600px){.topbar .wrap>span:last-child{display:none}.topbar{font-size:14px}}
 header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
 header img{height:40px;width:auto}
@@ -50,16 +51,15 @@ nav a:hover{color:var(--green-dark)}
 @media(max-width:480px){header img{height:30px}.call .ic{width:36px;height:36px}.call .num{font-size:19px}header .wrap{height:64px}}
 
 /* Hero */
-.hero{position:relative;color:#fff;padding:72px 0 64px;background:#1b2023}
+.hero{position:relative;color:#fff;padding:88px 0;background:#11161a}
 .hero::before{content:"";position:absolute;inset:0;background:url(assets/job_hero.jpg) center 22%/cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(12,16,18,.78) 25%,rgba(12,16,18,.5) 60%,rgba(12,16,18,.42))}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(42px,6.4vw,72px);text-transform:uppercase}
+.hero h1{font-size:clamp(38px,5.2vw,64px);text-transform:uppercase;text-wrap:balance}
 .hero h1 em{font-style:normal;color:#9fd534}
-.hero p.sub{font-size:20px;margin:18px 0 26px;max-width:560px;color:#e6ebe8}
-.ticks{display:grid;gap:10px;margin-bottom:28px}
-.ticks li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-weight:600}
-.ticks svg{flex:none;margin-top:3px}
+.hero p.sub{font-size:21px;margin:18px 0 22px;max-width:520px;color:#eef2ef}
+.seework{align-self:flex-start;display:inline-flex;gap:8px;color:#fff;font-weight:700;font-size:17px;text-decoration:none;border-bottom:2px solid #9fd534;padding-bottom:2px}
+.seework:hover{color:#9fd534}
 #quote{scroll-margin-top:84px}
 .quote-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
 .qhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -100,7 +100,14 @@ nav a:hover{color:var(--green-dark)}
 .done-msg h3{color:var(--green-dark);font-size:30px;margin-bottom:6px}
 .done-msg p{color:var(--ink-2)}
 @media(max-width:400px){.opts{grid-template-columns:1fr}.opt{min-height:0}}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding:48px 0}}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:20px}
+  .hero{padding:0 0 28px}
+  .hero::before,.hero::after{display:none}
+  .hero-copy{position:relative;min-height:58vh;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 0 32px}
+  .hero-copy::before{content:"";position:absolute;inset:0 -16px;z-index:-1;background:linear-gradient(180deg,rgba(12,16,18,.35),rgba(12,16,18,.55) 55%,#11161a),url(assets/job_hero.jpg) center 30%/cover}
+  .hero p.sub{font-size:18px}
+}
 
 /* Trust strip */
 .trust{background:var(--green);color:#fff;padding:22px 0}
@@ -206,8 +213,6 @@ nav a:hover{color:var(--green-dark)}
 .qs summary::after{content:"+";color:var(--green-dark);font-size:24px;line-height:1}
 .qs details[open] summary::after{content:"–"}
 .qs p{margin-top:8px;color:var(--ink-2)}
-.slots{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:15px;color:#e6ebe8}
-.slots i{width:9px;height:9px;border-radius:50%;background:#9fd534;box-shadow:0 0 0 4px rgba(159,213,52,.25)}
 /* Final CTA + footer */
 .final{text-align:center;background:var(--green);color:#fff}
 .final h2{font-size:clamp(34px,5vw,56px)}
@@ -225,14 +230,14 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
   .mbar a:last-child{background:var(--green)}
   body{padding-bottom:54px}
 }
-.mock{position:fixed;left:12px;bottom:12px;z-index:70;background:#fff6d6;color:#7a5c00;border:1px solid #d9a400;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
-@media(max-width:700px){.mock{bottom:62px}}
+.mock{position:fixed;right:12px;bottom:12px;z-index:70;background:#fff6d6;color:#7a5c00;border:1px solid #d9a400;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+@media(max-width:700px){.mock{display:none}}
 </style>
 </head>
 <body>
 
 <div class="topbar"><div class="wrap">
-  <span><b>No deposit.</b> You only pay when you're happy with the job.</span>
+  <span><b>No deposit.</b> Pay only when you're happy.</span>
   <span>Free quote within 24 hours</span>
 </div></div>
 
@@ -253,20 +258,10 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
 
 <!-- HERO -->
 <section class="hero"><div class="wrap">
-  <div>
-    <div class="eyebrow" style="color:#9fd534">Roof cleaning, repairs and new roofs</div>
-    <h1>Your roof cleaned, treated and <em>guaranteed for 10 years</em></h1>
-    <p class="sub">We strip out the moss, treat every tile and fix broken ones while we're up there. You don't pay a penny until you've inspected the work.</p>
-    <ul class="ticks">
-      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>No deposit. Payment only on completion.</li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>10 year guarantee on every roof clean.</li>
-      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>We'll beat any genuine like-for-like quote.</li>
-    </ul>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn" href="#packages">See fixed prices</a>
-      <a class="btn ghost" href="#work">See our work</a>
-    </div>
-    <div class="slots"><i></i>Limited dates each month. Book early to get the date you want.</div>
+  <div class="hero-copy">
+    <h1>Your roof cleaned and <em>guaranteed for 10&nbsp;years</em></h1>
+    <p class="sub">No deposit. You only pay once you've inspected the work.</p>
+    <a class="seework" href="#work">See our work <span aria-hidden="true">&rarr;</span></a>
   </div>
 
   <div class="quote-card" id="quote">
@@ -331,8 +326,8 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
     <p class="lead" style="margin-top:18px">Then the roof gets cleaned, treated and repaired, and you inspect it before you pay.</p>
   </div>
   <div class="photo-pair">
-    <figure><img src="assets/RoofCleaning1before.jpg" alt="Mossy, stained roof before cleaning"><figcaption>Before</figcaption></figure>
-    <figure><img src="assets/RoofCleaning1after.jpg" alt="Clean, restored roof after Roofman's treatment"><figcaption>After</figcaption></figure>
+    <figure><img src="assets/job_w1_before.jpg" alt="Mossy, stained roof before cleaning"><figcaption>Before</figcaption></figure>
+    <figure><img src="assets/job_w1_after.jpg" alt="Clean, restored roof after treatment"><figcaption>After</figcaption></figure>
   </div>
 </div></section>
 
@@ -342,19 +337,19 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
   <h2>Real roofs we've restored</h2>
   <p class="lead">Every photo here is from one of our jobs. Drag the slider to see each roof before and after.</p>
   <div class="ba-grid">
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w7_before.jpg" alt="Red-brick detached house: before" loading="lazy"><img class="after" src="assets/job_w7_after.jpg" alt="Red-brick detached house: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Red-brick detached house"><div class="knob"></div></div><figcaption>Red-brick detached house</figcaption></figure>
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w6_before.jpg" alt="Bungalow roof: before" loading="lazy"><img class="after" src="assets/job_w6_after.jpg" alt="Bungalow roof: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Bungalow roof"><div class="knob"></div></div><figcaption>Bungalow roof</figcaption></figure>
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w8_before.jpg" alt="Stone-built family home: before" loading="lazy"><img class="after" src="assets/job_w8_after.jpg" alt="Stone-built family home: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Stone-built family home"><div class="knob"></div></div><figcaption>Stone-built family home</figcaption></figure>
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w2_before.jpg" alt="Garden building: before" loading="lazy"><img class="after" src="assets/job_w2_after.jpg" alt="Garden building: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Garden building"><div class="knob"></div></div><figcaption>Garden building</figcaption></figure>
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w3_before.jpg" alt="Ridge tiles up close: before" loading="lazy"><img class="after" src="assets/job_w3_after.jpg" alt="Ridge tiles up close: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Ridge tiles up close"><div class="knob"></div></div><figcaption>Ridge tiles up close</figcaption></figure>
-    <figure class="ba"><div class="ba-box"><img src="assets/job_w5_before.jpg" alt="Valley and tiles up close: before" loading="lazy"><img class="after" src="assets/job_w5_after.jpg" alt="Valley and tiles up close: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Valley and tiles up close"><div class="knob"></div></div><figcaption>Valley and tiles up close</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w7_before.jpg" alt="Red-brick detached house: before"><img class="after" src="assets/job_w7_after.jpg" alt="Red-brick detached house: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Red-brick detached house"><div class="knob"></div></div><figcaption>Red-brick detached house</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w6_before.jpg" alt="Bungalow roof: before"><img class="after" src="assets/job_w6_after.jpg" alt="Bungalow roof: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Bungalow roof"><div class="knob"></div></div><figcaption>Bungalow roof</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w8_before.jpg" alt="Stone-built family home: before"><img class="after" src="assets/job_w8_after.jpg" alt="Stone-built family home: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Stone-built family home"><div class="knob"></div></div><figcaption>Stone-built family home</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w2_before.jpg" alt="Garden building: before"><img class="after" src="assets/job_w2_after.jpg" alt="Garden building: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Garden building"><div class="knob"></div></div><figcaption>Garden building</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w3_before.jpg" alt="Ridge tiles up close: before"><img class="after" src="assets/job_w3_after.jpg" alt="Ridge tiles up close: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Ridge tiles up close"><div class="knob"></div></div><figcaption>Ridge tiles up close</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w5_before.jpg" alt="Valley and tiles up close: before"><img class="after" src="assets/job_w5_after.jpg" alt="Valley and tiles up close: after"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Valley and tiles up close"><div class="knob"></div></div><figcaption>Valley and tiles up close</figcaption></figure>
   </div>
   <h3>On the job</h3>
   <div class="onjob">
-    <figure><img src="assets/job_harness.jpg" alt="Roofer harnessed and roped on before starting" loading="lazy"><figcaption>Harnessed and roped on before we start</figcaption></figure>
-    <figure><img src="assets/job_wash.jpg" alt="Roofer washing tiles by hand" loading="lazy"><figcaption>Every tile washed by hand</figcaption></figure>
-    <figure><img src="assets/job_halfway.jpg" alt="Roof halfway cleaned, clean tiles at the bottom" loading="lazy"><figcaption>Halfway: clean at the bottom, still to do at the top</figcaption></figure>
-    <figure><img src="assets/job_fungicide.jpg" alt="Fungicide treatment being sprayed on a roof" loading="lazy"><figcaption>Fungicide so the moss stays away</figcaption></figure>
+    <figure><img src="assets/job_harness.jpg" alt="Roofer harnessed and roped on before starting"><figcaption>Harnessed and roped on before we start</figcaption></figure>
+    <figure><img src="assets/job_wash.jpg" alt="Roofer washing tiles by hand"><figcaption>Every tile washed by hand</figcaption></figure>
+    <figure><img src="assets/job_halfway.jpg" alt="Roof halfway cleaned, clean tiles at the bottom"><figcaption>Halfway: clean at the bottom, still to do at the top</figcaption></figure>
+    <figure><img src="assets/job_fungicide.jpg" alt="Fungicide treatment being sprayed on a roof"><figcaption>Fungicide so the moss stays away</figcaption></figure>
   </div>
   <div class="work-cta"><a class="btn" href="#quote">Get my free roof quote</a></div>
 </div></section>
