@@ -51,7 +51,7 @@ nav a:hover{color:var(--green-dark)}
 
 /* Hero */
 .hero{position:relative;color:#fff;padding:72px 0 64px;background:#1b2023}
-.hero::before{content:"";position:absolute;inset:0;background:url(assets/job_house2_after.jpg) center 22%/cover}
+.hero::before{content:"";position:absolute;inset:0;background:url(assets/job_hero.jpg) center 22%/cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(12,16,18,.78) 25%,rgba(12,16,18,.5) 60%,rgba(12,16,18,.42))}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(42px,6.4vw,72px);text-transform:uppercase}
@@ -122,54 +122,30 @@ nav a:hover{color:var(--green-dark)}
 .photo-pair figure:last-child figcaption{background:var(--green)}
 @media(max-width:900px){.big-quote .wrap{grid-template-columns:1fr}}
 
-/* Roof build scroll */
-.build{background:#11161a;color:#fff;padding:0;position:relative}
-.build-intro{padding:80px 0 30px;text-align:center}
-.build-intro .lead{color:#c8d0cc;margin:0 auto}
-.build-intro .eyebrow{color:#9fd534}
-.scrolly{height:620vh;position:relative}
-.stage{position:sticky;top:72px;height:calc(100vh - 72px);display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:center;max-width:1240px;margin:0 auto;padding:0 16px}
-.steps{list-style:none;display:grid;gap:6px}
-.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:10px 12px;border-radius:12px;opacity:.38;transition:opacity .3s,background .3s}
-.steps li.on{opacity:1;background:rgba(114,174,0,.14)}
-.steps li.past{opacity:.7}
-.steps .n{width:34px;height:34px;border-radius:50%;border:2px solid #9fd534;display:grid;place-items:center;font-weight:700;font-family:"Barlow Condensed";font-size:18px}
-.steps li.past .n,.steps li.on .n{background:#9fd534;color:#11161a}
-.steps h4{font-family:"Barlow Condensed";font-size:22px;line-height:1.1}
-.steps p{font-size:14px;color:#c8d0cc;display:none}
-.steps li.on p{display:block}
-.viewport{position:relative;height:min(76vh,640px);border-radius:18px;overflow:hidden;background:linear-gradient(#8fb6d6,#cfe1ec 60%,#e9f0f2)}
-.hud{position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:center;gap:12px;z-index:2}
-.hud .bar{flex:1;height:6px;background:rgba(0,0,0,.25);border-radius:9px;overflow:hidden}
-.hud .bar i{display:block;height:100%;width:0;background:var(--green)}
-.hud .label{background:rgba(17,22,26,.85);padding:6px 12px;border-radius:999px;font-weight:700;font-size:14px;white-space:nowrap}
-.badge{position:absolute;right:20px;bottom:56px;width:130px;height:130px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Barlow Condensed";font-size:20px;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:scale(0) rotate(-20deg);transition:transform .45s cubic-bezier(.3,1.6,.5,1);z-index:2}
-.badge b{font-size:46px;display:block}
-.badge.show{transform:scale(1) rotate(-8deg)}
-.mobile-step{display:none}
-@media(max-width:900px){
-  .stage{grid-template-columns:1fr;align-content:center;gap:12px}
-  .steps{display:none}
-  .mobile-step{display:block;background:rgba(114,174,0,.14);border-radius:12px;padding:12px 14px}
-  .mobile-step h4{font-family:"Barlow Condensed";font-size:24px}
-  .mobile-step p{font-size:15px;color:#c8d0cc}
-  .viewport{height:auto;aspect-ratio:1000/640}
-  .stage{top:64px;height:calc(100vh - 64px)}
-  .badge{width:96px;height:96px;font-size:15px}.badge b{font-size:34px}
-}
-.build-outro{text-align:center;padding:40px 0 80px}
-.story{position:absolute;inset:0;background:#11161a}
-.story .sl{position:absolute;inset:0;opacity:0;overflow:hidden;will-change:opacity}
-.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-.story .after{clip-path:inset(0 0 0 100%)}
-.story .divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.5);left:0}
-.story .divider::after{content:"";position:absolute;top:50%;left:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6' fill='none' stroke='%2311161a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/22px no-repeat}
-.story .tag{position:absolute;top:16px;padding:5px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:rgba(17,22,26,.8)}
-.story .tag.b{left:16px}.story .tag.a{right:16px;background:var(--green)}
-.story .cap{position:absolute;left:16px;top:16px;max-width:70%;background:rgba(17,22,26,.82);color:#fff;padding:8px 14px;border-radius:12px;font-family:"Barlow Condensed";font-size:22px;line-height:1.1}
-.story .real{position:absolute;right:16px;top:16px;background:rgba(255,255,255,.92);color:#11161a;font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px}
-@media(max-width:900px){.story .cap{font-size:18px}}
-
+/* Our work */
+.work{background:#11161a;color:#fff}
+.work .eyebrow{color:#9fd534}
+.work .lead{color:#c8d0cc}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.ba{margin:0;background:#1b2226;border-radius:var(--radius);overflow:hidden}
+.ba-box{position:relative;aspect-ratio:4/3;overflow:hidden;--pos:50%;user-select:none;touch-action:pan-y;cursor:ew-resize}
+.ba-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-box .after{clip-path:inset(0 0 0 var(--pos))}
+.ba-box .line{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.5);pointer-events:none}
+.ba-box .knob{position:absolute;top:50%;left:var(--pos);width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6' fill='none' stroke='%2311161a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/22px no-repeat;box-shadow:0 4px 14px rgba(0,0,0,.4);pointer-events:none}
+.ba-box input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;pointer-events:none}
+.ba-box input:focus-visible~.knob{outline:3px solid #9fd534;outline-offset:3px}
+.ba-tag{position:absolute;top:10px;padding:4px 10px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;pointer-events:none}
+.ba-tag.b{left:10px;background:rgba(17,22,26,.85)}.ba-tag.a{right:10px;background:var(--green)}
+.ba figcaption{padding:12px 14px;font-weight:600;font-size:15px;color:#dfe5e2}
+.onjob{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.onjob figure{margin:0;border-radius:var(--radius);overflow:hidden;background:#1b2226}
+.onjob img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.onjob figcaption{padding:10px 12px;font-size:14px;color:#c8d0cc}
+.work h3{font-size:28px;margin-top:44px}
+.work-cta{text-align:center;margin-top:36px}
+@media(max-width:900px){.ba-grid{grid-template-columns:1fr 1fr}.onjob{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ba-grid{grid-template-columns:1fr}}
 /* Packages */
 .packages .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
 .pkg{border:1.5px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;background:#fff}
@@ -183,15 +159,6 @@ nav a:hover{color:var(--green-dark)}
 .pkg .btn{justify-content:center}
 .beat{margin-top:22px;text-align:center;color:var(--ink-2)}
 @media(max-width:900px){.packages .grid{grid-template-columns:1fr}}
-
-/* Gallery */
-.gallery{background:var(--bg-2)}
-.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
-.gal figure{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.06)}
-.gal img{aspect-ratio:4/3;object-fit:cover;width:100%}
-.gal figcaption{padding:12px 14px;font-weight:600;font-size:15px}
-@media(max-width:800px){.gal{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.gal{grid-template-columns:1fr}}
 
 /* Reviews */
 .reviews .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
@@ -272,9 +239,9 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
 <header><div class="wrap">
   <a href="#"><img src="assets/logo.png" alt="Roofman Nationwide"></a>
   <nav>
-    <a href="#build">Our Process</a>
+    <a href="#process">How It Works</a>
     <a href="#packages">Roof Cleaning</a>
-    <a href="#gallery">Our Work</a>
+    <a href="#work">Our Work</a>
     <a href="#reviews">Reviews</a>
     <a href="#areas">Areas</a>
   </nav>
@@ -297,7 +264,7 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
     </ul>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <a class="btn" href="#packages">See fixed prices</a>
-      <a class="btn ghost" href="#build">See a real job</a>
+      <a class="btn ghost" href="#work">See our work</a>
     </div>
     <div class="slots"><i></i>Limited dates each month. Book early to get the date you want.</div>
   </div>
@@ -369,28 +336,28 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
   </div>
 </div></section>
 
-<!-- ROOF BUILD SCROLL -->
-<section class="build" id="build">
-  <div class="wrap build-intro">
-    <div class="eyebrow">See exactly what we do</div>
-    <h2>Scroll through a real job</h2>
-    <p class="lead">These are real photos from our own jobs. Scroll down and watch a mossy roof come back to life.</p>
+<!-- OUR WORK -->
+<section class="work" id="work"><div class="wrap">
+  <div class="eyebrow">Our work</div>
+  <h2>Real roofs we've restored</h2>
+  <p class="lead">Every photo here is from one of our jobs. Drag the slider to see each roof before and after.</p>
+  <div class="ba-grid">
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w7_before.jpg" alt="Red-brick detached house: before" loading="lazy"><img class="after" src="assets/job_w7_after.jpg" alt="Red-brick detached house: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Red-brick detached house"><div class="knob"></div></div><figcaption>Red-brick detached house</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w6_before.jpg" alt="Bungalow roof: before" loading="lazy"><img class="after" src="assets/job_w6_after.jpg" alt="Bungalow roof: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Bungalow roof"><div class="knob"></div></div><figcaption>Bungalow roof</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w8_before.jpg" alt="Stone-built family home: before" loading="lazy"><img class="after" src="assets/job_w8_after.jpg" alt="Stone-built family home: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Stone-built family home"><div class="knob"></div></div><figcaption>Stone-built family home</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w2_before.jpg" alt="Garden building: before" loading="lazy"><img class="after" src="assets/job_w2_after.jpg" alt="Garden building: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Garden building"><div class="knob"></div></div><figcaption>Garden building</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w3_before.jpg" alt="Ridge tiles up close: before" loading="lazy"><img class="after" src="assets/job_w3_after.jpg" alt="Ridge tiles up close: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Ridge tiles up close"><div class="knob"></div></div><figcaption>Ridge tiles up close</figcaption></figure>
+    <figure class="ba"><div class="ba-box"><img src="assets/job_w5_before.jpg" alt="Valley and tiles up close: before" loading="lazy"><img class="after" src="assets/job_w5_after.jpg" alt="Valley and tiles up close: after" loading="lazy"><span class="ba-tag b">Before</span><span class="ba-tag a">After</span><div class="line"></div><input type="range" min="0" max="100" value="50" aria-label="Before and after slider: Valley and tiles up close"><div class="knob"></div></div><figcaption>Valley and tiles up close</figcaption></figure>
   </div>
-  <div class="scrolly" id="scrolly">
-    <div class="stage">
-      <ol class="steps" id="steps"></ol>
-      <div>
-        <div class="viewport" id="viewport">
-          <div class="story" id="story"></div>
-          <div class="badge" id="badge"><div><b>10</b>YEAR<br>GUARANTEE</div></div>
-          <div class="hud"><span class="label" id="hudLabel">Old roof</span><div class="bar"><i id="hudBar"></i></div></div>
-        </div>
-        <div class="mobile-step" id="mstep" style="margin-top:12px"></div>
-      </div>
-    </div>
+  <h3>On the job</h3>
+  <div class="onjob">
+    <figure><img src="assets/job_harness.jpg" alt="Roofer harnessed and roped on before starting" loading="lazy"><figcaption>Harnessed and roped on before we start</figcaption></figure>
+    <figure><img src="assets/job_wash.jpg" alt="Roofer washing tiles by hand" loading="lazy"><figcaption>Every tile washed by hand</figcaption></figure>
+    <figure><img src="assets/job_halfway.jpg" alt="Roof halfway cleaned, clean tiles at the bottom" loading="lazy"><figcaption>Halfway: clean at the bottom, still to do at the top</figcaption></figure>
+    <figure><img src="assets/job_fungicide.jpg" alt="Fungicide treatment being sprayed on a roof" loading="lazy"><figcaption>Fungicide so the moss stays away</figcaption></figure>
   </div>
-  <div class="build-outro"><a class="btn" href="#quote" id="buildCta">Get my free roof quote</a></div>
-</section>
+  <div class="work-cta"><a class="btn" href="#quote">Get my free roof quote</a></div>
+</div></section>
 
 <!-- PROMISE -->
 <section class="promise"><div class="wrap">
@@ -431,17 +398,6 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
   <p class="beat"><b>Got a quote elsewhere?</b> Send it to us. We'll beat any genuine like-for-like price.</p>
 </div></section>
 
-<!-- GALLERY -->
-<section class="gallery" id="gallery"><div class="wrap">
-  <div class="eyebrow">Real jobs, real roofs</div>
-  <h2>Our recent work</h2>
-  <div class="gal">
-    <figure><img src="assets/RoofCleaning1after.jpg" alt="Restored tiled roof on a semi-detached house"><figcaption>Full restoration and repairs</figcaption></figure>
-    <figure><img src="assets/RoofCleaning7After.jpg" alt="Clean roof after moss removal"><figcaption>Moss removal and fungicide treatment</figcaption></figure>
-    <figure><img src="assets/RoofCleaning5After.jpg" alt="Roof after Roofman cleaning"><figcaption>Roof clean and gutter clear</figcaption></figure>
-  </div>
-</div></section>
-
 <!-- REVIEWS -->
 <section class="reviews" id="reviews"><div class="wrap">
   <div class="eyebrow">Reviews</div>
@@ -455,7 +411,7 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
 </div></section>
 
 <!-- PROCESS -->
-<section class="process"><div class="wrap">
+<section class="process" id="process"><div class="wrap">
   <div class="eyebrow">How it works</div>
   <h2>Four steps. Zero risk.</h2>
   <div class="grid">
@@ -509,7 +465,6 @@ footer .credits{flex-basis:100%;font-size:12px;color:#6f7975}footer .credits a{c
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
-const clamp=t=>t<0?0:t>1?1:t, ease=t=>1-Math.pow(1-t,3);
 
 /* ================= QUOTE FORM: 2 easy steps ================= */
 const form=document.getElementById('qform'),pane1=document.getElementById('pane1'),pane2=document.getElementById('pane2');
@@ -554,58 +509,18 @@ form.addEventListener('submit',e=>{
   document.getElementById('doneText').textContent=`We'll call you ${callTime} about your ${service.toLowerCase()==='not sure'?'roof':service.toLowerCase()}, within 24 hours.`;
 });
 
-/* ================= REAL JOB PHOTO STORY (scroll) ================= */
-const stepsEl=document.getElementById('steps');
-/* real job photo story: each slide is a real photo from the client's own jobs */
-const STORY=[
-  {t:'The problem',d:'Moss holds water on the tiles. In winter it freezes and cracks them.',img:'assets/job_moss.jpg',cap:'Moss this thick lets water in'},
-  {t:'Up close',d:'Lichen eats into the surface and stains the whole roof.',img:'assets/job_lichen.jpg',cap:'Lichen eating into the tiles'},
-  {t:'Safety first',d:'Harnessed and roped on before we touch a tile.',img:'assets/job_harness.jpg',cap:'Harnessed and roped on'},
-  {t:'Clean every tile',d:'We wash every tile by hand, from the ridge down.',img:'assets/job_wash.jpg',cap:'Every tile washed by hand'},
-  {t:'Halfway there',d:'Cleaned tiles at the bottom. Still to do at the top.',img:'assets/job_halfway.jpg',cap:'Clean at the bottom. Still to do at the top.'},
-  {t:'Fungicidal treatment',d:'A treatment that stops the moss coming back.',img:'assets/job_fungicide.jpg',cap:'Treated so the moss stays away'},
-  {t:'Ridge cleaned up',d:'Ridge tiles get the same care as the rest of the roof.',before:'assets/job_ridge_before.jpg',after:'assets/job_ridge_after.jpg'},
-  {t:'The result',d:'Same house, same angle. Before and after.',before:'assets/job_house_before.jpg',after:'assets/job_house_after.jpg'},
-  {t:'Done and guaranteed',d:'You inspect it, then you pay. Backed by our 10 year guarantee.',before:'assets/job_house2_before.jpg',after:'assets/job_house2_after.jpg'},
-];
-STORY.forEach((s,i,a)=>{s.a=i/a.length;s.b=(i+1)/a.length+(i===a.length-1?.01:0)});
-const storyEl=document.getElementById('story');
-STORY.forEach(s=>{const d=document.createElement('div');d.className='sl';
-  d.innerHTML=s.img?`<img src="${s.img}" alt="${s.cap}" loading="lazy"><div class="cap">${s.cap}</div><span class="real">Real job photo</span>`
-    :`<img src="${s.before}" alt="${s.t}: before" loading="lazy"><img class="after" src="${s.after}" alt="${s.t}: after" loading="lazy"><div class="divider"></div><span class="tag b">Before</span><span class="tag a">After</span>`;
-  storyEl.appendChild(d);s.el=d;s.im=d.querySelector('img');s.af=d.querySelector('.after');s.dv=d.querySelector('.divider')});
-function renderStory(p){
-  const fade=.025;
-  STORY.forEach((s,i)=>{
-    const t=clamp((p-s.a)/(s.b-s.a));
-    const op=i===0?1-clamp((p-s.b)/fade):clamp((p-s.a+fade)/fade)*(i===STORY.length-1?1:1-clamp((p-s.b)/fade));
-    s.el.style.opacity=op.toFixed(3);s.el.style.visibility=op>0?'visible':'hidden';
-    if(op<=0)return;
-    if(s.img){s.im.style.transform=`scale(${(1.04+.1*t).toFixed(4)}) translate(${(-1.5*t).toFixed(2)}%,${(-1*t).toFixed(2)}%)`}
-    else{const x=ease(clamp((t-.12)/.68))*100;s.af.style.clipPath=`inset(0 0 0 ${(100-x).toFixed(2)}%)`;s.dv.style.left=`calc(${(100-x).toFixed(2)}% - 1.5px)`;s.dv.style.opacity=x>0&&x<100?1:0}
-  });
-}
-
-let STEPS=STORY;
-STEPS.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<span class="n">${i+1}</span><div><h4>${s.t}</h4><p>${s.d}</p></div>`;stepsEl.appendChild(li)});
-
-const scrolly=document.getElementById('scrolly'),badge=document.getElementById('badge'),hudLabel=document.getElementById('hudLabel'),hudBar=document.getElementById('hudBar'),mstep=document.getElementById('mstep');
-function render(p){
-  renderStory(p);
-  const idx=Math.max(0,STEPS.findIndex(s=>p>=s.a&&p<s.b));
-  [...stepsEl.children].forEach((li,i)=>{li.className=i===idx?'on':i<idx?'past':''});
-  hudLabel.textContent=`Step ${idx+1} of ${STEPS.length}: ${STEPS[idx].t}`;
-  hudBar.style.width=(p*100).toFixed(1)+'%';
-  mstep.innerHTML=`<h4>${idx+1}. ${STEPS[idx].t}</h4><p>${STEPS[idx].d}</p>`;
-  badge.classList.toggle('show',p>.955);
-}
-let ticking=false;
-function onScroll(){
-  if(ticking)return;ticking=true;
-  requestAnimationFrame(()=>{const r=scrolly.getBoundingClientRect();render(clamp(-r.top/(r.height-innerHeight)));ticking=false});
-}
-addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
-onScroll();
+/* ================= BEFORE / AFTER SLIDERS ================= */
+document.querySelectorAll('.ba-box').forEach(box=>{
+  const r=box.querySelector('input');
+  const set=v=>{v=Math.max(0,Math.min(100,v));r.value=v;box.style.setProperty('--pos',v+'%')};
+  r.addEventListener('input',()=>set(+r.value));            // keyboard: arrow keys
+  let drag=false;
+  const at=e=>{const b=box.getBoundingClientRect();set((e.clientX-b.left)/b.width*100)};
+  box.addEventListener('pointerdown',e=>{drag=true;box.setPointerCapture(e.pointerId);at(e);r.focus({preventScroll:true})});
+  box.addEventListener('pointermove',e=>{if(drag)at(e)});
+  ['pointerup','pointercancel'].forEach(t=>box.addEventListener(t,()=>drag=false));
+  set(50);
+});
 </script>
 </body>
 </html>
