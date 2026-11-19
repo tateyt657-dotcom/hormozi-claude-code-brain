@@ -634,6 +634,7 @@ const debrisBits=[];for(let i=0;i<26;i++){const r=el('rect',{x:0,y:0,width:22,he
 
 /* ================= 3D ROOF (Three.js) =================
    Real lighting, shadows and individual 3D tiles. Falls back to the SVG above if WebGL is missing. */
+const TEX=f=>(window.ROOF_TEX&&window.ROOF_TEX[f])||('textures/'+f);
 function init3D(){
   if(!window.THREE)return null;
   const T=THREE,cv=document.getElementById('gl');
@@ -642,7 +643,7 @@ function init3D(){
   if(!renderer.getContext())return null;
   const mobile=matchMedia('(max-width:900px)').matches;
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.5:2));
-  renderer.outputEncoding=T.sRGBEncoding;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  renderer.outputEncoding=T.sRGBEncoding;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
   const scene=new T.Scene(),cam=new T.PerspectiveCamera(36,1.6,.1,260);
   let sd=91;const R=()=>(sd=(sd*16807)%2147483647)/2147483647;
@@ -652,11 +653,17 @@ function init3D(){
   const blob=(x,cx,cy,r,col)=>{const g=x.createRadialGradient(cx,cy,0,cx,cy,r);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.beginPath();x.arc(cx,cy,r,0,7);x.fill()};
   const std=o=>new T.MeshStandardMaterial(o);
 
-  /* sky, fog, light */
-  scene.background=tex(4,256,(x,w,h)=>{const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#6d9bc4');g.addColorStop(.55,'#b4cde0');g.addColorStop(1,'#dfe8ec');x.fillStyle=g;x.fillRect(0,0,w,h)});
-  scene.fog=new T.Fog(0xcad9e3,40,120);
-  scene.add(new T.HemisphereLight(0xdde9f5,0x56653f,.7));
-  const sun=new T.DirectionalLight(0xfff0d8,1.65);sun.position.set(-13,21,15);sun.castShadow=true;
+  /* real photo textures (Poly Haven, CC0) */
+  const TL=new T.TextureLoader();
+  const photo=(f,rx=1,ry=1,color=true,ox=0,oy=0)=>{const t=TL.load(TEX(f));t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(rx,ry);t.offset.set(ox,oy);if(color)t.encoding=T.sRGBEncoding;t.anisotropy=aniso;return t};
+
+  /* real sky: an overcast field photographed in 360, used as background and as the light source */
+  const sky=TL.load(TEX('sky_4k.jpg'),t=>{t.mapping=T.EquirectangularReflectionMapping;t.encoding=T.sRGBEncoding;
+    const pm=new T.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(t).texture;pm.dispose();scene.background=t});
+  scene.background=new T.Color(0xc9cdd0);
+  scene.fog=new T.Fog(0x4e4b2e,35,170);
+  scene.add(new T.HemisphereLight(0xe4e8ec,0x5a6248,.35));
+  const sun=new T.DirectionalLight(0xfff4e6,1.0);sun.position.set(-13,21,15);sun.castShadow=true;
   sun.shadow.mapSize.set(mobile?1024:2048,mobile?1024:2048);
   Object.assign(sun.shadow.camera,{left:-15,right:15,top:15,bottom:-15,near:1,far:70});sun.shadow.bias=-.0005;sun.shadow.normalBias=.02;
   scene.add(sun);
@@ -676,13 +683,15 @@ function init3D(){
 
   /* materials */
   const M={
-    tile:std({map:tileTex,roughness:.8}),
-    moss:[0,1,2,3].map(k=>std({map:mossTex(k),roughness:.95})),
-    raf:std({map:wood('#c99b62'),roughness:.8}),
-    rot:std({map:wood('#4f3d2a'),roughness:1,transparent:true}),
-    fresh:std({map:wood('#e4bb84'),roughness:.75,transparent:true,opacity:0}),
-    oldBat:std({map:wood('#6b5038'),roughness:.95,transparent:true}),
-    bat:std({map:wood('#d9a86a'),roughness:.75}),
+    raf:std({map:photo('fine_grained_wood_Diffuse.jpg',.25,2),color:0xf0d2a8,roughness:.8}),
+    rot:std({map:photo('fine_grained_wood_Diffuse.jpg',.25,2),color:0x5a4634,roughness:1,transparent:true}),
+    fresh:std({map:photo('fine_grained_wood_Diffuse.jpg',.25,2),color:0xffe2b8,roughness:.75,transparent:true,opacity:0}),
+    oldBat:std({map:photo('fine_grained_wood_Diffuse.jpg',3,.1),color:0x7a6550,roughness:.95,transparent:true}),
+    bat:std({map:photo('fine_grained_wood_Diffuse.jpg',3,.1),color:0xffd9a8,roughness:.75}),
+    oldRoof:std({map:photo('grey_roof_tiles_Diffuse.jpg'),normalMap:photo('grey_roof_tiles_nor_gl.jpg',1,1,false),roughness:.95}),
+    newRoof:std({map:photo('grey_roof_tiles_02_Diffuse.jpg'),normalMap:photo('grey_roof_tiles_02_nor_gl.jpg',1,1,false),roughnessMap:photo('grey_roof_tiles_02_Rough.jpg',1,1,false),roughness:1,color:0xc4c8cc,envMapIntensity:.8}),
+    oldPiece:std({map:photo('grey_roof_tiles_Diffuse.jpg',1/8,1/10,true,.25,.3),roughness:.95}),
+    newPiece:std({map:photo('grey_roof_tiles_02_Diffuse.jpg',1/9,1/11,true,.22,.36),roughness:.8}),
     felt:std({map:feltTex,roughness:.6,transparent:true,side:T.DoubleSide}),
     memb:std({map:membTex,roughness:.55,side:T.DoubleSide}),
     white:std({color:0xf1f1ec,roughness:.5}),
@@ -692,7 +701,7 @@ function init3D(){
     metal:std({color:0x9aa2a7,metalness:.7,roughness:.35}),
     board:std({map:wood('#b39468'),roughness:.9}),
     loft:std({color:0x15110d,roughness:1}),
-    ridge:std({map:tileTex,color:0xb8bcc0,roughness:.75,side:T.DoubleSide}),
+    ridge:std({map:photo('grey_roof_tiles_02_Diffuse.jpg',.3,.08),color:0xd8dadc,roughness:.8,side:T.DoubleSide}),
   };
 
   const add=(m,par)=>{(par||scene).add(m);return m};
@@ -701,23 +710,27 @@ function init3D(){
   const cyl=(r,len,mat,x,y,z,axis,par)=>{const g=new T.CylinderGeometry(r,r,len,10);if(axis==='x')g.rotateZ(Math.PI/2);if(axis==='z')g.rotateX(Math.PI/2);return mesh(g,mat,x,y,z,par)};
 
   /* ground and garden */
-  const ground=new T.Mesh(new T.PlaneGeometry(260,260),std({map:grassTex,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
-  const drive=new T.Mesh(new T.PlaneGeometry(4,12),std({color:0x8d8b86,roughness:.95}));drive.rotation.x=-Math.PI/2;drive.position.set(-.2,.01,10);drive.receiveShadow=true;scene.add(drive);
+  const fade=tex(256,256,(x,w,h)=>{const g=x.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);g.addColorStop(0,'#fff');g.addColorStop(.45,'#fff');g.addColorStop(1,'#000');x.fillStyle=g;x.fillRect(0,0,w,h)});fade.encoding=T.LinearEncoding;
+  const ground=new T.Mesh(new T.CircleGeometry(420,64),std({map:photo('leafy_grass_Diffuse.jpg',260,260),color:0xa8cc7c,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+  const drive=new T.Mesh(new T.PlaneGeometry(4,14),std({map:photo('concrete_floor_02_Diffuse.jpg',2,7),roughness:.95}));drive.rotation.x=-Math.PI/2;drive.position.set(.3,.01,10.5);drive.receiveShadow=true;scene.add(drive);
+  const path=new T.Mesh(new T.PlaneGeometry(10,1.2),std({map:photo('concrete_floor_02_Diffuse.jpg',5,.6),roughness:.95}));path.rotation.x=-Math.PI/2;path.position.set(0,.012,4.1);path.receiveShadow=true;scene.add(path);
+  const REAL_SKY=true;
   const leafTex=tex(128,128,(x,w,h)=>{x.fillStyle='#3d5a26';x.fillRect(0,0,w,h);for(let i=0;i<260;i++)blob(x,R()*w,R()*h,2+R()*6,`rgba(${40+R()*50|0},${70+R()*60|0},${20+R()*25|0},.9)`);grain(x,w,h,30)},3,3);
   const tree=(x,z,s)=>{cyl(.18*s,2.6*s,std({color:0x4a3b2c,roughness:1}),x,1.3*s,z);const leaf=std({map:leafTex,color:new T.Color().setHSL(.24+R()*.05,.35,.72+R()*.1),roughness:1,flatShading:false});
     for(let i=0;i<6;i++){const g=new T.IcosahedronGeometry((1+R()*.8)*s,2),pa=g.attributes.position;for(let j=0;j<pa.count;j++){const X=pa.getX(j),Y=pa.getY(j),Z=pa.getZ(j),f=1+.12*Math.sin(X*3.1/s+Y*2.3/s+i)*Math.cos(Z*2.7/s);pa.setXYZ(j,pa.getX(j)*f,pa.getY(j)*f,pa.getZ(j)*f)}g.computeVertexNormals();
       mesh(g,leaf,x+(R()-.5)*1.8*s,(2.9+R()*1.6)*s,z+(R()-.5)*1.8*s)}};
-  [[-15,-6,1.5],[-19,4,1.2],[16,-8,1.7],[20,3,1.3],[-9,-16,1.6],[8,-17,1.9],[0,-24,2]].forEach(a=>tree(...a));
-  box(9,1,.6,std({color:0x3f5e2c,roughness:1}),-11,.5,7);box(9,1,.6,std({color:0x3f5e2c,roughness:1}),11,.5,7);
+  if(!REAL_SKY)[[-15,-6,1.5],[-19,4,1.2],[16,-8,1.7]].forEach(a=>tree(...a));
 
   /* house */
   const W=8,D=7,H=5.4,RISE=2.7,th=Math.atan2(RISE,D/2),L=Math.hypot(RISE,D/2),OV=.42,XW=W+.5;
-  const wall=(w,h,x,z,ry)=>{const m=mesh(new T.PlaneGeometry(w,h),std({map:brickTex(w/1.72,h/1.72),roughness:.95}),x,h/2,z);m.rotation.y=ry};
+  const BR=1.5; // the brick photo covers 1.5m of wall
+  const brickMat=(rx,ry)=>std({color:0xf0b9a6,map:photo('brick_wall_02_Diffuse.jpg',rx,ry),normalMap:photo('brick_wall_02_nor_gl.jpg',rx,ry,false),roughness:.95});
+  const wall=(w,h,x,z,ry)=>{const m=mesh(new T.PlaneGeometry(w,h),brickMat(w/BR,h/BR),x,h/2,z);m.rotation.y=ry};
   wall(W,H,0,D/2,0);wall(W,H,0,-D/2,Math.PI);wall(D,H,W/2,0,Math.PI/2);wall(D,H,-W/2,0,-Math.PI/2);
   const gGeo=new T.BufferGeometry();
   gGeo.setAttribute('position',new T.BufferAttribute(new Float32Array([0,H,D/2, 0,H,-D/2, 0,H+RISE,0]),3));
-  gGeo.setAttribute('uv',new T.BufferAttribute(new Float32Array([0,0,D/1.72,0,D/3.44,RISE/1.72]),2));gGeo.computeVertexNormals();
-  const gMat=std({map:brickTex(1,1),roughness:.95,side:T.DoubleSide});
+  gGeo.setAttribute('uv',new T.BufferAttribute(new Float32Array([0,H/BR,D/BR,H/BR,D/2/BR,(H+RISE)/BR]),2));gGeo.computeVertexNormals();
+  const gMat=brickMat(1,1);gMat.side=T.DoubleSide;
   mesh(gGeo,gMat,W/2,0,0);mesh(gGeo,gMat,-W/2,0,0);
   const win=(x,y,w,h)=>{box(w+.14,h+.14,.08,M.white,x,y,D/2+.03);box(w,h,.08,M.glass,x,y,D/2+.05);box(.06,h,.1,M.white,x,y,D/2+.07);box(w,.06,.1,M.white,x,y+h*.18,D/2+.07);box(w+.3,.08,.22,M.white,x,y-h/2-.1,D/2+.1)};
   win(-2.4,4,1.6,1.2);win(2.4,4,1.6,1.2);win(-2.4,1.6,1.9,1.4);win(2.6,1.7,1.3,1.2);
@@ -726,7 +739,7 @@ function init3D(){
   /* ridge and chimney (shared by both slopes) */
   const ridgeGeo=new T.CylinderGeometry(.17,.17,.45,16,1,true,0,Math.PI);ridgeGeo.rotateZ(Math.PI/2);
   const ridges=[];for(let i=0;i<19;i++){const m=mesh(ridgeGeo,M.ridge,-XW/2+.225+i*.45,H+RISE+.05,0);ridges.push(m)}
-  const chimMat=std({map:brickTex(.5,1.3),roughness:.95});
+  const chimMat=brickMat(.62,1.6);
   box(.95,2.4,.75,chimMat,2.3,H+RISE-.1,.1);box(1.1,.14,.9,std({color:0x8c8780,roughness:.9}),2.3,H+RISE+1.15,.1);
   [2.05,2.55].forEach(x=>cyl(.11,.45,std({color:0xa85a3a,roughness:.85}),x,H+RISE+1.42,.1));
   box(1.15,.04,.95,std({color:0x7d8487,metalness:.4,roughness:.5}),2.3,H+RISE-.62,.1);
@@ -739,11 +752,18 @@ function init3D(){
   sx.forEach(x=>cyl(.024,1.3,M.metal,x,H-.38,4.7,'z',scaf));
   box(9.4,.05,1.05,M.board,0,H-.33,4.7,scaf);box(9.4,.16,.03,M.board,0,H-.22,5.23,scaf);
   const pallet=new T.Group();scene.add(pallet);
-  for(let i=0;i<6;i++)box(.9,.06,.42,M.tile,3.2,H-.27+i*.065,4.6,pallet);box(.95,.05,.5,M.board,3.2,H-.29,4.6,pallet);
+  for(let i=0;i<6;i++)box(.9,.06,.42,M.newPiece,3.2,H-.27+i*.065,4.6,pallet);box(.95,.05,.5,M.board,3.2,H-.29,4.6,pallet);
 
   /* the two roof slopes */
-  const N=15,COLS=28,G=.32,TW=XW/COLS,TOT=N*COLS;
-  const tileGeo=new T.BoxGeometry(TW-.004,.42,.02);
+  const N=15,G=.32,OC=21,NC=22; // courses, gauge, old tiles per course, new tiles per course
+  /* one course of tiles = a strip of the real roof photo, tilted so each tail casts a shadow.
+     Each tile is its own quad, so setDrawRange shows the course filling in tile by tile. */
+  function course(r,cols,rows,zb){
+    const P=[],U=[],tw=XW/cols,y0=-OV+r*G,y1=y0+G+.12,S=rows*G;
+    for(let c=0;c<cols;c++){const x0=-XW/2+c*tw,x1=x0+tw,zt=zb,zl=zb+.03;
+      const v=[[x0,y0,zl],[x1,y0,zl],[x1,y1,zt],[x0,y0,zl],[x1,y1,zt],[x0,y1,zt]];
+      v.forEach(([x,y,z])=>{P.push(x,y,z);U.push((x+XW/2)/S,(r*G+(y-y0))/S)})}
+    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(P,3));g.setAttribute('uv',new T.Float32BufferAttribute(U,2));g.computeVertexNormals();return g}
   const slopes=[];
   for(const side of [1,-1]){
     const pivot=new T.Group();if(side<0)pivot.rotation.y=Math.PI;scene.add(pivot);
@@ -758,18 +778,15 @@ function init3D(){
     for(let r=0;r<N;r++)box(XW,.045,.022,M.oldBat,0,-OV+r*G+.36,.015,S.oldBat);
     for(let k=0;k<6;k++){const geo=new T.PlaneGeometry(XW,1);geo.translate(XW/2,0,0);const m=mesh(geo,M.memb,-XW/2,Math.min(-OV+.5+k*.86,L-.48),.003+k*.0006,g);m.castShadow=false;S.memb.push(m)}
     for(let r=0;r<N;r++){const geo=new T.BoxGeometry(XW,.045,.024);geo.translate(XW/2,0,0);S.bat.push(mesh(geo,M.bat,-XW/2,-OV+r*G+.36,.015,g))}
-    const nuI=new T.InstancedMesh(tileGeo,M.tile,TOT);nuI.castShadow=nuI.receiveShadow=true;g.add(nuI);
-    const oldI=M.moss.map(mt=>{const m=new T.InstancedMesh(tileGeo,mt,TOT);m.castShadow=m.receiveShadow=true;g.add(m);return m});
-    const used=[0,0,0,0],col=new T.Color();
-    for(let r=0;r<N;r++)for(let c=0;c<COLS;c++){
-      const b={x:-XW/2+TW*(c+.5),y:-OV+r*G+.21,z:.052,rx:-.045,rz:(R()-.5)*.014};
-      const i=r*COLS+c;S.nu.push({b,i,r,c});const v=.82+R()*.26;nuI.setColorAt(i,col.setRGB(v,v,v));
-      const k=Math.floor(R()*4),ob={...b,z:.06,rz:(R()-.5)*.03};const slip=R()<.035;if(slip){ob.y-=.13;ob.rz+=.12}
-      S.old.push({b:ob,m:oldI[k],i:used[k]++,r,c,rand:R(),missing:R()<.025});
+    for(let r=0;r<N;r++){
+      S.old.push(mesh(course(r,OC,10,.06),M.oldRoof,0,0,0,g));
+      S.nu.push(mesh(course(r,NC,11,.045),M.newRoof,0,0,0,g));
     }
-    oldI.forEach((m,k)=>m.count=used[k]);
-    S.nuI=nuI;S.oldI=oldI;slopes.push(S);
+    slopes.push(S);
   }
+
+  const oldFly=box(XW/OC,G+.1,.015,M.oldPiece,0,0,0,slopes[0].g),newFly=box(XW/NC,G+.1,.015,M.newPiece,0,0,0,slopes[0].g);
+  oldFly.visible=newFly.visible=false;
 
   /* roofers */
   const worker=color=>{const w=new T.Group(),hv=std({color,roughness:.6,emissive:color,emissiveIntensity:.08}),navy=std({color:0x252b33,roughness:.9}),skin=std({color:0xd9a988,roughness:.8});
@@ -793,15 +810,22 @@ function init3D(){
     M.felt.opacity=1-ease(f);M.oldBat.opacity=1-ease(f);M.rot.opacity=1-ease(ch);M.fresh.opacity=ease(ch);
     slopes.forEach(S=>{
       S.felt.visible=f<1;S.felt.position.z=.004+ease(f)*.25;S.oldBat.visible=f<1;S.oldBat.position.z=ease(f)*.3;
-      S.old.forEach(t=>{if(t.missing){place(t.m,t.i,t.b,0,0,0,0,0);return}
-        const order=((N-1-t.r)*COLS+t.c)/TOT,k=ease(clamp((s-order*.85)/.15));
-        place(t.m,t.i,t.b,(t.rand-.5)*.5*k,-1.1*k,.55*Math.sin(k*Math.PI),k*(t.rand-.5)*1.4,1-k)});
-      S.oldI.forEach(o=>o.instanceMatrix.needsUpdate=true);
+      // strip: courses come off from the ridge down, tile by tile from right to left
+      const st=s*N,top=N-1-Math.floor(st),sf=st-Math.floor(st);
+      S.old.forEach((m,r)=>{const n=r>top?0:r<top?OC:Math.ceil(OC*(1-sf));m.visible=n>0;m.geometry.setDrawRange(0,n*6)});
       S.memb.forEach((mm,k)=>{const kk=ease(clamp(m*6-k));mm.scale.x=Math.max(kk,1e-4);mm.visible=kk>0});
       S.bat.forEach((b,r)=>{const kk=ease(clamp(bt*N-r));b.scale.x=Math.max(kk,1e-4);b.visible=kk>0});
-      S.nu.forEach(t=>{const order=(t.r*COLS+t.c)/TOT,k=ease(clamp((tl-order*.9)/.1));place(S.nuI,t.i,t.b,0,.05*(1-k),.32*(1-k),0,k>0?.85+.15*k:0)});
-      S.nuI.instanceMatrix.needsUpdate=true;
+      // tiling: courses go on from the gutter up, tile by tile from left to right
+      const nt=tl*N,cur=Math.floor(nt),nf=nt-cur;
+      S.nu.forEach((m,r)=>{const n=r<cur?NC:r>cur?0:Math.floor(NC*nf);m.visible=n>0;m.geometry.setDrawRange(0,n*6)});
+      S.tileState={cur,nf,top,sf};
     });
+    // one tile in the air: lifted off during the strip, dropping into place while tiling
+    const F=slopes[0];
+    if(p>.06&&p<.24&&F.tileState.top>=0){const{top,sf}=F.tileState,c=Math.ceil(OC*(1-sf)),tw=XW/OC,k=(OC*(1-sf))%1;
+      oldFly.visible=true;oldFly.position.set(-XW/2+(c-.5)*tw,-OV+top*G+.2-.5*(1-k),.06+.5*Math.sin((1-k)*Math.PI));oldFly.rotation.set(-.05+(1-k)*.6,0,(1-k)*.3)}else oldFly.visible=false;
+    if(p>.63&&p<.88&&F.tileState.cur<N){const{cur,nf}=F.tileState,c=Math.floor(NC*nf),tw=XW/NC,k=(NC*nf)%1;
+      newFly.visible=true;newFly.position.set(-XW/2+(c+.5)*tw,-OV+cur*G+.22+.15*(1-k),.06+.45*(1-k)*(1-k));newFly.rotation.set(-.05-.5*(1-k),0,0)}else newFly.visible=false;
     ridges.forEach((r,i)=>{const k=ease(clamp(rg*19-i));r.visible=k>0;r.position.y=H+RISE+.05+.5*(1-k)});
     pallet.visible=p>.6&&p<.94;
     scaf.visible=p<.96;

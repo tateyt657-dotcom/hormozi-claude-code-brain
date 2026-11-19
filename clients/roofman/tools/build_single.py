@@ -1,9 +1,10 @@
-"""Build roofman-mockup.html: index.html with images embedded as data URIs."""
-import base64,re,pathlib,sys
+"""Build roofman-mockup.html: index.html with every image and photo texture embedded, so one file works offline."""
+import base64,re,pathlib,json
 root=pathlib.Path(__file__).resolve().parent.parent
 s=(root/'index.html').read_text()
-def rep(m):
-    p=root/m.group(1); mime='image/png' if p.suffix=='.png' else 'image/jpeg'
-    return 'data:%s;base64,%s'%(mime,base64.b64encode(p.read_bytes()).decode())
-s=re.sub(r'(assets/[A-Za-z0-9_]+\.(?:png|jpg))',rep,s)
+uri=lambda p:'data:%s;base64,%s'%('image/png' if p.suffix=='.png' else 'image/jpeg',base64.b64encode(p.read_bytes()).decode())
+s=re.sub(r'(assets/[A-Za-z0-9_]+\.(?:png|jpg))',lambda m:uri(root/m.group(1)),s)
+tex={p.name:uri(p) for p in sorted((root/'textures').glob('*.jpg'))}
+s=s.replace('<script src="https://cdnjs','<script>window.ROOF_TEX='+json.dumps(tex)+';</script>\n<script src="https://cdnjs',1)
 (root/'roofman-mockup.html').write_text(s)
+print('roofman-mockup.html',round(len(s)/1e6,1),'MB')
