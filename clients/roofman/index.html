@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roofman | Roof Cleaning and New Roofs, 10 Year Guarantee</title>
+<meta name="description" content="Roof cleaning, repairs and new roofs across the UK. 10 year guarantee. No deposit, you pay when you're happy. Free quote in 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#72ae00; --green-dark:#5a8a00; --green-light:#eef6df;
+  --slate:#747a7e; --ink:#1f2427; --ink-2:#3b4246; --blue:#066aab;
+  --bg:#ffffff; --bg-2:#f4f6f3; --line:#e2e6e0;
+  --radius:14px; --shadow:0 10px 30px rgba(20,30,20,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+h1,h2,h3,.cond{font-family:"Barlow Condensed",Barlow,sans-serif;line-height:1.05;letter-spacing:.2px}
+h2{font-size:clamp(32px,5vw,48px);margin-bottom:12px}
+.eyebrow{color:var(--green-dark);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:14px;margin-bottom:8px}
+.lead{color:var(--ink-2);font-size:19px;max-width:640px}
+section{padding:80px 0}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-weight:700;text-decoration:none;border:0;border-radius:999px;padding:15px 26px;font-size:18px;cursor:pointer;font-family:inherit;transition:transform .15s,background .15s}
+.btn:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn.ghost{background:transparent;border:2px solid currentColor}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* Top bar */
+.topbar{background:var(--ink);color:#fff;font-size:15px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.topbar b{color:#b6e35a}
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+header img{height:40px;width:auto}
+nav{display:flex;gap:24px;font-weight:600}
+nav a{text-decoration:none;color:var(--ink-2)}
+nav a:hover{color:var(--green-dark)}
+.call{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}
+.call .num{font-family:"Barlow Condensed";font-size:26px;color:var(--ink)}
+.call small{display:block;font-size:12px;color:var(--slate);font-weight:600;line-height:1}
+.call .ic{width:42px;height:42px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.call .num{white-space:nowrap}
+@media(max-width:900px){nav{display:none}.call .num{font-size:21px}.call small{display:none}}
+@media(max-width:480px){header img{height:30px}.call .ic{width:36px;height:36px}.call .num{font-size:19px}header .wrap{height:64px}}
+
+/* Hero */
+.hero{position:relative;color:#fff;padding:72px 0 64px;background:#1b2023}
+.hero::before{content:"";position:absolute;inset:0;background:url(assets/RoofCleaning1after.jpg) center 30%/cover;opacity:.38}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,20,22,.92) 30%,rgba(15,20,22,.35))}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(42px,6.4vw,72px);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:#9fd534}
+.hero p.sub{font-size:20px;margin:18px 0 26px;max-width:560px;color:#e6ebe8}
+.ticks{display:grid;gap:10px;margin-bottom:28px}
+.ticks li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.ticks svg{flex:none;margin-top:3px}
+.quote-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.quote-card h3{font-size:30px;margin-bottom:4px}
+.quote-card p{color:var(--slate);font-size:15px;margin-bottom:16px}
+.field{margin-bottom:12px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:4px}
+.field input{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:17px}
+.field input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(114,174,0,.2)}
+.upload{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--blue);font-weight:600;cursor:pointer;margin:4px 0 16px}
+.upload input{display:none}
+.quote-card .btn{width:100%;justify-content:center}
+.fine{font-size:13px;color:var(--slate);margin-top:10px;text-align:center}
+.done-msg{display:none;text-align:center;padding:30px 0}
+.done-msg h3{color:var(--green-dark)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding:48px 0}}
+
+/* Trust strip */
+.trust{background:var(--green);color:#fff;padding:22px 0}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.trust b{display:block;font-family:"Barlow Condensed";font-size:30px;line-height:1}
+.trust span{font-size:15px;opacity:.95}
+@media(max-width:700px){.trust .wrap{grid-template-columns:repeat(2,1fr)}}
+
+/* Big testimonial */
+.big-quote{background:var(--bg-2)}
+.big-quote .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.big-quote blockquote{font-family:"Barlow Condensed";font-size:clamp(30px,4vw,44px);line-height:1.12}
+.big-quote blockquote mark{background:none;color:var(--green-dark)}
+.big-quote cite{display:block;margin-top:16px;font-style:normal;font-weight:700;color:var(--slate)}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo-pair figure{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.photo-pair img{aspect-ratio:4/3.4;object-fit:cover;width:100%}
+.photo-pair figcaption{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-weight:700;font-size:13px;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:1px}
+.photo-pair figure:last-child figcaption{background:var(--green)}
+@media(max-width:900px){.big-quote .wrap{grid-template-columns:1fr}}
+
+/* Roof build scroll */
+.build{background:#11161a;color:#fff;padding:0;position:relative}
+.build-intro{padding:80px 0 30px;text-align:center}
+.build-intro .lead{color:#c8d0cc;margin:0 auto}
+.build-intro .eyebrow{color:#9fd534}
+.scrolly{height:620vh;position:relative}
+.stage{position:sticky;top:72px;height:calc(100vh - 72px);display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:center;max-width:1240px;margin:0 auto;padding:0 16px}
+.steps{list-style:none;display:grid;gap:6px}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:10px 12px;border-radius:12px;opacity:.38;transition:opacity .3s,background .3s}
+.steps li.on{opacity:1;background:rgba(114,174,0,.14)}
+.steps li.past{opacity:.7}
+.steps .n{width:34px;height:34px;border-radius:50%;border:2px solid #9fd534;display:grid;place-items:center;font-weight:700;font-family:"Barlow Condensed";font-size:18px}
+.steps li.past .n,.steps li.on .n{background:#9fd534;color:#11161a}
+.steps h4{font-family:"Barlow Condensed";font-size:22px;line-height:1.1}
+.steps p{font-size:14px;color:#c8d0cc;display:none}
+.steps li.on p{display:block}
+.viewport{position:relative;height:min(76vh,640px);border-radius:18px;overflow:hidden;background:linear-gradient(#8fb6d6,#cfe1ec 60%,#e9f0f2)}
+.viewport svg,.viewport canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:center;gap:12px;z-index:2}
+.hud .bar{flex:1;height:6px;background:rgba(0,0,0,.25);border-radius:9px;overflow:hidden}
+.hud .bar i{display:block;height:100%;width:0;background:var(--green)}
+.hud .label{background:rgba(17,22,26,.85);padding:6px 12px;border-radius:999px;font-weight:700;font-size:14px;white-space:nowrap}
+.badge{position:absolute;right:20px;top:20px;width:130px;height:130px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Barlow Condensed";font-size:20px;line-height:1;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:scale(0) rotate(-20deg);transition:transform .45s cubic-bezier(.3,1.6,.5,1);z-index:2}
+.badge b{font-size:46px;display:block}
+.badge.show{transform:scale(1) rotate(-8deg)}
+.mobile-step{display:none}
+@media(max-width:900px){
+  .stage{grid-template-columns:1fr;align-content:center;gap:12px}
+  .steps{display:none}
+  .mobile-step{display:block;background:rgba(114,174,0,.14);border-radius:12px;padding:12px 14px}
+  .mobile-step h4{font-family:"Barlow Condensed";font-size:24px}
+  .mobile-step p{font-size:15px;color:#c8d0cc}
+  .viewport{height:auto;aspect-ratio:1000/640}
+  .stage{top:64px;height:calc(100vh - 64px)}
+  .badge{width:96px;height:96px;font-size:15px}.badge b{font-size:34px}
+}
+.build-outro{text-align:center;padding:40px 0 80px}
+
+/* Packages */
+.packages .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.pkg{border:1.5px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;background:#fff}
+.pkg.pop{border-color:var(--green);box-shadow:var(--shadow);position:relative}
+.pkg.pop::before{content:"Most booked";position:absolute;top:-13px;left:24px;background:var(--green);color:#fff;font-weight:700;font-size:13px;padding:3px 12px;border-radius:999px}
+.pkg h3{font-size:26px}
+.pkg .price{font-family:"Barlow Condensed";font-size:56px;font-weight:800;margin:6px 0 2px}
+.pkg .price small{font-size:18px;color:var(--slate);font-weight:600}
+.pkg ul{list-style:none;margin:16px 0 24px;display:grid;gap:9px;flex:1}
+.pkg li{display:flex;gap:10px;font-size:16px}
+.pkg li::before{content:"";flex:none;width:20px;height:20px;margin-top:2px;border-radius:50%;background:var(--green-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%235a8a00' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.pkg .btn{justify-content:center}
+.beat{margin-top:22px;text-align:center;color:var(--ink-2)}
+@media(max-width:900px){.packages .grid{grid-template-columns:1fr}}
+
+/* Gallery */
+.gallery{background:var(--bg-2)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.gal figure{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.gal img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.gal figcaption{padding:12px 14px;font-weight:600;font-size:15px}
+@media(max-width:800px){.gal{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.gal{grid-template-columns:1fr}}
+
+/* Reviews */
+.reviews .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.rev{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:24px}
+.stars{color:#f2b01e;letter-spacing:2px;font-size:18px;margin-bottom:8px}
+.rev p{font-size:16px;color:var(--ink-2)}
+.rev b{display:block;margin-top:12px}
+.rev small{color:var(--slate)}
+.placeholder{display:inline-block;background:#fff6d6;border:1px dashed #d9a400;color:#7a5c00;padding:2px 8px;border-radius:6px;font-size:14px;font-weight:600}
+@media(max-width:900px){.reviews .grid{grid-template-columns:1fr}}
+
+/* Process */
+.process .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px;counter-reset:s}
+.process .s{counter-increment:s;padding:22px;border-radius:var(--radius);background:var(--bg-2)}
+.process .s::before{content:counter(s);font-family:"Barlow Condensed";font-size:40px;font-weight:800;color:var(--green);display:block;line-height:1}
+.process h3{font-size:22px;margin:6px 0}
+.process p{font-size:15px;color:var(--ink-2)}
+@media(max-width:900px){.process .grid{grid-template-columns:1fr 1fr}}
+
+/* Areas */
+.areas{background:var(--ink);color:#fff}
+.areas .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.areas .lead{color:#c8d0cc}
+.search{display:flex;gap:8px;background:#fff;border-radius:999px;padding:6px}
+.search input{flex:1;border:0;padding:10px 16px;font:inherit;font-size:17px;border-radius:999px;min-width:0}
+.search input:focus{outline:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips a{border:1px solid #4a5357;border-radius:999px;padding:5px 12px;font-size:14px;text-decoration:none;color:#dfe5e2}
+@media(max-width:900px){.areas .wrap{grid-template-columns:1fr}}
+
+/* Final CTA + footer */
+.final{text-align:center;background:var(--green);color:#fff}
+.final h2{font-size:clamp(34px,5vw,56px)}
+.final .btn{background:#fff;color:var(--ink)}
+.final .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+footer{background:#0d1113;color:#9aa4a0;font-size:14px;padding:30px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* Mobile sticky call bar */
+.mbar{display:none}
+@media(max-width:700px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:60;box-shadow:0 -4px 20px rgba(0,0,0,.2)}
+  .mbar a{padding:15px;text-align:center;font-weight:700;text-decoration:none;color:#fff;background:var(--ink)}
+  .mbar a:last-child{background:var(--green)}
+  body{padding-bottom:54px}
+}
+.mock{position:fixed;left:12px;bottom:12px;z-index:70;background:#fff6d6;color:#7a5c00;border:1px solid #d9a400;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+@media(max-width:700px){.mock{bottom:62px}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span><b>No deposit.</b> You only pay when you're happy with the job.</span>
+  <span>Free quote within 24 hours</span>
+</div></div>
+
+<header><div class="wrap">
+  <a href="#"><img src="assets/logo.png" alt="Roofman Nationwide"></a>
+  <nav>
+    <a href="#build">New Roofs</a>
+    <a href="#packages">Roof Cleaning</a>
+    <a href="#gallery">Our Work</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#areas">Areas</a>
+  </nav>
+  <a class="call" href="tel:08000385724">
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg></span>
+    <span><small>Free from mobiles</small><span class="num">0800 038 5724</span></span>
+  </a>
+</div></header>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:#9fd534">Roof cleaning, repairs and new roofs</div>
+    <h1>Your roof cleaned, treated and <em>guaranteed for 10 years</em></h1>
+    <p class="sub">We strip out the moss, treat every tile and fix broken ones while we're up there. You don't pay a penny until you've inspected the work.</p>
+    <ul class="ticks">
+      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>No deposit. Payment only on completion.</li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>10 year guarantee on every roof clean.</li>
+      <li><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#72ae00"/><path d="M6 11.5l3.2 3 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>We'll beat any genuine like-for-like quote.</li>
+    </ul>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="#packages">See fixed prices</a>
+      <a class="btn ghost" href="#build">Watch a new roof go on</a>
+    </div>
+  </div>
+
+  <div class="quote-card" id="quote">
+    <form id="qform">
+      <h3>Get your free quote</h3>
+      <p>Three quick details. We reply within 24 hours.</p>
+      <div class="field"><label for="n">Your name</label><input id="n" required autocomplete="name"></div>
+      <div class="field"><label for="p">Phone number</label><input id="p" type="tel" required autocomplete="tel"></div>
+      <div class="field"><label for="pc">Postcode</label><input id="pc" required autocomplete="postal-code"></div>
+      <label class="upload"><input type="file" accept="image/*">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#066aab" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        Add a photo of your roof (optional, faster quote)</label>
+      <button class="btn" type="submit">Get my free quote</button>
+      <div class="fine">No obligation. We never share your details.</div>
+    </form>
+    <div class="done-msg" id="done"><h3>Thanks, we've got it.</h3><p>Chris or one of the team will call you within 24 hours.</p></div>
+  </div>
+</div></section>
+
+<div class="trust"><div class="wrap">
+  <div><b>10 YEARS</b><span>Guarantee on roof cleans</span></div>
+  <div><b>£0</b><span>Deposit. Pay on completion</span></div>
+  <div><b>24 HRS</b><span>Free quote turnaround</span></div>
+  <div><b>UK-WIDE</b><span>Family team from Leek, Staffs</span></div>
+</div></div>
+
+<!-- BIG TESTIMONIAL -->
+<section class="big-quote"><div class="wrap">
+  <div>
+    <div class="eyebrow">What customers say</div>
+    <blockquote>"My best quote was <mark>£9,000</mark> until Roofman came along for a quarter of the price!"</blockquote>
+    <cite>Mrs Lawton, Essex</cite>
+    <p class="lead" style="margin-top:18px">Then the roof gets cleaned, treated and repaired, and you inspect it before you pay.</p>
+  </div>
+  <div class="photo-pair">
+    <figure><img src="assets/RoofCleaning1before.jpg" alt="Mossy, stained roof before cleaning"><figcaption>Before</figcaption></figure>
+    <figure><img src="assets/RoofCleaning1after.jpg" alt="Clean, restored roof after Roofman's treatment"><figcaption>After</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- ROOF BUILD SCROLL -->
+<section class="build" id="build">
+  <div class="wrap build-intro">
+    <div class="eyebrow">Need a new roof?</div>
+    <h2>Scroll to watch us build one</h2>
+    <p class="lead">Every new roof goes on in the same careful order. Here's what happens on your house, from stripping the old tiles to the final ridge.</p>
+  </div>
+  <div class="scrolly" id="scrolly">
+    <div class="stage">
+      <ol class="steps" id="steps"></ol>
+      <div>
+        <div class="viewport" id="viewport">
+          <svg id="roof" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid slice" aria-label="Animation of a new roof being built"></svg>
+          <canvas id="frames" hidden></canvas>
+          <div class="badge" id="badge"><div><b>10</b>YEAR<br>GUARANTEE</div></div>
+          <div class="hud"><span class="label" id="hudLabel">Old roof</span><div class="bar"><i id="hudBar"></i></div></div>
+        </div>
+        <div class="mobile-step" id="mstep" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
+  <div class="build-outro"><a class="btn" href="#quote">Get a free new roof quote</a></div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages"><div class="wrap">
+  <div class="eyebrow">Roof cleaning packages</div>
+  <h2>Fixed prices. No surprises.</h2>
+  <p class="lead">Every package includes the same full restoration. You just pick the size of your house.</p>
+  <div class="grid">
+    <div class="pkg">
+      <h3>Semi-detached</h3>
+      <div class="price">£895 <small>all in</small></div>
+      <ul><li>Every tile cleaned and treated with fungicide</li><li>Gutters and fascias cleaned</li><li>Moss and debris cleared from the property</li><li>Free minor repairs (missing or broken tiles)</li><li>10 year guarantee</li></ul>
+      <a class="btn" href="#quote">Book this package</a>
+    </div>
+    <div class="pkg pop">
+      <h3>Standard detached</h3>
+      <div class="price">£1,195 <small>all in</small></div>
+      <ul><li>Every tile cleaned and treated with fungicide</li><li>Gutters and fascias cleaned</li><li>Moss and debris cleared from the property</li><li>Free minor repairs (missing or broken tiles)</li><li>10 year guarantee</li></ul>
+      <a class="btn" href="#quote">Book this package</a>
+    </div>
+    <div class="pkg">
+      <h3>Large detached</h3>
+      <div class="price">£1,795 <small>all in</small></div>
+      <ul><li>Every tile cleaned and treated with fungicide</li><li>Gutters and fascias cleaned</li><li>Moss and debris cleared from the property</li><li>Free minor repairs (missing or broken tiles)</li><li>10 year guarantee</li></ul>
+      <a class="btn" href="#quote">Book this package</a>
+    </div>
+  </div>
+  <p class="beat"><b>Got a quote elsewhere?</b> Send it to us. We'll beat any genuine like-for-like price.</p>
+</div></section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery"><div class="wrap">
+  <div class="eyebrow">Real jobs, real roofs</div>
+  <h2>Our recent work</h2>
+  <div class="gal">
+    <figure><img src="assets/RoofCleaning1after.jpg" alt="Restored tiled roof on a semi-detached house"><figcaption>Full restoration and repairs</figcaption></figure>
+    <figure><img src="assets/RoofCleaning7After.jpg" alt="Clean roof after moss removal"><figcaption>Moss removal and fungicide treatment</figcaption></figure>
+    <figure><img src="assets/RoofCleaning5After.jpg" alt="Roof after Roofman cleaning"><figcaption>Roof clean and gutter clear</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Reviews</div>
+  <h2>Rated by homeowners across the UK</h2>
+  <p class="lead"><span class="placeholder">Add live Google rating and review count here</span></p>
+  <div class="grid">
+    <div class="rev"><div class="stars">★★★★★</div><p>"Our roof had not been cleaned in 28 years... anyone who has visited us recently commented 'Have you had a new roof?' It looks spot on, literally like new."</p><b>Neil</b><small>Leek, Staffordshire</small></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"We actually had a leak, but they fixed this prior to the cleaning! Thank you Chris and the team! My roof is now beautiful again!"</p><b>Mrs Harrison</b><small>Cheshire</small></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"Chris' team conducted their work with the utmost professionalism and care. They left my roof and brick walls looking brand new."</p><b>Mr W</b><small>Alderley Edge, Cheshire</small></div>
+  </div>
+</div></section>
+
+<!-- PROCESS -->
+<section class="process"><div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>Four steps. Zero risk.</h2>
+  <div class="grid">
+    <div class="s"><h3>Send your details</h3><p>Fill in the form or call. Add a photo for a faster price.</p></div>
+    <div class="s"><h3>Get your fixed quote</h3><p>We reply within 24 hours with a price and the next free date.</p></div>
+    <div class="s"><h3>We do the job</h3><p>We cover your lawn and paths, do the work, then clear every bit of mess.</p></div>
+    <div class="s"><h3>Inspect, then pay</h3><p>Walk round with us. You only pay once you're happy.</p></div>
+  </div>
+</div></section>
+
+<!-- AREAS -->
+<section class="areas" id="areas"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:#9fd534">Areas we cover</div>
+    <h2>We cover over 900 towns across the UK</h2>
+    <p class="lead">Based in Leek, Staffordshire, with teams travelling nationwide. Type your town to check.</p>
+  </div>
+  <div>
+    <form class="search" onsubmit="event.preventDefault()"><input placeholder="Enter your town or postcode" aria-label="Town or postcode"><button class="btn" type="submit">Check</button></form>
+    <div class="chips"><a href="#">Leek</a><a href="#">Stoke-on-Trent</a><a href="#">Macclesfield</a><a href="#">Alderley Edge</a><a href="#">Manchester</a><a href="#">Luton</a><a href="#">Reading</a><a href="#">Bedford</a><a href="#">Essex</a></div>
+  </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2>Get your roof looking new again</h2>
+  <p style="font-size:20px">Free quote in 24 hours. No deposit. 10 year guarantee.</p>
+  <div class="btns"><a class="btn" href="#quote">Get my free quote</a><a class="btn ghost" href="tel:08000385724">Call 0800 038 5724</a></div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© <span id="yr"></span> Roofman Ltd. Leek, Staffordshire, ST13 5LS</span>
+  <span>hello@roofman.co.uk · 0800 038 5724</span>
+</div></footer>
+
+<div class="mbar"><a href="tel:08000385724">Call free</a><a href="#quote">Free quote</a></div>
+<div class="mock">Mock-up preview</div>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+document.getElementById('qform').addEventListener('submit',e=>{e.preventDefault();e.target.style.display='none';document.getElementById('done').style.display='block'});
+
+/* ================= ROOF BUILD SCROLL ANIMATION =================
+   Two modes:
+   1) FRAMES mode: set ROOF_FRAMES to a real or AI-generated image sequence
+      (e.g. frames/roof_0001.webp ... roof_0180.webp). The canvas scrubs it on scroll.
+   2) Built-in mode (default): an illustrated roof built in SVG, driven by scroll.
+*/
+const ROOF_FRAMES = null; // e.g. {count:180, path:i=>`frames/roof_${String(i).padStart(4,'0')}.webp`}
+
+const STEPS=[
+  {t:'Old roof',      d:'Worn, mossy tiles letting water in.',                                   a:0.00,b:0.06},
+  {t:'Strip the tiles',d:'Old tiles come off from the ridge down, and get cleared away safely.',  a:0.06,b:0.24},
+  {t:'Remove old felt and battens',d:'The tired felt and rotten battens come off too.',         a:0.24,b:0.31},
+  {t:'Check the rafters',d:'We inspect every rafter and replace any rotten timber.',             a:0.31,b:0.37},
+  {t:'Breathable membrane',d:'New membrane rolled out from the eaves up, each run overlapping the last.',a:0.37,b:0.52},
+  {t:'New battens',   d:'Treated timber battens fixed at the exact gauge for your tiles.',        a:0.52,b:0.63},
+  {t:'Lay the tiles', d:'New tiles laid course by course, from the gutter up.',                   a:0.63,b:0.88},
+  {t:'Fit the ridge', d:'Ridge tiles secured along the top to seal the roof.',                     a:0.88,b:0.95},
+  {t:'Done and guaranteed',d:'Site cleared, you inspect, then you pay.',                          a:0.95,b:1.01},
+];
+const stepsEl=document.getElementById('steps');
+STEPS.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<span class="n">${i+1}</span><div><h4>${s.t}</h4><p>${s.d}</p></div>`;stepsEl.appendChild(li)});
+
+const NS='http://www.w3.org/2000/svg', svg=document.getElementById('roof');
+const el=(tag,attrs,parent=svg)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent.appendChild(e);return e};
+const lerp=(a,b,t)=>a+(b-a)*t, clamp=t=>t<0?0:t>1?1:t, ease=t=>1-Math.pow(1-t,3);
+// seeded random so the roof looks the same every load
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+
+// Roof slope corners (perspective trapezoid). v=0 eaves, v=1 ridge.
+const BL=[40,520],BR=[960,520],TL=[175,118],TR=[825,118];
+const P=(u,v)=>{const lx=lerp(BL[0],TL[0],v),ly=lerp(BL[1],TL[1],v),rx=lerp(BR[0],TR[0],v),ry=lerp(BR[1],TR[1],v);return[lerp(lx,rx,u),lerp(ly,ry,u)]};
+const quad=(u0,v0,u1,v1)=>[P(u0,v0),P(u1,v0),P(u1,v1),P(u0,v1)].map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ');
+
+/* defs */
+const defs=el('defs',{});
+defs.innerHTML=`
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fa9cc"/><stop offset=".7" stop-color="#cfe0ea"/><stop offset="1" stop-color="#e8eef0"/></linearGradient>
+<linearGradient id="timber" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b98a55"/><stop offset=".5" stop-color="#d4a46b"/><stop offset="1" stop-color="#a87a48"/></linearGradient>
+<linearGradient id="batten" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b77c"/><stop offset="1" stop-color="#9d6f3d"/></linearGradient>
+<linearGradient id="memb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f7f99"/><stop offset="1" stop-color="#4a6a84"/></linearGradient>
+<linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".35" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="2.5"/></filter>`;
+
+/* scene: sky, distant trees, walls */
+el('rect',{x:0,y:0,width:1000,height:640,fill:'url(#sky)'});
+const clouds=el('g',{opacity:.7});
+[[150,80,70],[230,70,50],[720,60,80],[820,75,55],[620,90,40]].forEach(([x,y,r])=>el('ellipse',{cx:x,cy:y,rx:r,ry:r*.38,fill:'#fff',filter:'url(#soft)'},clouds));
+const trees=el('g',{});
+for(let i=0;i<14;i++){const x=i*75+rnd()*30,r=40+rnd()*35;el('circle',{cx:x,cy:560-r*.4,r,fill:['#5d7d4a','#6b8b54','#4f6e40'][i%3]},trees)}
+// walls below eaves
+el('rect',{x:20,y:520,width:960,height:140,fill:'#e9e1cf'});
+el('rect',{x:20,y:520,width:960,height:140,fill:'#000',opacity:.0001,filter:'url(#grain)'});
+[[120,560],[420,560],[720,560]].forEach(([x,y])=>{el('rect',{x,y,width:170,height:90,fill:'#2b3338',rx:3});el('rect',{x:x+6,y:y+6,width:158,height:78,fill:'#9fb6c5'});el('line',{x1:x+85,y1:y+6,x2:x+85,y2:y+84,stroke:'#f4f4f2',"stroke-width":6});el('line',{x1:x+6,y1:y+38,x2:x+164,y2:y+38,stroke:'#f4f4f2',"stroke-width":6})});
+
+/* scaffold (appears at start) */
+const scaffold=el('g',{opacity:0});
+for(let x=30;x<=970;x+=94)el('rect',{x,y:500,width:7,height:150,fill:'#9aa3a8'},scaffold);
+el('rect',{x:20,y:510,width:960,height:8,fill:'#b7bfc4'},scaffold);
+el('rect',{x:20,y:600,width:960,height:7,fill:'#b7bfc4'},scaffold);
+for(let x=20;x<980;x+=36)el('rect',{x,y:494,width:34,height:14,fill:'#c9a36a',stroke:'#8d6a3a','stroke-width':1},scaffold);
+
+/* roof deck (rafters) */
+const rafters=el('g',{});
+el('polygon',{points:quad(0,0,1,1),fill:'#2a2420'},rafters); // loft darkness
+const NR=17;
+for(let i=0;i<=NR;i++){const u=i/NR,w=.012;el('polygon',{points:quad(Math.max(0,u-w),0,Math.min(1,u+w),1),fill:'url(#timber)'},rafters)}
+el('polygon',{points:quad(0,0,1,.025),fill:'#8a6a45'},rafters); // wall plate
+el('polygon',{points:quad(0,.975,1,1),fill:'#8a6a45'},rafters); // ridge board
+// a couple of rafters that look rotten, replaced in "check" step
+const rot=el('g',{},rafters), fresh=el('g',{opacity:0},rafters);
+[5,12].forEach(i=>{const u=i/NR,w=.012;el('polygon',{points:quad(u-w,0,u+w,1),fill:'#4b3626'},rot);el('polygon',{points:quad(u-w,.3,u+w,.6),fill:'#2c2018'},rot);el('polygon',{points:quad(u-w,0,u+w,1),fill:'#e3b47a'},fresh)});
+
+/* membrane runs */
+const ROWS_M=5, membranes=[];
+const memG=el('g',{});
+for(let r=0;r<ROWS_M;r++){
+  const v0=r/ROWS_M-(r?0.03:0),v1=(r+1)/ROWS_M+0.005;
+  const g=el('g',{},memG);
+  const clip=el('clipPath',{id:'mc'+r},defs);const cr=el('polygon',{points:quad(0,v0,0,v1)},clip);
+  g.setAttribute('clip-path',`url(#mc${r})`);
+  el('polygon',{points:quad(0,v0,1,v1),fill:'url(#memb)'},g);
+  el('polygon',{points:quad(0,v0,1,v1),fill:'#000',filter:'url(#grain)',opacity:.5},g);
+  el('polygon',{points:quad(0,v0,1,v0+.012),fill:'#000',opacity:.25},g); // lap shadow
+  // printed text lines on membrane
+  for(let k=0;k<6;k++){const u=(k+.3)/6;el('polygon',{points:quad(u,v0+.07,u+.06,v0+.08),fill:'#c9d6e0',opacity:.55},g)}
+  membranes.push({cr,v0,v1});
+}
+
+/* battens */
+const GAUGE=13, battens=[];
+const batG=el('g',{});
+for(let r=0;r<GAUGE;r++){
+  const v=(r+.62)/GAUGE;
+  const b=el('polygon',{points:quad(0,v,1,v+.014),fill:'url(#batten)'},batG);
+  battens.push(b);
+}
+
+/* tiles builder */
+function buildTiles(group,{old}){
+  const out=[];
+  const COLS=20;
+  for(let r=0;r<GAUGE;r++){
+    const off=(r%2)?.5:0;
+    for(let c=-1;c<COLS;c++){
+      const u0=(c+off)/COLS,u1=(c+off+1)/COLS; if(u1<=0||u0>=1)continue;
+      const uu0=Math.max(0,u0),uu1=Math.min(1,u1);
+      const v0=r/GAUGE-.008, v1=(r+1.32)/GAUGE;
+      const g=el('g',{},group);
+      let fill;
+      if(old){const k=rnd();fill=`hsl(${25+k*15},${10+k*8}%,${24+k*9}%)`}
+      else{const k=rnd();fill=`hsl(${12+k*8},${45+k*12}%,${36+k*8}%)`}
+      el('polygon',{points:quad(uu0+.0015,v0,uu1-.0015,Math.min(v1,1.0)),fill},g);
+      el('polygon',{points:quad(uu0+.0015,v0,uu1-.0015,v0+.016),fill:'#000',opacity:old?.35:.3},g); // bottom shadow lip
+      el('polygon',{points:quad(uu0+.0015,v0+.016,uu1-.0015,v0+.03),fill:'#fff',opacity:old?.04:.1},g);
+      if(old&&rnd()<.55){const [x,y]=P((uu0+uu1)/2+(rnd()-.5)*.02,v0+.03+rnd()*.03);el('ellipse',{cx:x,cy:y,rx:8+rnd()*12,ry:4+rnd()*5,fill:`hsl(${78+rnd()*20},${35+rnd()*20}%,${28+rnd()*12}%)`},g)}
+      if(old&&rnd()<.06){g.setAttribute('opacity','0.0')} // missing tile
+      out.push({g,r,c,rand:rnd()});
+    }
+  }
+  return out;
+}
+const oldFelt=el('g',{});
+el('polygon',{points:quad(0,0,1,1),fill:'#2f2d2b'},oldFelt);
+for(let r=0;r<GAUGE;r++){const v=(r+.62)/GAUGE;el('polygon',{points:quad(0,v,1,v+.014),fill:'#5a4330'},oldFelt)}
+el('polygon',{points:quad(.18,.4,.3,.55),fill:'#1a1816'},oldFelt); // tear
+const oldG=el('g',{}), oldTiles=buildTiles(oldG,{old:true});
+oldTiles.forEach(t=>{t.base=t.g.getAttribute('opacity')??'1'});
+const newG=el('g',{}), newTiles=buildTiles(newG,{old:false});
+
+/* ridge */
+const ridgeG=el('g',{}), ridges=[];
+const RC=12;
+for(let i=0;i<RC;i++){
+  const u0=i/RC,u1=(i+1)/RC;const [x0,y0]=P(u0,1),[x1]=P(u1,1);
+  const g=el('g',{},ridgeG);
+  el('path',{d:`M${x0-2},${y0+16} Q${(x0+x1)/2},${y0-26} ${x1+2},${y0+16} Z`,fill:`hsl(14,${48+rnd()*8}%,${33+rnd()*5}%)`},g);
+  el('path',{d:`M${x0-2},${y0+16} Q${(x0+x1)/2},${y0-26} ${x1+2},${y0+16}`,fill:'none',stroke:'#000','stroke-opacity':.25,'stroke-width':2},g);
+  ridges.push(g);
+}
+/* gable verges + fascia + gutter */
+el('polygon',{points:`${BL[0]-12},${BL[1]+6} ${TL[0]-6},${TL[1]-4} ${TL[0]+6},${TL[1]-4} ${BL[0]+4},${BL[1]+6}`,fill:'#efeee8'});
+el('polygon',{points:`${BR[0]+12},${BR[1]+6} ${TR[0]+6},${TR[1]-4} ${TR[0]-6},${TR[1]-4} ${BR[0]-4},${BR[1]+6}`,fill:'#efeee8'});
+el('rect',{x:24,y:518,width:952,height:20,fill:'#f4f3ee'});
+const gutter=el('rect',{x:20,y:533,width:960,height:12,rx:6,fill:'#2b2f31'});
+el('polygon',{points:quad(0,0,1,1),fill:'url(#shade)','pointer-events':'none'});
+
+/* falling debris for strip stage */
+const debris=el('g',{});
+const debrisBits=[];for(let i=0;i<26;i++){const r=el('rect',{x:0,y:0,width:22,height:12,fill:`hsl(28,12%,${25+rnd()*12}%)`,opacity:0},debris);debrisBits.push({r,x:80+rnd()*840,d:rnd(),rot:rnd()*360})}
+
+/* ===== scroll driver ===== */
+const scrolly=document.getElementById('scrolly'),badge=document.getElementById('badge'),hudLabel=document.getElementById('hudLabel'),hudBar=document.getElementById('hudBar'),mstep=document.getElementById('mstep');
+const local=(p,a,b)=>clamp((p-a)/(b-a));
+function render(p){
+  scaffold.setAttribute('opacity',clamp(local(p,0,.05)*1)-clamp(local(p,.95,1)));
+
+  // 1. strip old tiles: ridge first (high r), left to right within course
+  const s=local(p,.06,.24);
+  oldTiles.forEach(t=>{
+    const order=((GAUGE-1-t.r)*21+t.c+1)/(GAUGE*21);
+    const k=ease(clamp((s-order*.85)/.15));
+    if(t.base==='0.0'){return}
+    t.g.setAttribute('opacity',(1-k).toFixed(3));
+    t.g.setAttribute('transform',k?`translate(${(t.rand-.5)*40*k},${-30*k})`:'');
+  });
+  // debris falling during strip
+  debrisBits.forEach(b=>{const k=clamp((s-b.d*.8)/.2);const y=lerp(470,640,k*k);b.r.setAttribute('opacity',k>0&&k<1?.9:0);b.r.setAttribute('transform',`translate(${b.x},${y}) rotate(${b.rot+k*300})`)});
+
+  // 2. old felt and battens off
+  const f=local(p,.24,.31);
+  oldFelt.setAttribute('opacity',(1-ease(f)).toFixed(3));
+  oldFelt.setAttribute('transform',`translate(0,${-20*ease(f)})`);
+
+  // 3. rafters checked, rotten ones replaced
+  const ch=local(p,.31,.37);
+  rot.setAttribute('opacity',(1-ease(ch)).toFixed(3));
+  fresh.setAttribute('opacity',ease(ch).toFixed(3));
+
+  // 4. membrane rolls out run by run, left to right
+  const m=local(p,.37,.52);
+  membranes.forEach((mm,r)=>{const k=ease(clamp(m*ROWS_M-r));mm.cr.setAttribute('points',quad(0,mm.v0,k,mm.v1))});
+
+  // 5. battens slide in bottom to top
+  const bt=local(p,.52,.63);
+  battens.forEach((b,r)=>{const k=ease(clamp(bt*GAUGE-r));b.setAttribute('opacity',k.toFixed(3));b.setAttribute('transform',`translate(${(-120*(1-k)).toFixed(1)},0)`)});
+
+  // 6. new tiles course by course from the eaves up
+  const tl=local(p,.63,.88);
+  newTiles.forEach(t=>{
+    const order=(t.r*21+t.c+1)/(GAUGE*21);
+    const k=ease(clamp((tl-order*.9)/.1));
+    t.g.setAttribute('opacity',k.toFixed(3));
+    t.g.setAttribute('transform',k<1?`translate(0,${(-26*(1-k)).toFixed(1)})`:'');
+  });
+
+  // 7. ridge
+  const rg=local(p,.88,.95);
+  ridges.forEach((g,i)=>{const k=ease(clamp(rg*RC-i));g.setAttribute('opacity',k.toFixed(3));g.setAttribute('transform',`translate(0,${(-18*(1-k)).toFixed(1)})`)});
+
+  // UI
+  const idx=Math.max(0,STEPS.findIndex(s=>p>=s.a&&p<s.b));
+  [...stepsEl.children].forEach((li,i)=>{li.className=i===idx?'on':i<idx?'past':''});
+  hudLabel.textContent=`Step ${idx+1} of ${STEPS.length}: ${STEPS[idx].t}`;
+  hudBar.style.width=(p*100).toFixed(1)+'%';
+  mstep.innerHTML=`<h4>${idx+1}. ${STEPS[idx].t}</h4><p>${STEPS[idx].d}</p>`;
+  badge.classList.toggle('show',p>.955);
+}
+
+/* optional: real video frames on canvas */
+let frames=[],ctx;
+if(ROOF_FRAMES){
+  const cv=document.getElementById('frames');cv.hidden=false;svg.style.display='none';ctx=cv.getContext('2d');
+  for(let i=1;i<=ROOF_FRAMES.count;i++){const im=new Image();im.src=ROOF_FRAMES.path(i);frames.push(im)}
+}
+function drawFrame(p){
+  const im=frames[Math.min(frames.length-1,Math.round(p*(frames.length-1)))];
+  if(!im||!im.complete)return;const cv=ctx.canvas,r=cv.getBoundingClientRect();
+  cv.width=r.width*devicePixelRatio;cv.height=r.height*devicePixelRatio;
+  const s=Math.max(cv.width/im.naturalWidth,cv.height/im.naturalHeight);
+  ctx.drawImage(im,(cv.width-im.naturalWidth*s)/2,(cv.height-im.naturalHeight*s)/2,im.naturalWidth*s,im.naturalHeight*s);
+}
+
+let ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(()=>{
+    const r=scrolly.getBoundingClientRect(),total=r.height-innerHeight;
+    const p=clamp(-r.top/total);
+    render(p); if(ROOF_FRAMES)drawFrame(p);
+    ticking=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+const fit=()=>svg.setAttribute('preserveAspectRatio',innerWidth<900?'xMidYMid meet':'xMidYMid slice');
+fit();addEventListener('resize',fit);
+// allow ?p=0.5 for previews
+const qp=new URLSearchParams(location.search).get('p');
+if(qp!==null){render(+qp)}else onScroll();
+</script>
+</body>
+</html>
